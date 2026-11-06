@@ -155,66 +155,79 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
             <div
               key={item.id}
               onClick={() => setActiveBlankId(item.id)}
-              className={`p-4 rounded-xl border transition-all cursor-pointer ${
+              className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col sm:flex-row gap-3.5 items-start sm:items-center ${
                 isCurrentActive
-                  ? 'ring-2 ring-emerald-500/30 border-emerald-400 bg-emerald-50/20'
+                  ? 'ring-2 ring-emerald-500/30 border-emerald-400 bg-emerald-50/20 shadow-xs'
                   : correct
                   ? 'bg-emerald-50/40 border-emerald-200'
                   : 'bg-white border-stone-200/80 hover:border-stone-300'
               }`}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-md bg-stone-100 text-stone-700 font-bold text-xs flex items-center justify-center">
-                    {item.id}
-                  </span>
-                  <span className="text-xs font-bold text-amber-900 bg-amber-100/70 px-2 py-0.5 rounded">
-                    {item.speaker}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-1.5 self-end sm:self-auto">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePlaySentence(item);
-                    }}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all ${
-                      isSpeaking
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
-                    }`}
-                    title="Listen to this line"
-                  >
-                    <Volume2 className="w-3.5 h-3.5" />
-                    <span>Listen 🔊</span>
-                  </button>
-                </div>
+              {/* Question Illustration Thumbnail */}
+              <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200 shadow-2xs relative group">
+                <img
+                  src={item.image}
+                  alt={item.speaker}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
 
-              {/* Cloze Text with interactive blank */}
-              <div className="text-sm text-slate-900 leading-loose">
-                <span>{parts[0]}</span>
-                <span className="inline-block mx-1.5 align-middle">
-                  <input
-                    type="text"
-                    value={currentVal}
-                    onFocus={() => setActiveBlankId(item.id)}
-                    onChange={(e) => handleInputChange(item.id, e.target.value)}
-                    placeholder={`[ ${item.id} ]`}
-                    className={`w-28 px-2 py-1 text-xs text-center font-bold rounded-md border transition-all outline-none ${
-                      correct
-                        ? 'bg-emerald-100 border-emerald-500 text-emerald-900 shadow-xs'
-                        : currentVal.length > 0
-                        ? 'bg-rose-50 border-rose-300 text-rose-900'
-                        : 'bg-stone-50 border-stone-300 focus:bg-white focus:border-emerald-500'
-                    }`}
-                  />
-                </span>
-                <span>{parts[1]}</span>
-                {correct && (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 inline ml-2 align-middle" />
-                )}
+              {/* Content Box */}
+              <div className="flex-1 w-full min-w-0">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-md bg-stone-100 text-stone-700 font-bold text-xs flex items-center justify-center">
+                      {item.id}
+                    </span>
+                    <span className="text-xs font-bold text-amber-900 bg-amber-100/70 px-2 py-0.5 rounded">
+                      {item.speaker}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 self-end sm:self-auto">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePlaySentence(item);
+                      }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all ${
+                        isSpeaking
+                          ? 'bg-emerald-600 text-white'
+                          : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                      }`}
+                      title="Listen to this line"
+                    >
+                      <Volume2 className="w-3.5 h-3.5" />
+                      <span>Listen 🔊</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Cloze Text with interactive blank */}
+                <div className="text-sm text-slate-900 leading-loose">
+                  <span>{parts[0]}</span>
+                  <span className="inline-block mx-1.5 align-middle">
+                    <input
+                      type="text"
+                      value={currentVal}
+                      onFocus={() => setActiveBlankId(item.id)}
+                      onChange={(e) => handleInputChange(item.id, e.target.value)}
+                      placeholder={`[ ${item.id} ]`}
+                      className={`w-28 px-2 py-1 text-xs text-center font-bold rounded-md border transition-all outline-none ${
+                        correct
+                          ? 'bg-emerald-100 border-emerald-500 text-emerald-900 shadow-xs'
+                          : currentVal.length > 0
+                          ? 'bg-rose-50 border-rose-300 text-rose-900'
+                          : 'bg-stone-50 border-stone-300 focus:bg-white focus:border-emerald-500'
+                      }`}
+                    />
+                  </span>
+                  <span>{parts[1]}</span>
+                  {correct && (
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 inline ml-2 align-middle" />
+                  )}
+                </div>
               </div>
             </div>
           );
@@ -238,7 +251,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
               onClick={onNextPart}
               className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shadow-sm transition-all"
             >
-              <span>Continue to Part D: Sentence Practice (句型翻譯造句)</span>
+              <span>Continue to Part D: Sentence Practice</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>

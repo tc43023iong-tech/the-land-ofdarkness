@@ -53,6 +53,7 @@ export interface ClozeItem {
   speaker: string;
   template: string; // e.g. 'The iron pillar began to {blank} until it was the perfect size.'
   targetWord: string;
+  image: string;
   zhHint?: string;
   fullEn: string;
   fullZh?: string;

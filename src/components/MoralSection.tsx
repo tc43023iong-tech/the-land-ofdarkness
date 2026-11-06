@@ -74,16 +74,19 @@ export const MoralSection: React.FC = () => {
       <div className="bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/5 rounded-2xl p-5 border border-purple-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-purple-800 tracking-wider">
-            <span>PART E: OPEN-ENDED QUESTIONS & MORAL LESSONS</span>
+            <span>PART E: MORAL LESSONS</span>
           </div>
           <h2 className="text-xl font-bold text-slate-900 font-display mt-0.5">
-            Moral Reflections on Sun Wukong's Choices
+            What Can We Learn from Sun Wukong?
           </h2>
+          <p className="text-xs text-stone-600 mt-1">
+            Easy questions about being kind, following rules, and asking for help.
+          </p>
         </div>
 
         <div className="flex items-center gap-2 text-xs text-stone-500">
           <HeartHandshake className="w-4 h-4 text-purple-600" />
-          <span>Reflective Learning & Character Education</span>
+          <span>Character & Kindness</span>
         </div>
       </div>
 
@@ -134,7 +137,7 @@ export const MoralSection: React.FC = () => {
 
               {/* Key Concept Vocabulary Tags - KEEP Chinese here */}
               <div className="flex flex-wrap items-center gap-1.5">
-                <span className="text-xs text-stone-400 font-medium">Key Concepts:</span>
+                <span className="text-xs text-stone-400 font-medium">Key Words:</span>
                 {q.keyConcepts.map((kc) => (
                   <span
                     key={kc.word}
@@ -149,7 +152,7 @@ export const MoralSection: React.FC = () => {
               <div className="space-y-1.5">
                 <span className="text-xs font-semibold text-stone-500 flex items-center gap-1">
                   <Sparkles className="w-3 h-3 text-purple-600" />
-                  <span>Sentence Starters:</span>
+                  <span>Sentence Starters (Click to use):</span>
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {q.sentenceStarters.map((starter) => (
@@ -169,7 +172,7 @@ export const MoralSection: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
                     <MessageSquare className="w-3.5 h-3.5 text-purple-600" />
-                    <span>Your Thoughts & Reflection:</span>
+                    <span>Your Thoughts (Simple English):</span>
                   </label>
                   <button
                     onClick={() => handleSaveManual(q.id)}
@@ -190,10 +193,10 @@ export const MoralSection: React.FC = () => {
                 </div>
 
                 <textarea
-                  rows={4}
+                  rows={3}
                   value={reflection}
                   onChange={(e) => handleTextChange(q.id, e.target.value)}
-                  placeholder="Write your opinion in English... (e.g. In my opinion, having great power does not mean...)"
+                  placeholder="Write 1 or 2 simple sentences in English... (e.g. It is good to be kind because...)"
                   className="w-full p-3.5 text-sm rounded-xl border border-stone-200 focus:outline-none focus:border-purple-400 bg-stone-50/50 focus:bg-white transition-all leading-relaxed"
                 />
               </div>
@@ -206,7 +209,7 @@ export const MoralSection: React.FC = () => {
                 >
                   <span className="flex items-center gap-1.5">
                     <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
-                    <span>Sample Perspectives & Teacher's Guide</span>
+                    <span>Sample Ideas (Click to view)</span>
                   </span>
                   {isModelOpen ? (
                     <ChevronUp className="w-4 h-4" />

@@ -485,6 +485,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Wukong',
     template: 'The iron pillar began to {blank} until it was the perfect size.',
     targetWord: 'shrink',
+    image: '/src/assets/images/vocab_shrink_1793962627453.jpg',
     fullEn: 'Wukong: "Smaller!" The iron pillar began to shrink until it was the perfect size.'
   },
   {
@@ -492,6 +493,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Dragon Queen',
     template: 'Look at that! He can carry such a heavy {blank}!',
     targetWord: 'weapon',
+    image: '/src/assets/images/vocab_weapon_1793962629177.jpg',
     fullEn: 'Dragon Queen: Look at that! He can carry such a heavy weapon!'
   },
   {
@@ -499,6 +501,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Narrator',
     template: 'That night, two dark {blank} grabbed Wukong while he was in bed.',
     targetWord: 'spirits',
+    image: '/src/assets/images/vocab_spirit_1793962630424.jpg',
     fullEn: 'Narrator: That night, two dark spirits grabbed Wukong while he was in bed.'
   },
   {
@@ -506,6 +509,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Wukong',
     template: '"Let me go!" shouted Wukong, but they started to {blank} him out of the cave.',
     targetWord: 'drag',
+    image: '/src/assets/images/vocab_drag_1793962630122.jpg',
     fullEn: 'Wukong: "Let me go!" shouted Wukong, but they started to drag him out of the cave.'
   },
   {
@@ -513,6 +517,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Narrator',
     template: 'They arrived at a dark and {blank} city called the Land of Darkness.',
     targetWord: 'creepy',
+    image: '/src/assets/images/vocab_creepy_1793962630120.jpg',
     fullEn: 'Narrator: They arrived at a dark and creepy city called the Land of Darkness.'
   },
   {
@@ -520,6 +525,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Wukong',
     template: '"Grow!" Wukong gave a loud {blank}, and his iron bar quickly got bigger!',
     targetWord: 'command',
+    image: '/src/assets/images/vocab_command_1793962628720.jpg',
     fullEn: 'Wukong: "Grow!" Wukong gave a loud command, and his iron bar quickly got bigger!'
   },
   {
@@ -527,6 +533,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Narrator',
     template: 'As he swung the bar, demons became scared and began to {blank}.',
     targetWord: 'flee',
+    image: '/src/assets/images/vocab_flee_1793962632996.jpg',
     fullEn: 'Narrator: As he swung the bar, demons became scared and began to flee.'
   },
   {
@@ -534,6 +541,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Judge',
     template: 'Stop! I am the {blank} of the Dead. Why are you causing trouble here?',
     targetWord: 'judge',
+    image: '/src/assets/images/vocab_judge_1793962631798.jpg',
     fullEn: 'Judge: Stop! I am the Judge of the Dead. Why are you causing trouble here?'
   }
 ];
@@ -634,55 +642,55 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
 export const MORAL_QUESTIONS: MoralQuestion[] = [
   {
     id: 1,
-    title: 'Moral Lesson 1: Power vs. Rules & Respect',
-    storyContext: 'Sun Wukong became very powerful with his new weapon, but he shouted at the Dragon King, fought the spirits, and crossed out his name in the Directory.',
-    question: 'Does having great power or strength give someone the right to break rules and treat others rudely? Why or why not?',
+    title: 'Lesson 1: Strength and Rules',
+    storyContext: 'Sun Wukong got a very strong weapon. But he was rude to the Dragon King and broke rules in the Underworld.',
+    question: 'If you are very strong, can you break rules and be mean to others? Why or why not?',
     keyConcepts: [
-      { word: 'Responsibility', zh: '責任感' },
-      { word: 'Respect', zh: '尊重他人' },
-      { word: 'Fairness', zh: '公平公正' },
-      { word: 'Rule of Law', zh: '規則秩序' }
+      { word: 'Be kind', zh: '友善對人' },
+      { word: 'Help others', zh: '幫助他人' },
+      { word: 'Follow rules', zh: '遵守規則' },
+      { word: 'Say sorry', zh: '懂得道歉' }
     ],
     sentenceStarters: [
-      'In my opinion, having great power does not give someone the right to...',
-      'Great strength should be used to protect others, not to...',
-      'If everyone broke rules because they were strong, then...'
+      'No, being strong does not mean you can...',
+      'Strong people should use their power to...',
+      'It is good to be nice because...'
     ],
     sampleResponses: [
       {
-        perspective: 'With Great Power Comes Responsibility',
-        textEn: 'No, having great strength does not give anyone the right to be rude or break rules. Real heroes use their power to protect the weak and keep fairness, not to bully others.'
+        perspective: 'Be Kind to Others',
+        textEn: 'No. Being strong does not give anyone the right to be mean or break rules. Strong people should protect and help weak people.'
       },
       {
-        perspective: 'Respect and Long-term Consequences',
-        textEn: 'When Sun Wukong acted rudely to the Dragon King and the Judge, it created enemies and caused the Dragon King to report him to Heaven. Treating others with respect prevents conflict and earns true friendship.'
+        perspective: 'Make Friends, Not Enemies',
+        textEn: 'When Wukong was rude, he made enemies and got in trouble. If we are polite and kind, people will like us and be our friends.'
       }
     ]
   },
   {
     id: 2,
-    title: 'Moral Lesson 2: Handling Bullies & Authority',
-    storyContext: 'When the Dragon King felt upset about Wukong\'s rude behavior, he chose to report it to the Jade Emperor instead of starting a big fight.',
-    question: 'When someone is unfair or acts like a bully toward you, is it better to talk to an authority (like a teacher or parent) or to fight back with anger? Why?',
+    title: 'Lesson 2: Telling an Adult or Fighting Back?',
+    storyContext: 'The Dragon King was upset when Wukong was rude. But he did not start a fight. He went to talk to the Jade Emperor.',
+    question: 'When someone is mean or bullies you, is it better to tell a teacher/parent, or fight back? Why?',
     keyConcepts: [
-      { word: 'Peaceful Resolution', zh: '和平解決' },
-      { word: 'Seeking Help', zh: '尋求協助' },
-      { word: 'Emotional Control', zh: '情緒控制' },
-      { word: 'Safety First', zh: '安全第一' }
+      { word: 'Tell an adult', zh: '告訴師長' },
+      { word: 'Stay calm', zh: '保持冷靜' },
+      { word: 'No fighting', zh: '不要動手' },
+      { word: 'Stay safe', zh: '安全第一' }
     ],
     sentenceStarters: [
-      'I believe it is better to seek help from an authority because...',
-      'Fighting back with anger often makes the situation worse because...',
-      'When facing unfair treatment, the smartest first step is to...'
+      'I think it is better to tell a teacher because...',
+      'Fighting back is bad because...',
+      'When someone is mean, we should...'
     ],
     sampleResponses: [
       {
-        perspective: 'Wisdom Over Violence',
-        textEn: 'It is much better to talk to an authority like a teacher, parent, or trusted adult. Fighting back with anger usually causes injuries and can make you get in trouble too. Seeking help ensures safety and a fair solution.'
+        perspective: 'Ask for Help',
+        textEn: 'It is better to tell a teacher or parent. If you fight back with anger, you can get hurt. A teacher can stop the bully safely.'
       },
       {
-        perspective: 'Calm Strategy & Justice',
-        textEn: 'The Dragon King knew that Wukong was too strong for him at that moment. Reporting to the Jade Emperor was a strategic choice to bring higher justice without destroying the underwater palace.'
+        perspective: 'Stay Calm and Smart',
+        textEn: 'The Dragon King was smart. He stayed calm and asked a higher leader for help. Fighting makes things worse.'
       }
     ]
   }
