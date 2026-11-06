@@ -91,7 +91,7 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/src/assets/images/wukong_darkness_gate_1793961268218.jpg',
     imageAlt: 'Sun Wukong being dragged to the dark and creepy gates of the Land of Darkness',
     summary: 'While celebrating at Flower Fruit Mountain, two ghostly spirits ambush sleeping Wukong and drag him to the spooky Land of Darkness.',
-    interactiveType: 'ghost_action',
+    interactiveType: 'staff_resizer',
     sentences: [
       {
         id: 's2-1',

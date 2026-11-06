@@ -20,10 +20,6 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
   const [speechRate, setSpeechRate] = useState<number>(1.0);
   const [showAllZh, setShowAllZh] = useState<boolean>(false);
   const [revealedSentenceZh, setRevealedSentenceZh] = useState<Record<string, boolean>>({});
-  const [ghostKnockoutState, setGhostKnockoutState] = useState<{ spirit1: boolean; spirit2: boolean }>({
-    spirit1: false,
-    spirit2: false
-  });
 
   const activeScene: StoryScene = STORY_SCENES[activeSceneIndex];
 
@@ -79,22 +75,6 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
     };
 
     playNext();
-  };
-
-  const handleKnockGhost = (spiritNumber: 1 | 2) => {
-    sfx.playWhap();
-    if (spiritNumber === 1) {
-      setGhostKnockoutState((prev) => ({ ...prev, spirit1: true }));
-      speech.speak('Whap! Sun Wukong knocked out the first spirit!', { rate: 1.1 });
-    } else {
-      setGhostKnockoutState((prev) => ({ ...prev, spirit2: true }));
-      speech.speak('Crack! He knocked out the second spirit!', { rate: 1.1 });
-    }
-  };
-
-  const resetGhosts = () => {
-    setGhostKnockoutState({ spirit1: false, spirit2: false });
-    sfx.playClick();
   };
 
   const getSpeakerBadgeClass = (speaker?: string) => {
@@ -259,51 +239,6 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
           {/* Interactive Scene Widgets */}
           {activeScene.interactiveType === 'staff_resizer' && (
             <MiniStaffResizer />
-          )}
-
-          {activeScene.interactiveType === 'ghost_action' && (
-            <div className="bg-purple-950 text-purple-100 rounded-2xl p-4 border border-purple-800 shadow-md">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">⚡</span>
-                  <h4 className="text-sm font-bold text-purple-200 font-display">
-                    Action: Knock Out the Spirits!
-                  </h4>
-                </div>
-                <button
-                  onClick={resetGhosts}
-                  className="text-[11px] text-purple-300 hover:text-white underline"
-                >
-                  Reset (重來)
-                </button>
-              </div>
-              <p className="text-xs text-purple-300 mb-3">
-                Wukong yelled "Grow!" and swung his iron bar. Click to knock out the two underworld spirits!
-              </p>
-
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => handleKnockGhost(1)}
-                  className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                    ghostKnockoutState.spirit1
-                      ? 'bg-rose-900/60 border-rose-500 text-rose-200 line-through'
-                      : 'bg-purple-800/60 border-purple-600 hover:bg-purple-700 text-purple-100 active:scale-95'
-                  }`}
-                >
-                  <span>{ghostKnockoutState.spirit1 ? '💫 Knocked Out!' : '💥 Whap Spirit 1!'}</span>
-                </button>
-                <button
-                  onClick={() => handleKnockGhost(2)}
-                  className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                    ghostKnockoutState.spirit2
-                      ? 'bg-rose-900/60 border-rose-500 text-rose-200 line-through'
-                      : 'bg-purple-800/60 border-purple-600 hover:bg-purple-700 text-purple-100 active:scale-95'
-                  }`}
-                >
-                  <span>{ghostKnockoutState.spirit2 ? '💫 Knocked Out!' : '⚡ Crack Spirit 2!'}</span>
-                </button>
-              </div>
-            </div>
           )}
 
           {activeScene.interactiveType === 'cross_out' && (
