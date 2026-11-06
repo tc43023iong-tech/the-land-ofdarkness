@@ -1,0 +1,6 @@
+{
+  "name": "Journey to the West: The Land of Darkness",
+  "description": "Interactive English storybook and learning adventure featuring Sun Wukong, with vocabulary flashcards, reading annotations, listening practice, quizzes, sentence drills, and moral discussions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
