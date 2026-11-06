@@ -4,7 +4,6 @@ import { STORY_SCENES } from '../data/storyData';
 import { StoryScene, StorySentence } from '../types/story';
 import { speech } from '../utils/speech';
 import { sfx } from '../utils/soundEffects';
-import { MiniStaffResizer } from './MiniStaffResizer';
 import { DirectoryMiniGame } from './DirectoryMiniGame';
 
 interface StoryReaderProps {
@@ -235,11 +234,6 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
               </div>
             </div>
           </div>
-
-          {/* Interactive Scene Widgets */}
-          {activeScene.interactiveType === 'staff_resizer' && (
-            <MiniStaffResizer />
-          )}
 
           {activeScene.interactiveType === 'cross_out' && (
             <DirectoryMiniGame />

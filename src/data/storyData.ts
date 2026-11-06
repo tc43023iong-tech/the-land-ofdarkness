@@ -9,7 +9,6 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/src/assets/images/wukong_dragon_staff_1793961266221.jpg',
     imageAlt: 'Sun Wukong testing the magical glowing iron pillar in the underwater Dragon Palace',
     summary: 'Sun Wukong finds the legendary iron pillar in the Dragon Palace and commands it to shrink into a tiny pin inside his ear.',
-    interactiveType: 'staff_resizer',
     sentences: [
       {
         id: 's1-1',
@@ -91,7 +90,6 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/src/assets/images/wukong_darkness_gate_1793961268218.jpg',
     imageAlt: 'Sun Wukong being dragged to the dark and creepy gates of the Land of Darkness',
     summary: 'While celebrating at Flower Fruit Mountain, two ghostly spirits ambush sleeping Wukong and drag him to the spooky Land of Darkness.',
-    interactiveType: 'staff_resizer',
     sentences: [
       {
         id: 's2-1',
