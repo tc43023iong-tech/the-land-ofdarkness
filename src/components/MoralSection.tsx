@@ -133,15 +133,6 @@ export const MoralSection: React.FC = () => {
                     </h3>
                   </div>
                 </div>
-
-                <button
-                  onClick={() => handleSpeakQuestion(q)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-purple-700 bg-white border border-purple-200 hover:bg-purple-100 shadow-2xs transition-colors self-end sm:self-auto shrink-0"
-                  title="Listen to question"
-                >
-                  <Volume2 className="w-3.5 h-3.5 text-purple-600" />
-                  <span>Listen 🔊</span>
-                </button>
               </div>
 
               {/* Two-Column Structured Layout */}
@@ -201,7 +192,7 @@ export const MoralSection: React.FC = () => {
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-bold text-purple-900 flex items-center gap-1.5">
                         <Quote className="w-3.5 h-3.5 text-purple-600" />
-                        <span>Sentence Starters (點擊填入寫作區):</span>
+                        <span>Sentence Starters:</span>
                       </span>
                     </div>
                     <div className="space-y-1.5">

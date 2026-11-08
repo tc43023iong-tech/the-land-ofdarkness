@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Gamepad2, RotateCcw, CheckCircle2, Sparkles, Volume2, Trophy, ArrowRight, Check } from 'lucide-react';
 import { VOCABULARY_LIST } from '../data/storyData';
 import { VocabWord } from '../types/story';
-import { speech } from '../utils/speech';
 import { sfx } from '../utils/soundEffects';
 
 interface MatchItem {
@@ -74,11 +73,9 @@ export const PictureWordMatchGame: React.FC = () => {
   // Handle clicking a word card
   const handleSelectWord = (id: string, word: string) => {
     if (matchedIds.has(id)) {
-      speech.speak(word, { rate: 1.0 });
       return;
     }
     sfx.playClick();
-    speech.speak(word, { rate: 1.0 });
 
     // If an image was already selected, check match
     if (selectedImageId) {
@@ -95,10 +92,6 @@ export const PictureWordMatchGame: React.FC = () => {
     if (imgId === wrdId) {
       // Correct match!
       sfx.playCorrect();
-      const target = VOCABULARY_LIST.find((v) => v.id === imgId);
-      if (target) {
-        speech.speak(`Correct! ${target.word}`, { rate: 1.05 });
-      }
 
       setMatchedIds((prev) => {
         const next = new Set(prev);

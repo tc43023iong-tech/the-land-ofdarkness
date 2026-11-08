@@ -47,8 +47,6 @@ export default function App() {
             <span>The Land of Darkness</span>
             <span aria-hidden="true">·</span>
             <span>西遊記第七話：幽冥界與生死簿</span>
-            <span aria-hidden="true">·</span>
-            <span>Bilingual Interactive Reader</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">

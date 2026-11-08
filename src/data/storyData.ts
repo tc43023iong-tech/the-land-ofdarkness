@@ -56,7 +56,7 @@ export const STORY_SCENES: StoryScene[] = [
         id: 's1-7',
         speaker: 'Narrator',
         en: 'Wukong made the bar even smaller. Soon it was no bigger than a pin. He placed it inside his ear.',
-        annotated: 'Wukong made the bar even smaller. Soon it was no bigger than a pin (大頭針). He placed it inside his ear (耳朵).',
+        annotated: 'Wukong made the bar even smaller. Soon it was no bigger than a pin (大頭針). He placed it inside his ear.',
         zh: '悟空讓鐵棒變得更小。很快它就變得像一根繡花針一樣細小。他把它輕輕放進了耳朵裡。'
       },
       {
@@ -70,7 +70,7 @@ export const STORY_SCENES: StoryScene[] = [
         id: 's1-9',
         speaker: 'Dragon Queen',
         en: '"He was very rude," said the Dragon Queen.',
-        annotated: '"He was very rude (無禮的 / 粗魯的)," said the Dragon Queen.',
+        annotated: '"He was very rude," said the Dragon Queen.',
         zh: '「他太沒禮貌了，」龍后抱怨道。'
       },
       {
@@ -198,7 +198,7 @@ export const STORY_SCENES: StoryScene[] = [
         id: 's3-5',
         speaker: 'Sun Wukong',
         en: '"I want to know why I was brought here," said Wukong. "Tell me now!"',
-        annotated: '"I want to know why I was brought (被帶來) here," said Wukong. "Tell me now!"',
+        annotated: '"I want to know why I was brought here," said Wukong. "Tell me now!"',
         zh: '「我要知道你們憑什麼把我抓到這裡來，」悟空說：「快給我說清楚！」'
       },
       {
@@ -280,7 +280,7 @@ export const STORY_SCENES: StoryScene[] = [
         id: 's4-7',
         speaker: 'Narrator',
         en: 'The judge hesitated. "I can\'t give it to—" "Now!" said Wukong.',
-        annotated: 'The judge hesitated (猶豫不決). "I can\'t give it to—" "Now (立刻)!" said Wukong.',
+        annotated: 'The judge hesitated (猶豫不決). "I can\'t give it to—" "Now!" said Wukong.',
         zh: '判官猶豫著：「我不能交給……」「立刻交出來！」悟空厲聲道。'
       },
       {
@@ -481,66 +481,66 @@ export const CLOZE_ITEMS: ClozeItem[] = [
   {
     id: 1,
     speaker: 'Wukong',
-    template: 'The iron pillar began to {blank} until it was the perfect size.',
-    targetWord: 'shrink',
-    image: '/images/vocab_shrink_1793962627453.jpg',
-    fullEn: 'Wukong: "Smaller!" The iron pillar began to shrink until it was the perfect size.'
+    template: '"Smaller!" {blank} Wukong.',
+    targetWord: 'commanded',
+    image: '/images/vocab_command_1793962628720.jpg',
+    fullEn: '"Smaller!" commanded Wukong.'
   },
   {
     id: 2,
-    speaker: 'Dragon Queen',
-    template: 'Look at that! He can carry such a heavy {blank}!',
-    targetWord: 'weapon',
-    image: '/images/vocab_weapon_1793962629177.jpg',
-    fullEn: 'Dragon Queen: Look at that! He can carry such a heavy weapon!'
+    speaker: 'Narrator',
+    template: 'The pillar {blank}! Soon it was just a little taller than Wukong.',
+    targetWord: 'shrank',
+    image: '/images/vocab_shrink_1793962627453.jpg',
+    fullEn: 'The pillar shrank! Soon it was just a little taller than Wukong.'
   },
   {
     id: 3,
-    speaker: 'Narrator',
-    template: 'That night, two dark {blank} grabbed Wukong while he was in bed.',
-    targetWord: 'spirits',
-    image: '/images/vocab_spirit_1793962630424.jpg',
-    fullEn: 'Narrator: That night, two dark spirits grabbed Wukong while he was in bed.'
+    speaker: 'Wukong',
+    template: '"This is a perfect {blank} for me," he said.',
+    targetWord: 'weapon',
+    image: '/images/vocab_weapon_1793962629177.jpg',
+    fullEn: '"This is a perfect weapon for me," he said.'
   },
   {
     id: 4,
-    speaker: 'Wukong',
-    template: '"Let me go!" shouted Wukong, but they started to {blank} him out of the cave.',
-    targetWord: 'drag',
-    image: '/images/vocab_drag_1793962630122.jpg',
-    fullEn: 'Wukong: "Let me go!" shouted Wukong, but they started to drag him out of the cave.'
+    speaker: 'Narrator',
+    template: 'But as he fell asleep, two {blank} grabbed him.',
+    targetWord: 'spirits',
+    image: '/images/vocab_spirit_1793962630424.jpg',
+    fullEn: 'But as he fell asleep, two spirits grabbed him.'
   },
   {
     id: 5,
     speaker: 'Narrator',
-    template: 'They arrived at a dark and {blank} city called the Land of Darkness.',
-    targetWord: 'creepy',
-    image: '/images/vocab_creepy_1793962630120.jpg',
-    fullEn: 'Narrator: They arrived at a dark and creepy city called the Land of Darkness.'
+    template: 'He kicked and struggled as the spirits {blank} him out of his cave.',
+    targetWord: 'dragged',
+    image: '/images/vocab_drag_1793962630122.jpg',
+    fullEn: 'He kicked and struggled as the spirits dragged him out of his cave.'
   },
   {
     id: 6,
-    speaker: 'Wukong',
-    template: '"Grow!" Wukong gave a loud {blank}, and his iron bar quickly got bigger!',
-    targetWord: 'command',
-    image: '/images/vocab_command_1793962628720.jpg',
-    fullEn: 'Wukong: "Grow!" Wukong gave a loud command, and his iron bar quickly got bigger!'
+    speaker: 'Narrator',
+    template: 'They walked toward a dark and {blank} city.',
+    targetWord: 'creepy',
+    image: '/images/vocab_creepy_1793962630120.jpg',
+    fullEn: 'They walked toward a dark and creepy city.'
   },
   {
     id: 7,
     speaker: 'Narrator',
-    template: 'As he swung the bar, demons became scared and began to {blank}.',
-    targetWord: 'flee',
+    template: 'As he went, he swung his iron bar back and forth. Demons and ghosts {blank}.',
+    targetWord: 'fled',
     image: '/images/vocab_flee_1793962632996.jpg',
-    fullEn: 'Narrator: As he swung the bar, demons became scared and began to flee.'
+    fullEn: 'As he went, he swung his iron bar back and forth. Demons and ghosts fled.'
   },
   {
     id: 8,
-    speaker: 'Judge',
-    template: 'Stop! I am the {blank} of the Dead. Why are you causing trouble here?',
-    targetWord: 'judge',
+    speaker: 'Judge of the Dead',
+    template: '"I am the {blank} of the Dead," said the spirit. "Why are you causing all this trouble?"',
+    targetWord: 'Judge',
     image: '/images/vocab_judge_1793962631798.jpg',
-    fullEn: 'Judge: Stop! I am the Judge of the Dead. Why are you causing trouble here?'
+    fullEn: '"I am the Judge of the Dead," said the spirit. "Why are you causing all this trouble?"'
   }
 ];
 

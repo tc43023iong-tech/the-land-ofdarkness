@@ -11,14 +11,14 @@ interface ClozeSectionProps {
 
 // Scrambled / shuffled word options per question (no fixed predictable order)
 const SCRAMBLED_OPTIONS_MAP: Record<number, string[]> = {
-  1: ['command', 'creepy', 'shrink', 'flee', 'weapon', 'drag', 'judge', 'spirits'],
-  2: ['spirits', 'weapon', 'drag', 'shrink', 'judge', 'command', 'flee', 'creepy'],
-  3: ['creepy', 'flee', 'spirits', 'drag', 'judge', 'weapon', 'shrink', 'command'],
-  4: ['drag', 'shrink', 'judge', 'command', 'weapon', 'spirits', 'creepy', 'flee'],
-  5: ['judge', 'creepy', 'flee', 'spirits', 'shrink', 'drag', 'command', 'weapon'],
-  6: ['flee', 'command', 'weapon', 'shrink', 'creepy', 'drag', 'judge', 'spirits'],
-  7: ['weapon', 'spirits', 'flee', 'drag', 'command', 'shrink', 'judge', 'creepy'],
-  8: ['shrink', 'judge', 'creepy', 'command', 'spirits', 'flee', 'weapon', 'drag']
+  1: ['commanded', 'creepy', 'shrank', 'fled', 'weapon', 'dragged', 'Judge', 'spirits'],
+  2: ['spirits', 'weapon', 'dragged', 'shrank', 'Judge', 'commanded', 'fled', 'creepy'],
+  3: ['creepy', 'fled', 'spirits', 'dragged', 'Judge', 'weapon', 'shrank', 'commanded'],
+  4: ['dragged', 'shrank', 'Judge', 'commanded', 'weapon', 'spirits', 'creepy', 'fled'],
+  5: ['Judge', 'creepy', 'fled', 'spirits', 'shrank', 'dragged', 'commanded', 'weapon'],
+  6: ['fled', 'commanded', 'weapon', 'shrank', 'creepy', 'dragged', 'Judge', 'spirits'],
+  7: ['weapon', 'spirits', 'fled', 'dragged', 'commanded', 'shrank', 'Judge', 'creepy'],
+  8: ['shrank', 'Judge', 'creepy', 'commanded', 'spirits', 'fled', 'weapon', 'dragged']
 };
 
 export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {

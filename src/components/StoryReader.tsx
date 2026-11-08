@@ -11,6 +11,128 @@ interface StoryReaderProps {
   onNavigateToVocab?: () => void;
 }
 
+// List of all annotated target phrases sorted longest to shortest for accurate matching
+const ANNOTATED_TERMS = [
+  'your time on Earth is over',
+  'the palace of darkness',
+  'Palace of Darkness',
+  'the jade emperor',
+  'Jade Emperor',
+  'the dragon queen',
+  'Dragon Queen',
+  'drew a line through',
+  'clenched his fists',
+  'Born from a stone',
+  'land of darkness',
+  'Land of Darkness',
+  'a jar of ink',
+  'jar of ink',
+  'shook his head',
+  'flipped through',
+  'crossed out',
+  'knocked out',
+  'live forever',
+  'iron pillar',
+  'supposed to',
+  'supposes to',
+  'entrance gate',
+  'Let go of',
+  'let go of',
+  'Died today',
+  'died today',
+  'hesitated',
+  'Directory',
+  'directory',
+  'creature',
+  'struggled',
+  'commanded',
+  'subjects',
+  'Nonsense',
+  'nonsense',
+  'nervous',
+  'declared',
+  'spirits',
+  'grabbed',
+  'dragged',
+  'magical',
+  'smaller',
+  'Smaller',
+  'trouble',
+  'Shaking',
+  'plucked',
+  'attack',
+  'amazed',
+  'creepy',
+  'demons',
+  'Demons',
+  'ghosts',
+  'shrank',
+  'handed',
+  'glared',
+  'cheered',
+  'weapon',
+  'stomped',
+  'swung',
+  'Judge',
+  'judge',
+  'feast',
+  'brush',
+  'I bet',
+  'yanked',
+  'lift',
+  'grow',
+  'Grow',
+  'fled',
+  'pin',
+  'report'
+];
+
+const ANNOTATED_REGEX = new RegExp(
+  `(${ANNOTATED_TERMS.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s*(\\([^)]*[\\u4e00-\\u9fa5][^)]*\\))`,
+  'gi'
+);
+
+const renderHighlighterText = (text: string, isInline: boolean) => {
+  if (!isInline) return text;
+
+  const matches = [...text.matchAll(ANNOTATED_REGEX)];
+  if (matches.length === 0) return text;
+
+  const parts: React.ReactNode[] = [];
+  let lastIdx = 0;
+
+  matches.forEach((m, idx) => {
+    const start = m.index ?? 0;
+    if (start > lastIdx) {
+      parts.push(text.slice(lastIdx, start));
+    }
+
+    const term = m[1];
+    const zh = m[2];
+
+    parts.push(
+      <mark
+        key={`hl-${idx}`}
+        className="relative inline-flex items-baseline bg-amber-200/95 hover:bg-yellow-200 text-amber-950 font-bold px-1.5 py-0.5 mx-0.5 rounded-md border-b-2 border-amber-400 shadow-2xs transition-colors cursor-help"
+        title={`${term} ${zh}`}
+      >
+        <span>{term}</span>
+        <span className="text-amber-800 font-chinese text-[0.84em] font-normal ml-1">
+          {zh}
+        </span>
+      </mark>
+    );
+
+    lastIdx = start + m[0].length;
+  });
+
+  if (lastIdx < text.length) {
+    parts.push(text.slice(lastIdx));
+  }
+
+  return parts;
+};
+
 export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNavigateToVocab }) => {
   const [activeSceneIndex, setActiveSceneIndex] = useState<number>(0);
   const [annotationMode, setAnnotationMode] = useState<'inline' | 'hover' | 'english'>('inline');
@@ -132,9 +254,9 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
               className={`px-2.5 py-1 rounded-lg transition-all ${
                 annotationMode === 'inline' ? 'bg-white text-amber-900 font-bold shadow-xs' : 'text-stone-600'
               }`}
-              title="難詞直接加括號中文 (Default)"
+              title="難詞直接加螢光筆標註中文"
             >
-              括號中文 (Inline)
+              螢光標註 (Highlighter)
             </button>
             <button
               onClick={() => {
@@ -329,9 +451,9 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                       </div>
                     </div>
 
-                    {/* English with bracketed annotations */}
+                    {/* English with bracketed annotations & highlighter effect */}
                     <p className={`text-base leading-relaxed ${isActive ? 'text-amber-950 font-semibold' : 'text-slate-900'}`}>
-                      {displayText}
+                      {renderHighlighterText(displayText, annotationMode === 'inline')}
                     </p>
 
                     {/* Chinese translation line - hidden unless toggled */}
