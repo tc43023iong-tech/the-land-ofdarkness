@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Sparkles, MessageSquare, Volume2, Save, Check, Lightbulb, HeartHandshake, ShieldCheck, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, MessageSquare, Volume2, HeartHandshake, BookOpen, Quote } from 'lucide-react';
 import { MORAL_QUESTIONS } from '../data/storyData';
 import { MoralQuestion } from '../types/story';
 import { speech } from '../utils/speech';
@@ -15,8 +15,7 @@ export const MoralSection: React.FC = () => {
     }
   });
 
-  const [expandedModelAnswers, setExpandedModelAnswers] = useState<Record<number, boolean>>({});
-  const [saveStatus, setSaveStatus] = useState<Record<number, boolean>>({});
+  const [activeTab, setActiveTab] = useState<number | 'all'>('all');
 
   const handleTextChange = (id: number, text: string) => {
     setUserReflections((prev) => {
@@ -45,28 +44,14 @@ export const MoralSection: React.FC = () => {
     });
   };
 
-  const handleSaveManual = (id: number) => {
-    sfx.playCorrect();
-    try {
-      localStorage.setItem('wukong_moral_reflections', JSON.stringify(userReflections));
-    } catch {
-      // ignore
-    }
-    setSaveStatus((prev) => ({ ...prev, [id]: true }));
-    setTimeout(() => {
-      setSaveStatus((prev) => ({ ...prev, [id]: false }));
-    }, 2000);
-  };
-
   const handleSpeakQuestion = (q: MoralQuestion) => {
     sfx.playClick();
     speech.speak(`${q.title}. ${q.question}`);
   };
 
-  const toggleModelAnswer = (id: number) => {
-    sfx.playClick();
-    setExpandedModelAnswers((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+  const filteredQuestions = activeTab === 'all'
+    ? MORAL_QUESTIONS
+    : MORAL_QUESTIONS.filter((q) => q.id === activeTab);
 
   return (
     <div className="space-y-6">
@@ -79,40 +64,71 @@ export const MoralSection: React.FC = () => {
           <h2 className="text-xl font-bold text-slate-900 font-display mt-0.5">
             What Can We Learn from Sun Wukong?
           </h2>
-          <p className="text-xs text-stone-600 mt-1">
-            Easy questions about being kind, following rules, and asking for help.
+          <p className="text-xs text-stone-600 mt-1 font-medium">
+            being kind, following rules, and asking for help.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-stone-500">
+        <div className="flex items-center gap-2 text-xs text-purple-700 bg-white/80 px-3 py-1.5 rounded-xl border border-purple-200 shadow-2xs">
           <HeartHandshake className="w-4 h-4 text-purple-600" />
-          <span>Character & Kindness</span>
+          <span className="font-semibold">Character & Moral Reflection</span>
         </div>
       </div>
 
-      {/* Moral Lessons Cards */}
+      {/* Lesson Switcher Tabs */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+        <button
+          onClick={() => {
+            setActiveTab('all');
+            sfx.playClick();
+          }}
+          className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shadow-2xs ${
+            activeTab === 'all'
+              ? 'bg-purple-700 text-white shadow-xs'
+              : 'bg-white border border-stone-200 text-stone-700 hover:bg-purple-50'
+          }`}
+        >
+          All Lessons
+        </button>
+        {MORAL_QUESTIONS.map((q) => (
+          <button
+            key={q.id}
+            onClick={() => {
+              setActiveTab(q.id);
+              sfx.playClick();
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shadow-2xs ${
+              activeTab === q.id
+                ? 'bg-purple-700 text-white shadow-xs'
+                : 'bg-white border border-stone-200 text-stone-700 hover:bg-purple-50'
+            }`}
+          >
+            Lesson {q.id}
+          </button>
+        ))}
+      </div>
+
+      {/* Structured Moral Lesson Cards */}
       <div className="space-y-6">
-        {MORAL_QUESTIONS.map((q) => {
+        {filteredQuestions.map((q) => {
           const reflection = userReflections[q.id] || '';
-          const isSaved = saveStatus[q.id];
-          const isModelOpen = expandedModelAnswers[q.id];
 
           return (
             <div
               key={q.id}
-              className="bg-white rounded-2xl p-6 border border-stone-200/80 shadow-sm space-y-4"
+              className="bg-white rounded-2xl border border-stone-200/90 shadow-sm overflow-hidden"
             >
-              {/* Question Header */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 border-b border-stone-100">
+              {/* Question Header Banner */}
+              <div className="bg-gradient-to-r from-purple-50 via-white to-pink-50/30 p-5 border-b border-purple-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 font-bold flex items-center justify-center shrink-0 mt-0.5">
-                    {q.id === 1 ? <ShieldCheck className="w-4 h-4" /> : <Lightbulb className="w-4 h-4" />}
+                  <div className="w-9 h-9 rounded-xl bg-purple-600 text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                    {q.id}
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-purple-700 tracking-wider">
+                    <span className="text-[11px] font-bold text-purple-700 uppercase tracking-wider block">
                       {q.title}
                     </span>
-                    <h3 className="text-base font-bold text-slate-900 mt-0.5 leading-snug">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-0.5 leading-snug">
                       {q.question}
                     </h3>
                   </div>
@@ -120,130 +136,107 @@ export const MoralSection: React.FC = () => {
 
                 <button
                   onClick={() => handleSpeakQuestion(q)}
-                  className="p-1.5 rounded-lg text-stone-400 hover:text-purple-600 hover:bg-purple-50 transition-colors self-end sm:self-auto shrink-0"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-purple-700 bg-white border border-purple-200 hover:bg-purple-100 shadow-2xs transition-colors self-end sm:self-auto shrink-0"
                   title="Listen to question"
                 >
-                  <Volume2 className="w-4 h-4" />
+                  <Volume2 className="w-3.5 h-3.5 text-purple-600" />
+                  <span>Listen 🔊</span>
                 </button>
               </div>
 
-              {/* Story Context Box */}
-              <div className="bg-purple-50/50 rounded-xl p-3.5 border border-purple-100/70 text-xs">
-                <span className="font-bold text-purple-900 block mb-1">
-                  📖 Story Context:
-                </span>
-                <p className="text-purple-950 leading-relaxed">{q.storyContext}</p>
-              </div>
+              {/* Two-Column Structured Layout */}
+              <div className="p-5 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Left Column: Context with Illustration, Key Words & Sentence Starters (6 cols) */}
+                <div className="lg:col-span-6 space-y-4">
+                  {/* 1. Story Context Card with Custom Illustration */}
+                  <div className="bg-amber-50/70 border border-amber-200/80 rounded-xl p-4 shadow-2xs space-y-3">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
+                      <BookOpen className="w-3.5 h-3.5 text-amber-700" />
+                      <span>Story Context (故事背景):</span>
+                    </div>
 
-              {/* Key Concept Vocabulary Tags - KEEP Chinese here */}
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span className="text-xs text-stone-400 font-medium">Key Words:</span>
-                {q.keyConcepts.map((kc) => (
-                  <span
-                    key={kc.word}
-                    className="text-xs px-2.5 py-0.5 bg-stone-100 text-stone-700 rounded-md font-medium"
-                  >
-                    {kc.word} <span className="text-stone-400 font-chinese">({kc.zh})</span>
-                  </span>
-                ))}
-              </div>
-
-              {/* Sentence Starters */}
-              <div className="space-y-1.5">
-                <span className="text-xs font-semibold text-stone-500 flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-purple-600" />
-                  <span>Sentence Starters (Click to use):</span>
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {q.sentenceStarters.map((starter) => (
-                    <button
-                      key={starter}
-                      onClick={() => handleInsertStarter(q.id, starter)}
-                      className="text-xs px-2.5 py-1 rounded-lg bg-stone-50 border border-stone-200 text-stone-700 hover:bg-purple-50 hover:border-purple-300 hover:text-purple-900 transition-all text-left"
-                    >
-                      "{starter}"
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Reflection Input Textarea */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                    <MessageSquare className="w-3.5 h-3.5 text-purple-600" />
-                    <span>Your Thoughts (Simple English):</span>
-                  </label>
-                  <button
-                    onClick={() => handleSaveManual(q.id)}
-                    className="text-xs px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 flex items-center gap-1 transition-colors"
-                  >
-                    {isSaved ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                        <span className="text-emerald-700 font-bold">Saved!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Save className="w-3.5 h-3.5" />
-                        <span>Save Journal</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                <textarea
-                  rows={3}
-                  value={reflection}
-                  onChange={(e) => handleTextChange(q.id, e.target.value)}
-                  placeholder="Write 1 or 2 simple sentences in English... (e.g. It is good to be kind because...)"
-                  className="w-full p-3.5 text-sm rounded-xl border border-stone-200 focus:outline-none focus:border-purple-400 bg-stone-50/50 focus:bg-white transition-all leading-relaxed"
-                />
-              </div>
-
-              {/* Model Answers Accordion */}
-              <div className="pt-2 border-t border-stone-100">
-                <button
-                  onClick={() => toggleModelAnswer(q.id)}
-                  className="flex items-center justify-between w-full text-xs font-bold text-stone-600 hover:text-purple-700 py-1"
-                >
-                  <span className="flex items-center gap-1.5">
-                    <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
-                    <span>Sample Ideas (Click to view)</span>
-                  </span>
-                  {isModelOpen ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
-                </button>
-
-                {isModelOpen && (
-                  <div className="mt-3 space-y-3 pt-2">
-                    {q.sampleResponses.map((sr, sIdx) => (
-                      <div
-                        key={sIdx}
-                        className="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5 text-xs"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-purple-900">
-                            {sr.perspective}
-                          </span>
-                          <button
-                            onClick={() => speech.speak(sr.textEn)}
-                            className="p-1 text-stone-400 hover:text-purple-600 transition-colors"
-                            title="Listen"
-                          >
-                            <Volume2 className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                        <p className="text-stone-800 leading-relaxed font-medium">
-                          {sr.textEn}
-                        </p>
+                    {/* Scene Illustration for Lesson 1 and Lesson 2 */}
+                    {q.image && (
+                      <div className="w-full h-44 rounded-xl overflow-hidden border border-amber-200/80 shadow-2xs relative group">
+                        <img
+                          src={q.image}
+                          alt={q.imageAlt || q.title}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                        />
                       </div>
-                    ))}
+                    )}
+
+                    <p className="text-xs text-amber-950 leading-relaxed font-medium">
+                      {q.storyContext}
+                    </p>
                   </div>
-                )}
+
+                  {/* 2. Key Words Card */}
+                  <div className="bg-stone-50/80 border border-stone-200 rounded-xl p-3.5 shadow-2xs">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-stone-700 mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+                      <span>Key Words (核心詞彙):</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {q.keyConcepts.map((kc) => (
+                        <div
+                          key={kc.word}
+                          className="bg-white border border-stone-200 px-2.5 py-1.5 rounded-lg text-xs flex flex-col justify-center shadow-2xs"
+                        >
+                          <span className="font-bold text-slate-800">{kc.word}</span>
+                          <span className="text-[10px] text-purple-700 font-chinese font-medium">
+                            {kc.zh}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column: Sentence Starters & Writing Canvas (6 cols) */}
+                <div className="lg:col-span-6 space-y-4">
+                  {/* Sentence Starters Card */}
+                  <div className="bg-purple-50/50 border border-purple-200/70 rounded-xl p-3.5 shadow-2xs">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-purple-900 flex items-center gap-1.5">
+                        <Quote className="w-3.5 h-3.5 text-purple-600" />
+                        <span>Sentence Starters (點擊填入寫作區):</span>
+                      </span>
+                    </div>
+                    <div className="space-y-1.5">
+                      {q.sentenceStarters.map((starter) => (
+                        <button
+                          key={starter}
+                          onClick={() => handleInsertStarter(q.id, starter)}
+                          className="w-full text-left text-xs p-2 rounded-lg bg-white border border-purple-200/90 text-purple-950 hover:bg-purple-100/80 hover:border-purple-400 active:scale-98 transition-all flex items-center justify-between group shadow-2xs"
+                          title="Click to insert into your reflection"
+                        >
+                          <span className="font-medium">"{starter}"</span>
+                          <span className="text-[10px] text-purple-600 font-bold group-hover:translate-x-0.5 transition-transform">
+                            + Use
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Clean Writing Canvas Box (without words count and Save Journal text) */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                      <MessageSquare className="w-3.5 h-3.5 text-purple-600" />
+                      <span>Your Thoughts:</span>
+                    </label>
+
+                    <textarea
+                      rows={7}
+                      value={reflection}
+                      onChange={(e) => handleTextChange(q.id, e.target.value)}
+                      placeholder="Write your thoughts here... Click Sentence Starters above for ideas!"
+                      className="w-full p-4 text-sm rounded-xl border border-stone-200 focus:outline-none focus:border-purple-500 bg-stone-50/30 focus:bg-white transition-all leading-relaxed shadow-inner"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           );

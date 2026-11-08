@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Volume2, CheckCircle2, RotateCcw, HelpCircle, Sparkles, Mic, ChevronRight } from 'lucide-react';
-import { CLOZE_ITEMS, VOCABULARY_LIST } from '../data/storyData';
+import { Volume2, CheckCircle2, RotateCcw, ChevronRight, Check } from 'lucide-react';
+import { CLOZE_ITEMS } from '../data/storyData';
 import { ClozeItem } from '../types/story';
 import { speech } from '../utils/speech';
 import { sfx } from '../utils/soundEffects';
@@ -9,36 +9,48 @@ interface ClozeSectionProps {
   onNextPart?: () => void;
 }
 
+// Scrambled / shuffled word options per question (no fixed predictable order)
+const SCRAMBLED_OPTIONS_MAP: Record<number, string[]> = {
+  1: ['command', 'creepy', 'shrink', 'flee', 'weapon', 'drag', 'judge', 'spirits'],
+  2: ['spirits', 'weapon', 'drag', 'shrink', 'judge', 'command', 'flee', 'creepy'],
+  3: ['creepy', 'flee', 'spirits', 'drag', 'judge', 'weapon', 'shrink', 'command'],
+  4: ['drag', 'shrink', 'judge', 'command', 'weapon', 'spirits', 'creepy', 'flee'],
+  5: ['judge', 'creepy', 'flee', 'spirits', 'shrink', 'drag', 'command', 'weapon'],
+  6: ['flee', 'command', 'weapon', 'shrink', 'creepy', 'drag', 'judge', 'spirits'],
+  7: ['weapon', 'spirits', 'flee', 'drag', 'command', 'shrink', 'judge', 'creepy'],
+  8: ['shrink', 'judge', 'creepy', 'command', 'spirits', 'flee', 'weapon', 'drag']
+};
+
 export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
   const [userInputs, setUserInputs] = useState<Record<number, string>>({});
-  const [showHints, setShowHints] = useState<Record<number, boolean>>({});
-  const [activeBlankId, setActiveBlankId] = useState<number | null>(1);
   const [speakingId, setSpeakingId] = useState<number | null>(null);
 
-  // Available Word Bank
-  const wordBank = ['shrink', 'weapon', 'spirits', 'drag', 'creepy', 'command', 'flee', 'judge'];
+  const handleSelectWordForItem = (itemId: number, word: string) => {
+    const isCurrentlySelected = (userInputs[itemId] || '').toLowerCase() === word.toLowerCase();
+    
+    // Toggle off if already selected
+    if (isCurrentlySelected) {
+      sfx.playClick();
+      setUserInputs((prev) => {
+        const copy = { ...prev };
+        delete copy[itemId];
+        return copy;
+      });
+      return;
+    }
 
-  const handleInputChange = (id: number, val: string) => {
+    const targetItem = CLOZE_ITEMS.find((c) => c.id === itemId);
+    const isCorrect = targetItem && targetItem.targetWord.toLowerCase() === word.toLowerCase();
+
     setUserInputs((prev) => ({
       ...prev,
-      [id]: val
-    }));
-  };
-
-  const handleSelectWordFromBank = (word: string) => {
-    if (!activeBlankId) return;
-    sfx.playClick();
-    setUserInputs((prev) => ({
-      ...prev,
-      [activeBlankId]: word
+      [itemId]: word
     }));
 
-    // Auto advance to next blank if correct
-    const targetItem = CLOZE_ITEMS.find((c) => c.id === activeBlankId);
-    if (targetItem && targetItem.targetWord.toLowerCase() === word.toLowerCase()) {
+    if (isCorrect) {
       sfx.playCorrect();
-      const nextId = activeBlankId < CLOZE_ITEMS.length ? activeBlankId + 1 : null;
-      setActiveBlankId(nextId);
+    } else {
+      sfx.playClick();
     }
   };
 
@@ -51,19 +63,9 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
     });
   };
 
-  const handleToggleHint = (id: number) => {
-    sfx.playClick();
-    setShowHints((prev) => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
   const handleReset = () => {
     sfx.playClick();
     setUserInputs({});
-    setShowHints({});
-    setActiveBlankId(1);
   };
 
   const isItemCorrect = (item: ClozeItem) => {
@@ -85,7 +87,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
             Fill in the Blanks with Part A Vocabulary
           </h2>
           <p className="text-xs text-stone-600 mt-1">
-            Listen to the characters speak, fill in the missing words from the word bank, and practice shadowing aloud!
+            Listen to the characters speak, choose the missing words directly under each question, and practice shadowing aloud!
           </p>
         </div>
 
@@ -107,94 +109,56 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
         </div>
       </div>
 
-      {/* Word Bank Bar */}
-      <div className="bg-stone-100/90 border border-stone-200 rounded-2xl p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold text-stone-600 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-            <span>Word Bank:</span>
-          </span>
-          <span className="text-[11px] text-stone-500">
-            Current Blank: #{activeBlankId || 'None'}
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {wordBank.map((word) => {
-            const isUsed = Object.values(userInputs).some(
-              (v) => (v || '').toLowerCase() === word.toLowerCase()
-            );
-
-            return (
-              <button
-                key={word}
-                onClick={() => handleSelectWordFromBank(word)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-xs ${
-                  isUsed
-                    ? 'bg-white/60 text-stone-400 border border-stone-200 line-through'
-                    : 'bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 active:scale-95'
-                }`}
-              >
-                {word}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Cloze Sentences List */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {CLOZE_ITEMS.map((item) => {
           const correct = isItemCorrect(item);
-          const currentVal = userInputs[item.id] || '';
-          const isCurrentActive = activeBlankId === item.id;
+          const currentVal = (userInputs[item.id] || '').trim();
+          const hasInput = currentVal.length > 0;
           const isSpeaking = speakingId === item.id;
+          const options = SCRAMBLED_OPTIONS_MAP[item.id] || SCRAMBLED_OPTIONS_MAP[1];
 
           const parts = item.template.split('{blank}');
 
           return (
             <div
               key={item.id}
-              onClick={() => setActiveBlankId(item.id)}
-              className={`p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col sm:flex-row gap-3.5 items-start sm:items-center ${
-                isCurrentActive
-                  ? 'ring-2 ring-emerald-500/30 border-emerald-400 bg-emerald-50/20 shadow-xs'
-                  : correct
-                  ? 'bg-emerald-50/40 border-emerald-200'
-                  : 'bg-white border-stone-200/80 hover:border-stone-300'
+              className={`p-4 sm:p-5 rounded-2xl border transition-all ${
+                correct
+                  ? 'bg-emerald-50/50 border-emerald-300 shadow-xs'
+                  : hasInput
+                  ? 'bg-amber-50/30 border-amber-200'
+                  : 'bg-white border-stone-200/90 shadow-2xs'
               }`}
             >
-              {/* Question Illustration Thumbnail */}
-              <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200 shadow-2xs relative group">
-                <img
-                  src={item.image}
-                  alt={item.speaker}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
+              {/* Top Row: Speaker, Audio and Thumbnail */}
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                {/* Illustration Thumbnail */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200/80 shadow-2xs relative group self-start">
+                  <img
+                    src={item.image}
+                    alt={item.speaker}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute top-1 left-1 w-5 h-5 rounded-md bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold flex items-center justify-center">
+                    {item.id}
+                  </div>
+                </div>
 
-              {/* Content Box */}
-              <div className="flex-1 w-full min-w-0">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-md bg-stone-100 text-stone-700 font-bold text-xs flex items-center justify-center">
-                      {item.id}
-                    </span>
-                    <span className="text-xs font-bold text-amber-900 bg-amber-100/70 px-2 py-0.5 rounded">
+                {/* Main Question & Sentence Area */}
+                <div className="flex-1 w-full min-w-0 space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-amber-900 bg-amber-100/80 px-2.5 py-0.5 rounded-lg border border-amber-200/60">
                       {item.speaker}
                     </span>
-                  </div>
 
-                  <div className="flex items-center gap-1.5 self-end sm:self-auto">
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handlePlaySentence(item);
-                      }}
-                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all ${
+                      onClick={() => handlePlaySentence(item)}
+                      className={`px-3 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-2xs ${
                         isSpeaking
-                          ? 'bg-emerald-600 text-white'
-                          : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                          ? 'bg-emerald-600 text-white animate-pulse'
+                          : 'bg-stone-100 text-stone-700 hover:bg-emerald-100 hover:text-emerald-900'
                       }`}
                       title="Listen to this line"
                     >
@@ -202,31 +166,65 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                       <span>Listen 🔊</span>
                     </button>
                   </div>
-                </div>
 
-                {/* Cloze Text with interactive blank */}
-                <div className="text-sm text-slate-900 leading-loose">
-                  <span>{parts[0]}</span>
-                  <span className="inline-block mx-1.5 align-middle">
-                    <input
-                      type="text"
-                      value={currentVal}
-                      onFocus={() => setActiveBlankId(item.id)}
-                      onChange={(e) => handleInputChange(item.id, e.target.value)}
-                      placeholder={`[ ${item.id} ]`}
-                      className={`w-28 px-2 py-1 text-xs text-center font-bold rounded-md border transition-all outline-none ${
-                        correct
-                          ? 'bg-emerald-100 border-emerald-500 text-emerald-900 shadow-xs'
-                          : currentVal.length > 0
-                          ? 'bg-rose-50 border-rose-300 text-rose-900'
-                          : 'bg-stone-50 border-stone-300 focus:bg-white focus:border-emerald-500'
-                      }`}
-                    />
-                  </span>
-                  <span>{parts[1]}</span>
-                  {correct && (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 inline ml-2 align-middle" />
-                  )}
+                  {/* Cloze Sentence with inline blank (Clean slot without 'blank' text) */}
+                  <div className="text-sm sm:text-base text-slate-900 leading-relaxed pt-1">
+                    <span className="font-medium">{parts[0]}</span>
+                    <span className="inline-block mx-2 align-middle">
+                      <span
+                        className={`inline-flex items-center justify-center min-w-[90px] px-3 py-1 text-xs sm:text-sm font-bold rounded-lg border transition-all ${
+                          correct
+                            ? 'bg-emerald-100 border-emerald-500 text-emerald-900 shadow-xs'
+                            : hasInput
+                            ? 'bg-rose-50 border-rose-300 text-rose-900'
+                            : 'bg-stone-50 border-stone-300 text-stone-400'
+                        }`}
+                      >
+                        {hasInput ? currentVal : `[ ${item.id} ]`}
+                        {correct && <Check className="w-3.5 h-3.5 text-emerald-700 ml-1.5 inline" />}
+                      </span>
+                    </span>
+                    <span className="font-medium">{parts[1]}</span>
+                  </div>
+
+                  {/* Expanded Scrambled Word Options Directly Under Each Question */}
+                  <div className="mt-3 pt-3 border-t border-stone-100">
+                    {correct && (
+                      <div className="flex items-center justify-end mb-1.5">
+                        <span className="text-xs font-bold text-emerald-700 flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          <span>Correct!</span>
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Word buttons laid out cleanly in scrambled order */}
+                    <div className="flex flex-wrap gap-2">
+                      {options.map((word) => {
+                        const isSelected = currentVal.toLowerCase() === word.toLowerCase();
+                        const isWordCorrectChoice = isSelected && correct;
+                        const isWordWrongChoice = isSelected && !correct;
+
+                        return (
+                          <button
+                            key={word}
+                            type="button"
+                            onClick={() => handleSelectWordForItem(item.id, word)}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-2xs active:scale-95 ${
+                              isWordCorrectChoice
+                                ? 'bg-emerald-600 text-white font-bold border-2 border-emerald-500 shadow-sm ring-2 ring-emerald-300'
+                                : isWordWrongChoice
+                                ? 'bg-rose-100 text-rose-900 border-2 border-rose-400 font-bold'
+                                : 'bg-white hover:bg-emerald-50 text-stone-700 border border-stone-200 hover:border-emerald-400 hover:text-emerald-900'
+                            }`}
+                          >
+                            <span>{word}</span>
+                            {isWordCorrectChoice && <span className="ml-1">✓</span>}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -244,7 +242,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
             All 8 Listening & Shadowing Blanks Completed!
           </h3>
           <p className="text-xs text-stone-600 max-w-md mx-auto">
-            Great ear! You have mastered the listening vocabulary in full context.
+            Great ear! You have mastered the listening vocabulary in full context without scrolling.
           </p>
           <div className="pt-2">
             <button

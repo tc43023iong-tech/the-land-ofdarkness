@@ -76,6 +76,8 @@ export interface MoralQuestion {
   title: string;
   storyContext: string;
   storyContextZh?: string;
+  image?: string;
+  imageAlt?: string;
   question: string;
   questionZh?: string;
   keyConcepts: { word: string; zh: string }[];

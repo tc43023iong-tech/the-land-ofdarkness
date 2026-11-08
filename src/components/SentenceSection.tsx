@@ -174,16 +174,16 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                   : 'bg-white border-stone-200/80'
               }`}
             >
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-stone-100">
-                <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-orange-100 text-orange-800 font-bold text-xs flex items-center justify-center">
+              {/* Header with Prominent Pattern */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-3 border-b border-orange-100">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-xl bg-orange-600 text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">
                     {item.id}
                   </span>
                   <div>
-                    <span className="text-xs font-semibold text-orange-900 bg-orange-50 px-2 py-0.5 rounded border border-orange-200">
+                    <h3 className="text-base sm:text-lg font-bold text-orange-950 font-mono tracking-tight bg-orange-50 px-3 py-1 rounded-xl border border-orange-200 inline-block">
                       {item.pattern}
-                    </span>
+                    </h3>
                   </div>
                 </div>
 
@@ -199,7 +199,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                   </button>
                   <button
                     onClick={() => handleSpeakSentence(item.en)}
-                    className="p-1 rounded-md text-stone-400 hover:text-orange-600 hover:bg-stone-100 transition-colors"
+                    className="p-1.5 rounded-lg text-stone-400 hover:text-orange-600 hover:bg-orange-50 transition-colors"
                     title="Pronounce Answer"
                   >
                     <Volume2 className="w-4 h-4" />
@@ -207,12 +207,9 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                 </div>
               </div>
 
-              {/* Target Prompt (Chinese translation prompt) */}
+              {/* Target Prompt (Chinese sentence without redundant label) */}
               <div className="mb-4">
-                <span className="text-xs font-bold text-stone-400 uppercase tracking-wider block">
-                  Translate into English:
-                </span>
-                <p className="text-lg font-bold text-slate-900 font-chinese mt-0.5">
+                <p className="text-lg font-bold text-slate-900 font-chinese">
                   {item.zh}
                 </p>
               </div>

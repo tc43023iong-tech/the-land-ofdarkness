@@ -4,6 +4,7 @@ import { VOCABULARY_LIST } from '../data/storyData';
 import { VocabWord } from '../types/story';
 import { speech } from '../utils/speech';
 import { sfx } from '../utils/soundEffects';
+import { PictureWordMatchGame } from './PictureWordMatchGame';
 
 interface VocabularySectionProps {
   onNextPart?: () => void;
@@ -292,6 +293,9 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
           </div>
         </div>
       </div>
+
+      {/* Picture-Word Matching Mini Game */}
+      <PictureWordMatchGame />
     </div>
   );
 };

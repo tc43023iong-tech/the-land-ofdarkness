@@ -427,7 +427,7 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     id: 2,
     question: 'Where did Sun Wukong keep the iron bar (鐵棒) after it became as small as a pin (大頭針)?',
     options: [
-      { key: 'A', text: 'Inside his ear (耳朵).' },
+      { key: 'A', text: 'Inside his ear.' },
       { key: 'B', text: 'In his pocket (口袋).' },
       { key: 'C', text: 'Under his bed.' },
       { key: 'D', text: 'In the Dragon King\'s palace (龍王宮殿).' }
@@ -642,6 +642,8 @@ export const MORAL_QUESTIONS: MoralQuestion[] = [
     id: 1,
     title: 'Lesson 1: Strength and Rules',
     storyContext: 'Sun Wukong got a very strong weapon. But he was rude to the Dragon King and broke rules in the Underworld.',
+    image: '/images/wukong_dragon_staff_1793961266221.jpg',
+    imageAlt: 'Sun Wukong testing his magical golden weapon in the Dragon Palace',
     question: 'If you are very strong, can you break rules and be mean to others? Why or why not?',
     keyConcepts: [
       { word: 'Be kind', zh: '友善對人' },
@@ -669,6 +671,8 @@ export const MORAL_QUESTIONS: MoralQuestion[] = [
     id: 2,
     title: 'Lesson 2: Telling an Adult or Fighting Back?',
     storyContext: 'The Dragon King was upset when Wukong was rude. But he did not start a fight. He went to talk to the Jade Emperor.',
+    image: '/images/wukong_darkness_gate_1793961268218.jpg',
+    imageAlt: 'Sun Wukong facing the consequences of his actions in the Land of Darkness',
     question: 'When someone is mean or bullies you, is it better to tell a teacher/parent, or fight back? Why?',
     keyConcepts: [
       { word: 'Tell an adult', zh: '告訴師長' },
