@@ -6,7 +6,7 @@ export const STORY_SCENES: StoryScene[] = [
     title: 'The Magical Iron Pillar',
     zhTitle: '如意金箍棒與東海龍宮',
     location: 'Dragon Palace (東海龍宮)',
-    image: '/src/assets/images/wukong_dragon_staff_1793961266221.jpg',
+    image: '/images/wukong_dragon_staff_1793961266221.jpg',
     imageAlt: 'Sun Wukong testing the magical glowing iron pillar in the underwater Dragon Palace',
     summary: 'Sun Wukong finds the legendary iron pillar in the Dragon Palace and commands it to shrink into a tiny pin inside his ear.',
     sentences: [
@@ -87,7 +87,7 @@ export const STORY_SCENES: StoryScene[] = [
     title: 'The Feast & The Underworld Spirits',
     zhTitle: '花果山盛宴與幽冥拘魂',
     location: 'Water Curtain Cave & Underworld Path (水簾洞與幽冥界入口)',
-    image: '/src/assets/images/wukong_darkness_gate_1793961268218.jpg',
+    image: '/images/wukong_darkness_gate_1793961268218.jpg',
     imageAlt: 'Sun Wukong being dragged to the dark and creepy gates of the Land of Darkness',
     summary: 'While celebrating at Flower Fruit Mountain, two ghostly spirits ambush sleeping Wukong and drag him to the spooky Land of Darkness.',
     sentences: [
@@ -161,7 +161,7 @@ export const STORY_SCENES: StoryScene[] = [
     title: 'The Judge of the Dead',
     zhTitle: '大鬧森羅殿與崔判官',
     location: 'Palace of Darkness (幽冥殿 / 森羅殿)',
-    image: '/src/assets/images/wukong_judge_palace_1793961268677.jpg',
+    image: '/images/wukong_judge_palace_1793961268677.jpg',
     imageAlt: 'Sun Wukong holding his staff and confronting the Judge of the Dead in the Underworld Palace',
     summary: 'Sun Wukong marches into the Underworld Palace and demands to know why he was summoned. The Judge opens the ancient Directory of life and death.',
     interactiveType: 'judge_directory',
@@ -229,7 +229,7 @@ export const STORY_SCENES: StoryScene[] = [
     title: 'Crossing Out the Directory',
     zhTitle: '神毫勾銷生死簿，長生不老',
     location: 'Judge\'s Desk (森羅殿案台)',
-    image: '/src/assets/images/wukong_directory_brush_1793961269529.jpg',
+    image: '/images/wukong_directory_brush_1793961269529.jpg',
     imageAlt: 'Sun Wukong playfully using a magical calligraphy ink brush to cross out names in the Directory of life and death',
     summary: 'Wukong reads his entry in the Directory, snatches the book, turns monkey hairs into an ink brush, and crosses out the names of all monkeys and apes!',
     interactiveType: 'cross_out',
@@ -330,7 +330,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     phonetic: '/ʃrɪŋk/',
     partOfSpeech: 'verb (動詞)',
     pastForm: 'shrank',
-    image: '/src/assets/images/vocab_shrink_1793962627453.jpg',
+    image: '/images/vocab_shrink_1793962627453.jpg',
     imageAlt: 'Sun Wukong shrinking the iron pillar',
     storyQuote: '"Smaller!" commanded Wukong. The pillar shrank!'
   },
@@ -341,7 +341,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     phonetic: '/kəˈmænd/',
     partOfSpeech: 'verb / noun (動詞 / 名詞)',
     pastForm: 'commanded',
-    image: '/src/assets/images/vocab_command_1793962628720.jpg',
+    image: '/images/vocab_command_1793962628720.jpg',
     imageAlt: 'Sun Wukong giving a bold command',
     storyQuote: '"Smaller!" commanded Wukong.'
   },
@@ -351,7 +351,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     zh: '武器',
     phonetic: '/ˈwep.ən/',
     partOfSpeech: 'noun (名詞)',
-    image: '/src/assets/images/vocab_weapon_1793962629177.jpg',
+    image: '/images/vocab_weapon_1793962629177.jpg',
     imageAlt: 'The golden magical staff weapon',
     storyQuote: '"This is a perfect weapon for me," he said.'
   },
@@ -362,7 +362,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     phonetic: '/dræɡ/',
     partOfSpeech: 'verb (動詞)',
     pastForm: 'dragged',
-    image: '/src/assets/images/vocab_drag_1793962630122.jpg',
+    image: '/images/vocab_drag_1793962630122.jpg',
     imageAlt: 'Underworld spirits dragging sleeping Wukong',
     storyQuote: 'He kicked and struggled as the spirits dragged him out of his cave.'
   },
@@ -372,7 +372,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     zh: '靈魂 / 鬼怪',
     phonetic: '/ˈspɪr.ɪt/',
     partOfSpeech: 'noun (名詞)',
-    image: '/src/assets/images/vocab_spirit_1793962630424.jpg',
+    image: '/images/vocab_spirit_1793962630424.jpg',
     imageAlt: 'A glowing cute underworld spirit',
     storyQuote: 'But as he fell asleep, two spirits grabbed him.'
   },
@@ -382,7 +382,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     zh: '令人毛骨悚然的',
     phonetic: '/ˈkriː.pi/',
     partOfSpeech: 'adjective (形容詞)',
-    image: '/src/assets/images/vocab_creepy_1793962630120.jpg',
+    image: '/images/vocab_creepy_1793962630120.jpg',
     imageAlt: 'The creepy gate of the Land of Darkness',
     storyQuote: 'They walked toward a dark and creepy city.'
   },
@@ -392,7 +392,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     zh: '審判官 / 法官',
     phonetic: '/dʒʌdʒ/',
     partOfSpeech: 'noun / verb (名詞 / 動詞)',
-    image: '/src/assets/images/vocab_judge_1793962631798.jpg',
+    image: '/images/vocab_judge_1793962631798.jpg',
     imageAlt: 'The Judge of the Dead with the Directory',
     storyQuote: '"I am the Judge of the Dead," said the spirit.'
   },
@@ -403,7 +403,7 @@ export const VOCABULARY_LIST: VocabWord[] = [
     phonetic: '/fliː/',
     partOfSpeech: 'verb (動詞)',
     pastForm: 'fled',
-    image: '/src/assets/images/vocab_flee_1793962632996.jpg',
+    image: '/images/vocab_flee_1793962632996.jpg',
     imageAlt: 'Demons and ghosts fleeing in terror',
     storyQuote: 'As he went, he swung his iron bar back and forth. Demons and ghosts fled.'
   }
@@ -483,7 +483,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Wukong',
     template: 'The iron pillar began to {blank} until it was the perfect size.',
     targetWord: 'shrink',
-    image: '/src/assets/images/vocab_shrink_1793962627453.jpg',
+    image: '/images/vocab_shrink_1793962627453.jpg',
     fullEn: 'Wukong: "Smaller!" The iron pillar began to shrink until it was the perfect size.'
   },
   {
@@ -491,7 +491,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Dragon Queen',
     template: 'Look at that! He can carry such a heavy {blank}!',
     targetWord: 'weapon',
-    image: '/src/assets/images/vocab_weapon_1793962629177.jpg',
+    image: '/images/vocab_weapon_1793962629177.jpg',
     fullEn: 'Dragon Queen: Look at that! He can carry such a heavy weapon!'
   },
   {
@@ -499,7 +499,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Narrator',
     template: 'That night, two dark {blank} grabbed Wukong while he was in bed.',
     targetWord: 'spirits',
-    image: '/src/assets/images/vocab_spirit_1793962630424.jpg',
+    image: '/images/vocab_spirit_1793962630424.jpg',
     fullEn: 'Narrator: That night, two dark spirits grabbed Wukong while he was in bed.'
   },
   {
@@ -507,7 +507,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Wukong',
     template: '"Let me go!" shouted Wukong, but they started to {blank} him out of the cave.',
     targetWord: 'drag',
-    image: '/src/assets/images/vocab_drag_1793962630122.jpg',
+    image: '/images/vocab_drag_1793962630122.jpg',
     fullEn: 'Wukong: "Let me go!" shouted Wukong, but they started to drag him out of the cave.'
   },
   {
@@ -515,7 +515,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Narrator',
     template: 'They arrived at a dark and {blank} city called the Land of Darkness.',
     targetWord: 'creepy',
-    image: '/src/assets/images/vocab_creepy_1793962630120.jpg',
+    image: '/images/vocab_creepy_1793962630120.jpg',
     fullEn: 'Narrator: They arrived at a dark and creepy city called the Land of Darkness.'
   },
   {
@@ -523,7 +523,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Wukong',
     template: '"Grow!" Wukong gave a loud {blank}, and his iron bar quickly got bigger!',
     targetWord: 'command',
-    image: '/src/assets/images/vocab_command_1793962628720.jpg',
+    image: '/images/vocab_command_1793962628720.jpg',
     fullEn: 'Wukong: "Grow!" Wukong gave a loud command, and his iron bar quickly got bigger!'
   },
   {
@@ -531,7 +531,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Narrator',
     template: 'As he swung the bar, demons became scared and began to {blank}.',
     targetWord: 'flee',
-    image: '/src/assets/images/vocab_flee_1793962632996.jpg',
+    image: '/images/vocab_flee_1793962632996.jpg',
     fullEn: 'Narrator: As he swung the bar, demons became scared and began to flee.'
   },
   {
@@ -539,7 +539,7 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     speaker: 'Judge',
     template: 'Stop! I am the {blank} of the Dead. Why are you causing trouble here?',
     targetWord: 'judge',
-    image: '/src/assets/images/vocab_judge_1793962631798.jpg',
+    image: '/images/vocab_judge_1793962631798.jpg',
     fullEn: 'Judge: Stop! I am the Judge of the Dead. Why are you causing trouble here?'
   }
 ];
