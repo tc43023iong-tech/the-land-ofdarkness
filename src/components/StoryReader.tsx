@@ -133,6 +133,172 @@ const renderHighlighterText = (text: string, isInline: boolean) => {
   return parts;
 };
 
+// --- Story Characters Pixel Art SVG Avatars ---
+export const PixelNarrator: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg viewBox="0 0 16 16" className={`${className} inline-block`} shapeRendering="crispEdges">
+    {/* Wooden Roller Top */}
+    <rect x="2" y="2" width="12" height="2" fill="#78350F" />
+    <rect x="1" y="2" width="1" height="2" fill="#D97706" />
+    <rect x="14" y="2" width="1" height="2" fill="#D97706" />
+    {/* Parchment Body */}
+    <rect x="3" y="4" width="10" height="8" fill="#FEF3C7" />
+    <rect x="4" y="4" width="8" height="8" fill="#FFFBEB" />
+    {/* Ancient Text lines */}
+    <rect x="5" y="5" width="6" height="1" fill="#92400E" />
+    <rect x="5" y="7" width="5" height="1" fill="#B45309" />
+    <rect x="5" y="9" width="4" height="1" fill="#B45309" />
+    {/* Crimson Wax Seal */}
+    <rect x="10" y="8" width="2" height="2" fill="#DC2626" />
+    {/* Wooden Roller Bottom */}
+    <rect x="2" y="12" width="12" height="2" fill="#78350F" />
+    <rect x="1" y="12" width="1" height="2" fill="#D97706" />
+    <rect x="14" y="12" width="1" height="2" fill="#D97706" />
+    {/* Blue Quill Feather */}
+    <rect x="11" y="3" width="1" height="2" fill="#3B82F6" />
+    <rect x="12" y="2" width="2" height="2" fill="#60A5FA" />
+    <rect x="13" y="1" width="1" height="2" fill="#93C5FD" />
+  </svg>
+);
+
+export const PixelWukong: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg viewBox="0 0 16 16" className={`${className} inline-block`} shapeRendering="crispEdges">
+    {/* Golden Hair */}
+    <rect x="4" y="2" width="8" height="2" fill="#D97706" />
+    <rect x="3" y="4" width="10" height="2" fill="#F59E0B" />
+    {/* Red Circlet & Gold Jewel */}
+    <rect x="3" y="5" width="10" height="1" fill="#DC2626" />
+    <rect x="7" y="4" width="2" height="1" fill="#FDE047" />
+    {/* Face */}
+    <rect x="3" y="6" width="10" height="5" fill="#FDE68A" />
+    {/* Eyes */}
+    <rect x="5" y="7" width="2" height="2" fill="#1E293B" />
+    <rect x="9" y="7" width="2" height="2" fill="#1E293B" />
+    <rect x="5" y="7" width="1" height="1" fill="#FFFFFF" />
+    <rect x="9" y="7" width="1" height="1" fill="#FFFFFF" />
+    {/* Peach Muzzle */}
+    <rect x="6" y="9" width="4" height="2" fill="#FB923C" />
+    <rect x="7" y="10" width="2" height="1" fill="#B91C1C" />
+    {/* Ears */}
+    <rect x="2" y="6" width="1" height="3" fill="#D97706" />
+    <rect x="13" y="6" width="1" height="3" fill="#D97706" />
+    {/* Armor & Cape */}
+    <rect x="4" y="11" width="8" height="3" fill="#B45309" />
+    <rect x="6" y="12" width="4" height="2" fill="#FBBF24" />
+    <rect x="3" y="11" width="1" height="3" fill="#DC2626" />
+    <rect x="12" y="11" width="1" height="3" fill="#DC2626" />
+    {/* Boots */}
+    <rect x="4" y="14" width="3" height="2" fill="#451A03" />
+    <rect x="9" y="14" width="3" height="2" fill="#451A03" />
+  </svg>
+);
+
+export const PixelDragonKing: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg viewBox="0 0 16 16" className={`${className} inline-block`} shapeRendering="crispEdges">
+    {/* Gold Antlers */}
+    <rect x="3" y="1" width="2" height="2" fill="#F59E0B" />
+    <rect x="4" y="2" width="2" height="2" fill="#FBBF24" />
+    <rect x="11" y="1" width="2" height="2" fill="#F59E0B" />
+    <rect x="10" y="2" width="2" height="2" fill="#FBBF24" />
+    {/* Crown */}
+    <rect x="5" y="3" width="6" height="2" fill="#0284C7" />
+    <rect x="7" y="2" width="2" height="1" fill="#38BDF8" />
+    {/* Face */}
+    <rect x="4" y="5" width="8" height="6" fill="#0EA5E9" />
+    <rect x="3" y="6" width="1" height="4" fill="#0284C7" />
+    <rect x="12" y="6" width="1" height="4" fill="#0284C7" />
+    {/* Golden Eyes */}
+    <rect x="5" y="6" width="2" height="2" fill="#FEF08A" />
+    <rect x="9" y="6" width="2" height="2" fill="#FEF08A" />
+    <rect x="6" y="6" width="1" height="2" fill="#0F172A" />
+    <rect x="10" y="6" width="1" height="2" fill="#0F172A" />
+    {/* Whiskers */}
+    <rect x="5" y="9" width="6" height="2" fill="#E0F2FE" />
+    <rect x="2" y="10" width="3" height="1" fill="#F97316" />
+    <rect x="11" y="10" width="3" height="1" fill="#F97316" />
+    {/* Body */}
+    <rect x="4" y="11" width="8" height="3" fill="#0369A1" />
+    <rect x="6" y="11" width="4" height="3" fill="#38BDF8" />
+    {/* Claws */}
+    <rect x="4" y="14" width="3" height="2" fill="#F59E0B" />
+    <rect x="9" y="14" width="3" height="2" fill="#F59E0B" />
+  </svg>
+);
+
+export const PixelDragonQueen: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg viewBox="0 0 16 16" className={`${className} inline-block`} shapeRendering="crispEdges">
+    {/* Jade Pearl Tiara */}
+    <rect x="6" y="1" width="4" height="1" fill="#14B8A6" />
+    <rect x="7" y="0" width="2" height="1" fill="#5EEAD4" />
+    <rect x="4" y="2" width="8" height="2" fill="#0D9488" />
+    {/* Pearl Gemstones */}
+    <rect x="5" y="2" width="1" height="1" fill="#FFFFFF" />
+    <rect x="10" y="2" width="1" height="1" fill="#FFFFFF" />
+    {/* Elegant Teal Face */}
+    <rect x="4" y="4" width="8" height="7" fill="#2DD4BF" />
+    <rect x="3" y="5" width="1" height="4" fill="#0F766E" />
+    <rect x="12" y="5" width="1" height="4" fill="#0F766E" />
+    {/* Graceful Purple Eyes */}
+    <rect x="5" y="6" width="2" height="2" fill="#A855F7" />
+    <rect x="9" y="6" width="2" height="2" fill="#A855F7" />
+    <rect x="5" y="6" width="1" height="1" fill="#FFFFFF" />
+    <rect x="9" y="6" width="1" height="1" fill="#FFFFFF" />
+    {/* Royal Muzzle */}
+    <rect x="6" y="8" width="4" height="2" fill="#CCFBF1" />
+    <rect x="7" y="9" width="2" height="1" fill="#EC4899" />
+    {/* Silk Robe */}
+    <rect x="4" y="11" width="8" height="3" fill="#115E59" />
+    <rect x="6" y="11" width="4" height="3" fill="#99F6E4" />
+    {/* Hem */}
+    <rect x="4" y="14" width="3" height="2" fill="#0F766E" />
+    <rect x="9" y="14" width="3" height="2" fill="#0F766E" />
+  </svg>
+);
+
+export const PixelJudge: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg viewBox="0 0 16 16" className={`${className} inline-block`} shapeRendering="crispEdges">
+    {/* Winged Official Magistrate Hat */}
+    <rect x="1" y="3" width="3" height="2" fill="#581C87" />
+    <rect x="12" y="3" width="3" height="2" fill="#581C87" />
+    <rect x="4" y="2" width="8" height="3" fill="#7E22CE" />
+    <rect x="6" y="1" width="4" height="2" fill="#9333EA" />
+    <rect x="7" y="3" width="2" height="2" fill="#FBBF24" />
+    {/* Face */}
+    <rect x="4" y="5" width="8" height="5" fill="#FED7AA" />
+    {/* Sharp Brows & Eyes */}
+    <rect x="4" y="6" width="3" height="1" fill="#1E1B4B" />
+    <rect x="9" y="6" width="3" height="1" fill="#1E1B4B" />
+    <rect x="5" y="7" width="2" height="1" fill="#0F172A" />
+    <rect x="9" y="7" width="2" height="1" fill="#0F172A" />
+    {/* Beard */}
+    <rect x="5" y="9" width="6" height="3" fill="#1E293B" />
+    <rect x="6" y="12" width="4" height="2" fill="#0F172A" />
+    {/* Robe */}
+    <rect x="3" y="11" width="10" height="3" fill="#6B21A8" />
+    <rect x="6" y="11" width="4" height="3" fill="#FDE047" />
+    {/* Shoes */}
+    <rect x="4" y="14" width="3" height="2" fill="#1E1B4B" />
+    <rect x="9" y="14" width="3" height="2" fill="#1E1B4B" />
+  </svg>
+);
+
+const renderSpeakerAvatar = (speaker?: string, className = 'w-3.5 h-3.5') => {
+  switch (speaker) {
+    case 'Sun Wukong':
+    case 'Wukong':
+      return <PixelWukong className={className} />;
+    case 'Narrator':
+      return <PixelNarrator className={className} />;
+    case 'Dragon King':
+      return <PixelDragonKing className={className} />;
+    case 'Dragon Queen':
+      return <PixelDragonQueen className={className} />;
+    case 'Judge of the Dead':
+      return <PixelJudge className={className} />;
+    default:
+      return <PixelNarrator className={className} />;
+  }
+};
+
 export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNavigateToVocab }) => {
   const [activeSceneIndex, setActiveSceneIndex] = useState<number>(0);
   const [annotationMode, setAnnotationMode] = useState<'inline' | 'hover' | 'english'>('inline');
@@ -201,13 +367,16 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
   const getSpeakerBadgeClass = (speaker?: string) => {
     switch (speaker) {
       case 'Sun Wukong':
-        return 'bg-amber-100 text-amber-900 border-amber-300';
+      case 'Wukong':
+        return 'bg-amber-100 text-amber-950 border-amber-300';
       case 'Dragon King':
-        return 'bg-blue-100 text-blue-900 border-blue-300';
+        return 'bg-blue-100 text-blue-950 border-blue-300';
       case 'Dragon Queen':
-        return 'bg-teal-100 text-teal-900 border-teal-300';
+        return 'bg-teal-100 text-teal-950 border-teal-300';
       case 'Judge of the Dead':
-        return 'bg-purple-100 text-purple-900 border-purple-300';
+        return 'bg-purple-100 text-purple-950 border-purple-300';
+      case 'Narrator':
+        return 'bg-stone-100 text-stone-800 border-stone-300';
       default:
         return 'bg-slate-100 text-slate-800 border-slate-200';
     }
@@ -407,11 +576,14 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                       <div className="flex items-center gap-2">
                         {sentence.speaker && (
                           <span
-                            className={`text-[11px] font-bold px-2 py-0.5 rounded-md border ${getSpeakerBadgeClass(
+                            className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-2 py-0.5 rounded-md border shadow-2xs ${getSpeakerBadgeClass(
                               sentence.speaker
                             )}`}
                           >
-                            {sentence.speaker}
+                            <span className="w-3.5 h-3.5 shrink-0 flex items-center justify-center">
+                              {renderSpeakerAvatar(sentence.speaker, 'w-3.5 h-3.5')}
+                            </span>
+                            <span>{sentence.speaker}</span>
                           </span>
                         )}
                       </div>
