@@ -38,6 +38,8 @@ export interface QuizQuestion {
   id: number;
   question: string;
   zhQuestion?: string;
+  image?: string;
+  imageAlt?: string;
   options: {
     key: 'A' | 'B' | 'C' | 'D';
     text: string;

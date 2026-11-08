@@ -4,6 +4,7 @@ import { CLOZE_ITEMS } from '../data/storyData';
 import { ClozeItem } from '../types/story';
 import { speech } from '../utils/speech';
 import { sfx } from '../utils/soundEffects';
+import { PixelNarrator, PixelWukong, PixelJudge } from './StoryReader';
 
 interface ClozeSectionProps {
   onNextPart?: () => void;
@@ -19,6 +20,34 @@ const SCRAMBLED_OPTIONS_MAP: Record<number, string[]> = {
   6: ['fled', 'commanded', 'weapon', 'shrank', 'creepy', 'dragged', 'Judge', 'spirits'],
   7: ['weapon', 'spirits', 'fled', 'dragged', 'commanded', 'shrank', 'Judge', 'creepy'],
   8: ['shrank', 'Judge', 'creepy', 'commanded', 'spirits', 'fled', 'weapon', 'dragged']
+};
+
+const renderSpeakerAvatar = (speaker?: string, className = 'w-3.5 h-3.5') => {
+  switch (speaker) {
+    case 'Sun Wukong':
+    case 'Wukong':
+      return <PixelWukong className={className} />;
+    case 'Judge of the Dead':
+    case 'Judge':
+      return <PixelJudge className={className} />;
+    case 'Narrator':
+    default:
+      return <PixelNarrator className={className} />;
+  }
+};
+
+const getSpeakerBadgeClass = (speaker?: string) => {
+  switch (speaker) {
+    case 'Sun Wukong':
+    case 'Wukong':
+      return 'bg-amber-100 text-amber-950 border-amber-300';
+    case 'Judge of the Dead':
+    case 'Judge':
+      return 'bg-purple-100 text-purple-950 border-purple-300';
+    case 'Narrator':
+    default:
+      return 'bg-stone-100 text-stone-800 border-stone-300';
+  }
 };
 
 export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
@@ -82,6 +111,17 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 tracking-wider">
             <span>PART C: LISTENING & SHADOWING</span>
+            <div className="flex items-center -space-x-1 ml-1 bg-white/80 p-0.5 rounded-lg border border-emerald-200 shadow-2xs">
+              <span className="w-5 h-5 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center p-0.5" title="Wukong">
+                <PixelWukong className="w-3.5 h-3.5" />
+              </span>
+              <span className="w-5 h-5 rounded-md bg-stone-50 border border-stone-200 flex items-center justify-center p-0.5" title="Narrator">
+                <PixelNarrator className="w-3.5 h-3.5" />
+              </span>
+              <span className="w-5 h-5 rounded-md bg-purple-50 border border-purple-200 flex items-center justify-center p-0.5" title="Judge of the Dead">
+                <PixelJudge className="w-3.5 h-3.5" />
+              </span>
+            </div>
           </div>
           <h2 className="text-xl font-bold text-slate-900 font-display mt-0.5">
             Fill in the Blanks with Part A Vocabulary
@@ -149,8 +189,15 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                 {/* Main Question & Sentence Area */}
                 <div className="flex-1 w-full min-w-0 space-y-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold text-amber-900 bg-amber-100/80 px-2.5 py-0.5 rounded-lg border border-amber-200/60">
-                      {item.speaker}
+                    <span
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-xl border shadow-2xs ${getSpeakerBadgeClass(
+                        item.speaker
+                      )}`}
+                    >
+                      <span className="w-3.5 h-3.5 shrink-0 flex items-center justify-center">
+                        {renderSpeakerAvatar(item.speaker, 'w-3.5 h-3.5')}
+                      </span>
+                      <span>{item.speaker}</span>
                     </span>
 
                     <button

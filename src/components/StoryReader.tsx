@@ -299,6 +299,13 @@ const renderSpeakerAvatar = (speaker?: string, className = 'w-3.5 h-3.5') => {
   }
 };
 
+const SCENE_BILINGUAL_TITLES = [
+  { id: 1, zh: '如意金箍棒', en: 'The Magical Iron Pillar' },
+  { id: 2, zh: '花果山盛宴', en: 'The Feast & Spirits' },
+  { id: 3, zh: '大鬧森羅殿', en: 'Palace of Darkness' },
+  { id: 4, zh: '神毫勾銷生死簿，長生不老', en: 'Crossing Out the Directory' }
+];
+
 export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNavigateToVocab }) => {
   const [activeSceneIndex, setActiveSceneIndex] = useState<number>(0);
   const [annotationMode, setAnnotationMode] = useState<'inline' | 'hover' | 'english'>('inline');
@@ -387,29 +394,47 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
       {/* Top Scene Navigation Tabs */}
       <div className="bg-white/80 backdrop-blur rounded-2xl p-3 border border-amber-900/10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* Scene Steps */}
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-          {STORY_SCENES.map((scene, idx) => (
-            <button
-              key={scene.id}
-              onClick={() => {
-                sfx.playClick();
-                setActiveSceneIndex(idx);
-                speech.stop();
-                setIsPlayingScene(false);
-                setCurrentSentenceId(null);
-              }}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 flex items-center gap-1.5 ${
-                activeSceneIndex === idx
-                  ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/30'
-                  : 'bg-stone-100 text-stone-600 hover:bg-amber-50 hover:text-amber-900'
-              }`}
-            >
-              <span className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center text-[10px]">
-                {idx + 1}
-              </span>
-              <span>{scene.zhTitle.split('與')[0]}</span>
-            </button>
-          ))}
+        <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+          {STORY_SCENES.map((scene, idx) => {
+            const bTitle = SCENE_BILINGUAL_TITLES[idx] || { zh: scene.zhTitle, en: scene.title };
+            const isCurrent = activeSceneIndex === idx;
+
+            return (
+              <button
+                key={scene.id}
+                onClick={() => {
+                  sfx.playClick();
+                  setActiveSceneIndex(idx);
+                  speech.stop();
+                  setIsPlayingScene(false);
+                  setCurrentSentenceId(null);
+                }}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 flex items-center gap-2 border ${
+                  isCurrent
+                    ? 'bg-amber-600 text-white border-amber-600 shadow-sm shadow-amber-600/30'
+                    : 'bg-stone-50 text-stone-700 border-stone-200/90 hover:bg-amber-50 hover:text-amber-950 hover:border-amber-300'
+                }`}
+              >
+                <span
+                  className={`w-5 h-5 rounded-md flex items-center justify-center text-[11px] font-extrabold shrink-0 ${
+                    isCurrent ? 'bg-white/20 text-white' : 'bg-stone-200 text-stone-700'
+                  }`}
+                >
+                  {idx + 1}
+                </span>
+                <span className="flex items-baseline gap-1.5">
+                  <span className="font-bold">{bTitle.en}</span>
+                  <span
+                    className={`text-[11px] font-normal tracking-tight font-chinese ${
+                      isCurrent ? 'text-amber-100' : 'text-stone-500'
+                    }`}
+                  >
+                    ({bTitle.zh})
+                  </span>
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* View Controls & Annotation Mode */}
@@ -454,12 +479,14 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                 <span className="text-xs font-bold text-amber-600 tracking-wider">
                   SCENE {activeScene.id} OF 4
                 </span>
-                <h3 className="text-lg font-bold text-slate-900 font-display">
-                  {activeScene.title}
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display">
+                  {SCENE_BILINGUAL_TITLES[activeSceneIndex]?.en}
                 </h3>
-                <p className="text-xs text-stone-500 font-chinese">{activeScene.zhTitle}</p>
+                <p className="text-xs font-bold text-amber-800 font-chinese mt-0.5">
+                  ({SCENE_BILINGUAL_TITLES[activeSceneIndex]?.zh})
+                </p>
               </div>
-              <span className="text-[11px] px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg">
+              <span className="text-[11px] px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg shrink-0">
                 📍 {activeScene.location}
               </span>
             </div>

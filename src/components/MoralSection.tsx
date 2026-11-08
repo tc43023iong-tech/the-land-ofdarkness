@@ -223,7 +223,6 @@ export const MoralSection: React.FC = () => {
                       rows={7}
                       value={reflection}
                       onChange={(e) => handleTextChange(q.id, e.target.value)}
-                      placeholder="Write your thoughts here... Click Sentence Starters above for ideas!"
                       className="w-full p-4 text-sm rounded-xl border border-stone-200 focus:outline-none focus:border-purple-500 bg-stone-50/30 focus:bg-white transition-all leading-relaxed shadow-inner"
                     />
                   </div>

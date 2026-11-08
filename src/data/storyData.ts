@@ -4,7 +4,7 @@ export const STORY_SCENES: StoryScene[] = [
   {
     id: 1,
     title: 'The Magical Iron Pillar',
-    zhTitle: '如意金箍棒與東海龍宮',
+    zhTitle: '如意金箍棒 (The Magical Iron Pillar)',
     location: 'Dragon Palace (東海龍宮)',
     image: '/images/wukong_dragon_staff_1793961266221.jpg',
     imageAlt: 'Sun Wukong testing the magical glowing iron pillar in the underwater Dragon Palace',
@@ -85,7 +85,7 @@ export const STORY_SCENES: StoryScene[] = [
   {
     id: 2,
     title: 'The Feast & The Underworld Spirits',
-    zhTitle: '花果山盛宴與幽冥拘魂',
+    zhTitle: '花果山盛宴 (The Feast & Spirits)',
     location: 'Water Curtain Cave & Underworld Path (水簾洞與幽冥界入口)',
     image: '/images/wukong_darkness_gate_1793961268218.jpg',
     imageAlt: 'Sun Wukong being dragged to the dark and creepy gates of the Land of Darkness',
@@ -159,7 +159,7 @@ export const STORY_SCENES: StoryScene[] = [
   {
     id: 3,
     title: 'The Judge of the Dead',
-    zhTitle: '大鬧森羅殿與崔判官',
+    zhTitle: '大鬧森羅殿 (Palace of Darkness)',
     location: 'Palace of Darkness (幽冥殿 / 森羅殿)',
     image: '/images/wukong_judge_palace_1793961268677.jpg',
     imageAlt: 'Sun Wukong holding his staff and confronting the Judge of the Dead in the Underworld Palace',
@@ -227,7 +227,7 @@ export const STORY_SCENES: StoryScene[] = [
   {
     id: 4,
     title: 'Crossing Out the Directory',
-    zhTitle: '神毫勾銷生死簿，長生不老',
+    zhTitle: '神毫勾銷生死簿，長生不老 (Crossing Out the Directory & Living Forever)',
     location: 'Judge\'s Desk (森羅殿案台)',
     image: '/images/wukong_directory_brush_1793961269529.jpg',
     imageAlt: 'Sun Wukong playfully using a magical calligraphy ink brush to cross out names in the Directory of life and death',
@@ -413,6 +413,8 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 1,
     question: 'What happened to the iron pillar (鐵柱) when Sun Wukong said "Smaller!"?',
+    image: '/images/vocab_shrink_1793962627453.jpg',
+    imageAlt: 'Sun Wukong commanding the iron pillar to shrink',
     options: [
       { key: 'A', text: 'It broke into two pieces (斷成兩截).' },
       { key: 'B', text: 'It sank (沉入) into the water.' },
@@ -426,6 +428,8 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 2,
     question: 'Where did Sun Wukong keep the iron bar (鐵棒) after it became as small as a pin (大頭針)?',
+    image: '/images/wukong_dragon_staff_1793961266221.jpg',
+    imageAlt: 'Sun Wukong with the golden iron staff in the Dragon Palace',
     options: [
       { key: 'A', text: 'Inside his ear.' },
       { key: 'B', text: 'In his pocket (口袋).' },
@@ -439,6 +443,8 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 3,
     question: 'When did the two spirits (鬼怪/幽靈) come to take Sun Wukong away?',
+    image: '/images/vocab_spirit_1793962630424.jpg',
+    imageAlt: 'Two underworld spirits taking Sun Wukong while asleep',
     options: [
       { key: 'A', text: 'While he was eating fruit.' },
       { key: 'B', text: 'As he fell asleep (睡著) in his cave (洞穴).' },
@@ -452,6 +458,8 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 4,
     question: 'Who did Sun Wukong meet outside the Palace of Darkness (森羅殿/幽冥殿)?',
+    image: '/images/wukong_judge_palace_1793961268677.jpg',
+    imageAlt: 'Sun Wukong meeting the Judge of the Dead outside the Palace',
     options: [
       { key: 'A', text: 'The Dragon King (東海龍王).' },
       { key: 'B', text: 'The Jade Emperor (玉皇大帝).' },
@@ -465,6 +473,8 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 5,
     question: 'What did Sun Wukong do to the names in the Directory (生死簿)?',
+    image: '/images/wukong_directory_brush_1793961269529.jpg',
+    imageAlt: 'Sun Wukong using ink brush to cross out names in the Directory',
     options: [
       { key: 'A', text: 'He read them out loud.' },
       { key: 'B', text: 'He crossed them out (劃掉) with ink (墨汁).' },
@@ -641,15 +651,15 @@ export const MORAL_QUESTIONS: MoralQuestion[] = [
   {
     id: 1,
     title: 'Lesson 1: Strength and Rules',
-    storyContext: 'Sun Wukong got a very strong weapon. But he was rude to the Dragon King and broke rules in the Underworld.',
+    storyContext: 'Sun Wukong got a very strong weapon. But he was rude to the Dragon King and broke rules (違反規則) in the Underworld.',
     image: '/images/wukong_dragon_staff_1793961266221.jpg',
     imageAlt: 'Sun Wukong testing his magical golden weapon in the Dragon Palace',
-    question: 'If you are very strong, can you break rules and be mean to others? Why or why not?',
+    question: 'If you are very strong, can you break rules (違反規則) and be mean to others? Why or why not?',
     keyConcepts: [
       { word: 'Be kind', zh: '友善對人' },
-      { word: 'Help others', zh: '幫助他人' },
+      { word: 'Break rules', zh: '違反規則' },
       { word: 'Follow rules', zh: '遵守規則' },
-      { word: 'Say sorry', zh: '懂得道歉' }
+      { word: 'Help others', zh: '幫助他人' }
     ],
     sentenceStarters: [
       'No, being strong does not mean you can...',
@@ -673,11 +683,11 @@ export const MORAL_QUESTIONS: MoralQuestion[] = [
     storyContext: 'The Dragon King was upset when Wukong was rude. But he did not start a fight. He went to talk to the Jade Emperor.',
     image: '/images/wukong_darkness_gate_1793961268218.jpg',
     imageAlt: 'Sun Wukong facing the consequences of his actions in the Land of Darkness',
-    question: 'When someone is mean or bullies you, is it better to tell a teacher/parent, or fight back? Why?',
+    question: 'When someone is mean or bullies (霸凌 / 欺負) you, is it better to tell a teacher/parent, or fight back? Why?',
     keyConcepts: [
       { word: 'Tell an adult', zh: '告訴師長' },
+      { word: 'Bullies', zh: '霸凌 / 欺負' },
       { word: 'Stay calm', zh: '保持冷靜' },
-      { word: 'No fighting', zh: '不要動手' },
       { word: 'Stay safe', zh: '安全第一' }
     ],
     sentenceStarters: [
