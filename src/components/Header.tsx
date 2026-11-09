@@ -2,7 +2,7 @@ import React from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { sfx } from '../utils/soundEffects';
 
-export type NavTab = 'video' | 'story' | 'vocab' | 'quiz' | 'cloze' | 'sentence' | 'moral';
+export type NavTab = 'video' | 'story' | 'vocab' | 'quiz' | 'cloze' | 'sentence' | 'moral' | 'hw';
 
 interface HeaderProps {
   activeTab: NavTab;
@@ -126,6 +126,19 @@ export const Header: React.FC<HeaderProps> = ({
           }`}
         >
           Moral Lessons (E)
+        </button>
+        <button
+          onClick={() => {
+            onTabChange('hw');
+            sfx.playClick();
+          }}
+          className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 font-bold ${
+            activeTab === 'hw'
+              ? 'text-amber-800 border-amber-600'
+              : 'border-transparent text-stone-600 hover:border-stone-300'
+          }`}
+        >
+          HW
         </button>
       </nav>
 

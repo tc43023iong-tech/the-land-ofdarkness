@@ -16,6 +16,16 @@ export const MoralSection: React.FC = () => {
   });
 
   const [activeTab, setActiveTab] = useState<number | 'all'>('all');
+  const [speakingKey, setSpeakingKey] = useState<string | null>(null);
+
+  const handleSpeakKey = (key: string, text: string) => {
+    sfx.playClick();
+    setSpeakingKey(key);
+    speech.speak(text, {
+      onEnd: () => setSpeakingKey(null),
+      onError: () => setSpeakingKey(null)
+    });
+  };
 
   const handleTextChange = (id: number, text: string) => {
     setUserReflections((prev) => {
@@ -231,6 +241,146 @@ export const MoralSection: React.FC = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* Moral Lessons Core Summary for Elementary Grade 5 */}
+      <div className="bg-gradient-to-r from-purple-500/10 via-amber-500/10 to-purple-500/10 rounded-3xl p-6 sm:p-7 border-2 border-purple-200/90 shadow-sm space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-purple-200/60 pb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow-xs">
+              <HeartHandshake className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-base font-extrabold text-purple-950 font-display">
+                What Can We Learn from Sun Wukong? (核心啟示)
+              </h3>
+              <p className="text-xs text-stone-500">
+                兩大好習慣：用最簡單的英文與插圖輕鬆學會！
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 2 Illustrated Moral Takeaways Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Card 1: Help others & Follow rules, don't bully */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border-2 border-amber-200/90 shadow-2xs space-y-3 flex flex-col justify-between">
+            <div className="space-y-3">
+              {/* Illustration */}
+              <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-amber-50 border border-amber-200/80 shadow-2xs relative group">
+                <img
+                  src="/images/moral_help_others.jpg"
+                  alt="Be strong to help others, follow rules, and do not bully"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
+                />
+                <span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-amber-500 text-stone-950 font-black text-[10px] tracking-wider uppercase shadow-xs">
+                  啟示 1 · Lesson 1
+                </span>
+              </div>
+
+              {/* Simplified English & Chinese Explanation */}
+              <div className="space-y-1.5">
+                <div className="flex items-start justify-between gap-2">
+                  <h4 className="text-base sm:text-lg font-extrabold text-slate-900 font-display leading-snug">
+                    Use your strength to help others and follow rules. Do not bully!
+                  </h4>
+                  <button
+                    onClick={() =>
+                      handleSpeakKey(
+                        'moral_1',
+                        'Use your strength to help others and follow rules. Do not bully!'
+                      )
+                    }
+                    className={`p-1.5 rounded-lg border text-xs shrink-0 transition-all cursor-pointer ${
+                      speakingKey === 'moral_1'
+                        ? 'bg-amber-600 text-white animate-pulse'
+                        : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border-amber-200'
+                    }`}
+                    title="Listen to this lesson"
+                  >
+                    <Volume2 className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <p className="text-xs sm:text-sm font-bold text-amber-900 bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/60 leading-relaxed">
+                  💡 中文大意：能力越強，越要用來「幫助別人」和「遵守規則」，絕不欺負弱小！
+                </p>
+              </div>
+            </div>
+
+            {/* Keyword Chips */}
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              <span className="px-2 py-0.5 rounded-lg bg-stone-100 text-stone-700 text-xs font-semibold border border-stone-200">
+                🤝 Help others (幫助他人)
+              </span>
+              <span className="px-2 py-0.5 rounded-lg bg-stone-100 text-stone-700 text-xs font-semibold border border-stone-200">
+                📜 Follow rules (遵守規則)
+              </span>
+              <span className="px-2 py-0.5 rounded-lg bg-rose-50 text-rose-800 text-xs font-bold border border-rose-200">
+                🚫 No bullying (不霸凌)
+              </span>
+            </div>
+          </div>
+
+          {/* Card 2: Tell an adult, don't fight */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border-2 border-indigo-200/90 shadow-2xs space-y-3 flex flex-col justify-between">
+            <div className="space-y-3">
+              {/* Illustration */}
+              <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-indigo-50 border border-indigo-200/80 shadow-2xs relative group">
+                <img
+                  src="/images/moral_tell_teacher.jpg"
+                  alt="Stay calm, do not fight, and tell a teacher or parent"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
+                />
+                <span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-indigo-600 text-white font-black text-[10px] tracking-wider uppercase shadow-xs">
+                  啟示 2 · Lesson 2
+                </span>
+              </div>
+
+              {/* Simplified English & Chinese Explanation */}
+              <div className="space-y-1.5">
+                <div className="flex items-start justify-between gap-2">
+                  <h4 className="text-base sm:text-lg font-extrabold text-slate-900 font-display leading-snug">
+                    Do not fight. Stay calm and tell a teacher or parent for help!
+                  </h4>
+                  <button
+                    onClick={() =>
+                      handleSpeakKey(
+                        'moral_2',
+                        'Do not fight. Stay calm and tell a teacher or parent for help!'
+                      )
+                    }
+                    className={`p-1.5 rounded-lg border text-xs shrink-0 transition-all cursor-pointer ${
+                      speakingKey === 'moral_2'
+                        ? 'bg-indigo-600 text-white animate-pulse'
+                        : 'bg-indigo-50 text-indigo-800 hover:bg-indigo-100 border-indigo-200'
+                    }`}
+                    title="Listen to this lesson"
+                  >
+                    <Volume2 className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <p className="text-xs sm:text-sm font-bold text-indigo-900 bg-indigo-50/80 p-2.5 rounded-xl border border-indigo-200/60 leading-relaxed">
+                  💡 中文大意：遇到衝突「不要打架」，先「保持冷靜」，告訴老師或家長來解決！
+                </p>
+              </div>
+            </div>
+
+            {/* Keyword Chips */}
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              <span className="px-2 py-0.5 rounded-lg bg-stone-100 text-stone-700 text-xs font-semibold border border-stone-200">
+                🕊️ Stay calm (保持冷靜)
+              </span>
+              <span className="px-2 py-0.5 rounded-lg bg-rose-50 text-rose-800 text-xs font-bold border border-rose-200">
+                ❌ Don't fight (不要打架)
+              </span>
+              <span className="px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                🗣️ Tell an adult (告訴老師或家長)
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

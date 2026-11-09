@@ -7,6 +7,7 @@ import { QuizSection } from './components/QuizSection';
 import { ClozeSection } from './components/ClozeSection';
 import { SentenceSection } from './components/SentenceSection';
 import { MoralSection } from './components/MoralSection';
+import { HomeworkSection } from './components/HomeworkSection';
 import { BookOpen, Sparkles, Brain, CheckSquare, MessageCircle, Volume2, Shield } from 'lucide-react';
 import { sfx } from './utils/soundEffects';
 
@@ -99,6 +100,12 @@ export default function App() {
 
         {activeTab === 'moral' && (
           <MoralSection />
+        )}
+
+        {activeTab === 'hw' && (
+          <HomeworkSection
+            onGoToPartC={() => handleTabChange('cloze')}
+          />
         )}
       </main>
 
