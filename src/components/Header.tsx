@@ -2,7 +2,7 @@ import React from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { sfx } from '../utils/soundEffects';
 
-export type NavTab = 'story' | 'vocab' | 'quiz' | 'cloze' | 'sentence' | 'moral';
+export type NavTab = 'video' | 'story' | 'vocab' | 'quiz' | 'cloze' | 'sentence' | 'moral';
 
 interface HeaderProps {
   activeTab: NavTab;
@@ -35,6 +35,20 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Zone 2: Concise single-line navigation links */}
       <nav className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-stone-600 overflow-x-auto max-w-full pb-0.5 scrollbar-none">
+        <button
+          onClick={() => {
+            onTabChange('video');
+            sfx.playClick();
+          }}
+          className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 flex items-center gap-1.5 ${
+            activeTab === 'video'
+              ? 'text-amber-800 border-amber-600 font-bold'
+              : 'border-transparent text-stone-600 hover:border-stone-300'
+          }`}
+        >
+          <span className="text-sm">📺</span>
+          <span>Video</span>
+        </button>
         <button
           onClick={() => {
             onTabChange('story');

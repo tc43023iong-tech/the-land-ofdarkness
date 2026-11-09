@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Header, NavTab } from './components/Header';
+import { VideoSection } from './components/VideoSection';
 import { StoryReader } from './components/StoryReader';
 import { VocabularySection } from './components/VocabularySection';
 import { QuizSection } from './components/QuizSection';
@@ -59,6 +60,12 @@ export default function App() {
         </div>
 
         {/* Tab Content Display */}
+        {activeTab === 'video' && (
+          <VideoSection
+            onStartStory={() => handleTabChange('story')}
+          />
+        )}
+
         {activeTab === 'story' && (
           <StoryReader
             onNavigateToVocab={() => handleTabChange('vocab')}
