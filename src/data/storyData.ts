@@ -494,7 +494,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: '"Smaller!" {blank} Wukong.',
     targetWord: 'commanded',
     image: '/images/vocab_command_1793962628720.jpg',
-    fullEn: '"Smaller!" commanded Wukong.'
+    fullEn: '"Smaller!" commanded Wukong.',
+    videoStart: 35,
+    videoEnd: 38,
+    videoTimeLabel: '00:35～00:38'
   },
   {
     id: 2,
@@ -502,7 +505,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: 'The pillar {blank}! Soon it was just a little taller than Wukong.',
     targetWord: 'shrank',
     image: '/images/vocab_shrink_1793962627453.jpg',
-    fullEn: 'The pillar shrank! Soon it was just a little taller than Wukong.'
+    fullEn: 'The pillar shrank! Soon it was just a little taller than Wukong.',
+    videoStart: 38,
+    videoEnd: 42,
+    videoTimeLabel: '00:38～00:42'
   },
   {
     id: 3,
@@ -510,7 +516,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: '"This is a perfect {blank} for me," he said.',
     targetWord: 'weapon',
     image: '/images/vocab_weapon_1793962629177.jpg',
-    fullEn: '"This is a perfect weapon for me," he said.'
+    fullEn: '"This is a perfect weapon for me," he said.',
+    videoStart: 50,
+    videoEnd: 55,
+    videoTimeLabel: '00:50～00:55'
   },
   {
     id: 4,
@@ -518,7 +527,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: 'But as he fell asleep, two {blank} grabbed him.',
     targetWord: 'spirits',
     image: '/images/vocab_spirit_1793962630424.jpg',
-    fullEn: 'But as he fell asleep, two spirits grabbed him.'
+    fullEn: 'But as he fell asleep, two spirits grabbed him.',
+    videoStart: 120,
+    videoEnd: 129,
+    videoTimeLabel: '02:00～02:09'
   },
   {
     id: 5,
@@ -526,7 +538,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: 'He kicked and struggled as the spirits {blank} him out of his cave.',
     targetWord: 'dragged',
     image: '/images/vocab_drag_1793962630122.jpg',
-    fullEn: 'He kicked and struggled as the spirits dragged him out of his cave.'
+    fullEn: 'He kicked and struggled as the spirits dragged him out of his cave.',
+    videoStart: 129,
+    videoEnd: 138,
+    videoTimeLabel: '02:09～02:18'
   },
   {
     id: 6,
@@ -534,7 +549,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: 'They walked toward a dark and {blank} city.',
     targetWord: 'creepy',
     image: '/images/vocab_creepy_1793962630120.jpg',
-    fullEn: 'They walked toward a dark and creepy city.'
+    fullEn: 'They walked toward a dark and creepy city.',
+    videoStart: 139,
+    videoEnd: 148,
+    videoTimeLabel: '02:19～02:28'
   },
   {
     id: 7,
@@ -542,7 +560,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: 'As he went, he swung his iron bar back and forth. Demons and ghosts {blank}.',
     targetWord: 'fled',
     image: '/images/vocab_flee_1793962632996.jpg',
-    fullEn: 'As he went, he swung his iron bar back and forth. Demons and ghosts fled.'
+    fullEn: 'As he went, he swung his iron bar back and forth. Demons and ghosts fled.',
+    videoStart: 191,
+    videoEnd: 199,
+    videoTimeLabel: '03:11～03:19'
   },
   {
     id: 8,
@@ -550,7 +571,10 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     template: '"I am the {blank} of the Dead," said the spirit. "Why are you causing all this trouble?"',
     targetWord: 'Judge',
     image: '/images/vocab_judge_1793962631798.jpg',
-    fullEn: '"I am the Judge of the Dead," said the spirit. "Why are you causing all this trouble?"'
+    fullEn: '"I am the Judge of the Dead," said the spirit. "Why are you causing all this trouble?"',
+    videoStart: 207,
+    videoEnd: 214,
+    videoTimeLabel: '03:27～03:34'
   }
 ];
 

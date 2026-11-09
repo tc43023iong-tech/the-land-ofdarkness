@@ -59,6 +59,9 @@ export interface ClozeItem {
   zhHint?: string;
   fullEn: string;
   fullZh?: string;
+  videoStart?: number;
+  videoEnd?: number;
+  videoTimeLabel?: string;
 }
 
 export interface SentencePracticeItem {
