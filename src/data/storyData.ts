@@ -507,8 +507,8 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     image: '/images/vocab_shrink_1793962627453.jpg',
     fullEn: 'The pillar shrank! Soon it was just a little taller than Wukong.',
     videoStart: 38,
-    videoEnd: 42,
-    videoTimeLabel: '00:38～00:42'
+    videoEnd: 44,
+    videoTimeLabel: '00:38～00:44'
   },
   {
     id: 3,
@@ -528,9 +528,9 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     targetWord: 'spirits',
     image: '/images/vocab_spirit_1793962630424.jpg',
     fullEn: 'But as he fell asleep, two spirits grabbed him.',
-    videoStart: 120,
-    videoEnd: 129,
-    videoTimeLabel: '02:00～02:09'
+    videoStart: 121,
+    videoEnd: 126,
+    videoTimeLabel: '02:01～02:06'
   },
   {
     id: 5,
@@ -539,9 +539,9 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     targetWord: 'dragged',
     image: '/images/vocab_drag_1793962630122.jpg',
     fullEn: 'He kicked and struggled as the spirits dragged him out of his cave.',
-    videoStart: 129,
-    videoEnd: 138,
-    videoTimeLabel: '02:09～02:18'
+    videoStart: 136,
+    videoEnd: 141,
+    videoTimeLabel: '02:16～02:21'
   },
   {
     id: 6,
@@ -550,9 +550,9 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     targetWord: 'creepy',
     image: '/images/vocab_creepy_1793962630120.jpg',
     fullEn: 'They walked toward a dark and creepy city.',
-    videoStart: 139,
-    videoEnd: 148,
-    videoTimeLabel: '02:19～02:28'
+    videoStart: 142,
+    videoEnd: 146,
+    videoTimeLabel: '02:22～02:26'
   },
   {
     id: 7,
@@ -573,8 +573,8 @@ export const CLOZE_ITEMS: ClozeItem[] = [
     image: '/images/vocab_judge_1793962631798.jpg',
     fullEn: '"I am the Judge of the Dead," said the spirit. "Why are you causing all this trouble?"',
     videoStart: 207,
-    videoEnd: 214,
-    videoTimeLabel: '03:27～03:34'
+    videoEnd: 218,
+    videoTimeLabel: '03:27～03:38'
   }
 ];
 
