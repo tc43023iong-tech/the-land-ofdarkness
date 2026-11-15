@@ -336,33 +336,33 @@ export const LadderClimbGame: React.FC = () => {
       {/* Top Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-amber-200">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold text-amber-900 uppercase tracking-wider bg-amber-200/90 px-2.5 py-0.5 rounded-full border border-amber-300">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs sm:text-sm font-bold text-amber-900 uppercase tracking-wider bg-amber-200/90 px-3 py-0.5 rounded-full border border-amber-300">
               Simultaneous Multiplayer · 全員同步競技
             </span>
             {finishedCount > 0 && !allPlayersFinished && (
-              <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300 animate-pulse">
+              <span className="text-xs sm:text-sm font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 animate-pulse">
                 已有 {finishedCount} 位登頂 · 比賽繼續進行中！
               </span>
             )}
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 font-display mt-1">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mt-1.5">
             Vocabulary Ladder Climb Race (8階單字爬爬梯)
           </h3>
         </div>
 
         {/* Player Count Switcher & Reset Button */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center bg-white border border-amber-300 p-1 rounded-xl text-xs font-bold shadow-2xs">
-            <span className="text-stone-400 px-2 text-[11px] flex items-center gap-1">
-              <Users className="w-3.5 h-3.5 text-amber-600" />
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center bg-white border border-amber-300 p-1 rounded-xl text-sm font-bold shadow-2xs">
+            <span className="text-stone-500 px-2 text-xs sm:text-sm flex items-center gap-1">
+              <Users className="w-4 h-4 text-amber-600" />
               <span>人數:</span>
             </span>
             {[2, 3, 4].map((cnt) => (
               <button
                 key={cnt}
                 onClick={() => setPlayerCount(cnt as 2 | 3 | 4)}
-                className={`px-2.5 py-1 rounded-lg transition-all ${
+                className={`px-3 py-1 rounded-lg transition-all ${
                   playerCount === cnt
                     ? 'bg-amber-600 text-white shadow-2xs font-extrabold'
                     : 'text-stone-600 hover:text-amber-900 hover:bg-amber-50'
@@ -375,10 +375,10 @@ export const LadderClimbGame: React.FC = () => {
 
           <button
             onClick={() => resetGame(playerCount)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 shadow-2xs transition-colors"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-bold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 shadow-2xs transition-colors"
             title="重新開始爬爬梯比賽"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-4 h-4" />
             <span>Reset Race</span>
           </button>
         </div>
@@ -400,7 +400,7 @@ export const LadderClimbGame: React.FC = () => {
           return (
             <div
               key={player.id}
-              className={`rounded-2xl border-2 flex flex-col justify-between transition-all p-3.5 sm:p-4 relative shadow-2xs ${
+              className={`rounded-2xl border-2 flex flex-col justify-between transition-all p-4 relative shadow-2xs ${
                 player.isFinished
                   ? 'border-emerald-300 bg-emerald-50/50'
                   : `${player.borderColor} ${player.bgColor}`
@@ -409,26 +409,26 @@ export const LadderClimbGame: React.FC = () => {
               {/* Top Player Header: Pixel SVG Avatar + English Name */}
               <div className="flex items-center justify-between pb-3 border-b border-black/5">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-white border border-stone-200/80 shadow-2xs flex items-center justify-center p-1">
-                    {renderAvatar(player.avatarType, 'w-6 h-6')}
+                  <div className="w-9 h-9 rounded-xl bg-white border border-stone-200/80 shadow-2xs flex items-center justify-center p-1">
+                    {renderAvatar(player.avatarType, 'w-7 h-7')}
                   </div>
                   <div>
-                    <h4 className="text-sm font-extrabold text-slate-900 leading-tight">
+                    <h4 className="text-base font-extrabold text-slate-900 leading-tight">
                       {player.name}
                     </h4>
-                    <span className="text-[10px] text-stone-500 font-medium block">
+                    <span className="text-xs text-stone-500 font-medium block">
                       {player.subtitle}
                     </span>
                   </div>
                 </div>
 
                 {player.isFinished ? (
-                  <span className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs animate-bounce">
-                    <Trophy className="w-3 h-3 text-yellow-300" />
+                  <span className="inline-flex items-center gap-1 text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs animate-bounce">
+                    <Trophy className="w-3.5 h-3.5 text-yellow-300" />
                     <span>Rank #{player.finishRank}</span>
                   </span>
                 ) : (
-                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white/90 border border-stone-200 text-stone-700 shadow-2xs">
+                  <span className="text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full bg-white/90 border border-stone-200 text-stone-700 shadow-2xs">
                     Step {player.step}/8
                   </span>
                 )}
@@ -436,9 +436,9 @@ export const LadderClimbGame: React.FC = () => {
 
               {/* Ladder Track with 8 Rungs */}
               <div className="my-3 bg-white/80 rounded-xl p-2.5 border border-stone-200/60 shadow-inner">
-                <div className="flex items-center justify-between text-[10px] font-bold text-stone-400 mb-1 px-1">
-                  <span>🚩 Summit (Step 8)</span>
-                  <span>Ground (0)</span>
+                <div className="flex items-center justify-between text-xs font-bold text-stone-500 mb-1 px-1">
+                  <span>🚩 Summit (8)</span>
+                  <span>Start (0)</span>
                 </div>
 
                 <div className="w-full h-44 bg-amber-100/30 rounded-lg border border-amber-300/70 relative flex flex-col justify-between py-1.5 px-2 overflow-hidden shadow-2xs">
@@ -459,7 +459,7 @@ export const LadderClimbGame: React.FC = () => {
                         <div className="w-14 h-1 bg-amber-800/40 rounded-full" />
 
                         {/* Rung number label */}
-                        <span className="absolute left-1 text-[8px] font-bold text-stone-400 font-mono">
+                        <span className="absolute left-1 text-[10px] font-bold text-stone-500 font-mono">
                           {rungNum}
                         </span>
 
@@ -493,13 +493,13 @@ export const LadderClimbGame: React.FC = () => {
                   <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto border border-emerald-300">
                     <Trophy className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <h5 className="text-xs font-extrabold text-emerald-950 uppercase tracking-wide">
+                  <h5 className="text-sm font-extrabold text-emerald-950 uppercase tracking-wide">
                     Summit Conquered! 🏆
                   </h5>
-                  <p className="text-[11px] text-stone-600">
+                  <p className="text-sm text-stone-600">
                     Finished in <strong>Rank #{player.finishRank}</strong>!
                   </p>
-                  <p className="text-[10px] text-stone-400 italic">
+                  <p className="text-xs text-stone-500 italic">
                     Waiting for other players to finish...
                   </p>
                 </div>
@@ -507,11 +507,11 @@ export const LadderClimbGame: React.FC = () => {
                 /* Interactive Simultaneous Question Box */
                 <div className="bg-white/95 rounded-xl p-3 border border-stone-200/80 shadow-2xs space-y-2.5">
                   {/* Target Chinese Question Prompt */}
-                  <div className="bg-amber-100/60 rounded-lg p-2 text-center border border-amber-200">
-                    <span className="text-[10px] font-bold text-amber-800 uppercase block tracking-wide">
+                  <div className="bg-amber-100/60 rounded-lg p-2.5 text-center border border-amber-200">
+                    <span className="text-xs font-bold text-amber-800 uppercase block tracking-wide">
                       Select English for:
                     </span>
-                    <div className="text-lg sm:text-xl font-extrabold text-slate-900 font-chinese mt-0.5 tracking-wide">
+                    <div className="text-xl sm:text-2xl font-extrabold text-slate-900 font-chinese mt-0.5 tracking-wide">
                       「 {currentQ.zh} 」
                     </div>
                   </div>
@@ -541,7 +541,7 @@ export const LadderClimbGame: React.FC = () => {
                           type="button"
                           disabled={player.isChecking}
                           onClick={() => handlePlayerAnswer(pIdx, option)}
-                          className={`py-2 px-2 rounded-lg border text-xs font-bold transition-all active:scale-95 truncate shadow-2xs ${btnStyle}`}
+                          className={`py-2.5 px-2 rounded-lg border text-sm sm:text-base font-bold transition-all active:scale-95 truncate shadow-2xs ${btnStyle}`}
                           title={option}
                         >
                           {option}
@@ -564,10 +564,10 @@ export const LadderClimbGame: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-2xl font-extrabold text-slate-900 font-display">
+            <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
               🎉 全員成功登頂！爬爬梯比賽圓滿完成！
             </h4>
-            <p className="text-xs text-stone-600 mt-1 max-w-md mx-auto">
+            <p className="text-sm sm:text-base text-stone-600 mt-1 max-w-md mx-auto">
               恭喜所有玩家皆完成 8 階西遊記單字考驗，全員順利登上定海神針頂峰！
             </p>
           </div>
@@ -579,14 +579,14 @@ export const LadderClimbGame: React.FC = () => {
               .map((p, idx) => (
                 <div
                   key={p.id}
-                  className="bg-white p-3 rounded-2xl border-2 border-amber-200 shadow-xs flex flex-col items-center justify-center"
+                  className="bg-white p-3.5 rounded-2xl border-2 border-amber-200 shadow-xs flex flex-col items-center justify-center"
                 >
                   <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center p-1.5 mb-1">
                     {renderAvatar(p.avatarType, 'w-7 h-7')}
                   </div>
-                  <span className="text-xs font-bold text-slate-900">{p.name}</span>
-                  <span className="text-[10px] text-stone-500">{p.subtitle}</span>
-                  <span className="text-[10px] font-extrabold mt-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                  <span className="text-sm sm:text-base font-bold text-slate-900">{p.name}</span>
+                  <span className="text-xs text-stone-500">{p.subtitle}</span>
+                  <span className="text-xs font-extrabold mt-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
                     Rank #{idx + 1}
                   </span>
                 </div>
@@ -596,7 +596,7 @@ export const LadderClimbGame: React.FC = () => {
           <div className="pt-3">
             <button
               onClick={() => resetGame(playerCount)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-xl text-sm font-bold hover:bg-amber-700 shadow-md active:scale-95 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-xl text-base font-bold hover:bg-amber-700 shadow-md active:scale-95 transition-all"
             >
               <RotateCcw className="w-4 h-4" />
               <span>再來一局爬爬梯比賽 (Play Again)</span>

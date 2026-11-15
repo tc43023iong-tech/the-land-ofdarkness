@@ -76,32 +76,32 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
       {/* Top Banner */}
       <div className="bg-gradient-to-r from-orange-500/10 via-amber-500/10 to-orange-500/5 rounded-2xl p-5 border border-orange-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-orange-800 tracking-wider">
+          <div className="flex items-center gap-2 text-sm font-bold text-orange-800 tracking-wider">
             <span>PART D: SENTENCE TRANSLATION PRACTICE</span>
           </div>
-          <h2 className="text-xl font-bold text-slate-900 font-display mt-0.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display mt-0.5">
             Translate into English Using Part A Vocabulary
           </h2>
-          <p className="text-xs text-stone-600 mt-1">
+          <p className="text-sm sm:text-base text-stone-600 mt-1">
             Build each sentence using word tiles or type directly. Master 5 essential sentence patterns!
           </p>
         </div>
 
         {/* Mode Toggle & Progress */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <div className="text-right">
-            <span className="text-xs text-stone-500 block">Progress</span>
-            <span className="text-sm font-bold text-orange-700">
+            <span className="text-xs sm:text-sm text-stone-500 block">Progress</span>
+            <span className="text-base font-bold text-orange-700">
               {completedCount} / {SENTENCE_PRACTICE_ITEMS.length} Solved
             </span>
           </div>
-          <div className="flex items-center bg-white border border-stone-200 p-1 rounded-xl text-xs font-semibold">
+          <div className="flex items-center bg-white border border-stone-200 p-1 rounded-xl text-sm font-semibold">
             <button
               onClick={() => {
                 setInputMode('tiles');
                 sfx.playClick();
               }}
-              className={`px-2.5 py-1 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all ${
                 inputMode === 'tiles' ? 'bg-orange-600 text-white shadow-xs' : 'text-stone-600'
               }`}
             >
@@ -112,7 +112,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                 setInputMode('typing');
                 sfx.playClick();
               }}
-              className={`px-2.5 py-1 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all ${
                 inputMode === 'typing' ? 'bg-orange-600 text-white shadow-xs' : 'text-stone-600'
               }`}
             >
@@ -123,13 +123,13 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
       </div>
 
       {/* Sentence Pattern Filter Pills */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1">
         <button
           onClick={() => {
             setSelectedPatternFilter('all');
             sfx.playClick();
           }}
-          className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+          className={`px-3.5 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
             selectedPatternFilter === 'all'
               ? 'bg-orange-600 text-white shadow-xs'
               : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
@@ -146,7 +146,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                 setSelectedPatternFilter(num);
                 sfx.playClick();
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3.5 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 selectedPatternFilter === num
                   ? 'bg-orange-600 text-white shadow-xs'
                   : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
@@ -168,7 +168,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
           return (
             <div
               key={item.id}
-              className={`p-5 rounded-2xl border transition-all ${
+              className={`p-5 sm:p-6 rounded-2xl border transition-all ${
                 isCorrect
                   ? 'bg-emerald-50/40 border-emerald-300'
                   : 'bg-white border-stone-200/80'
@@ -177,39 +177,39 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
               {/* Header with Prominent Pattern */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-3 border-b border-orange-100">
                 <div className="flex items-center gap-2.5">
-                  <span className="w-8 h-8 rounded-xl bg-orange-600 text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                  <span className="w-9 h-9 rounded-xl bg-orange-600 text-white font-bold text-base flex items-center justify-center shrink-0 shadow-xs">
                     {item.id}
                   </span>
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-orange-950 font-mono tracking-tight bg-orange-50 px-3 py-1 rounded-xl border border-orange-200 inline-block">
+                    <h3 className="text-lg sm:text-xl font-bold text-orange-950 font-mono tracking-tight bg-orange-50 px-3.5 py-1 rounded-xl border border-orange-200 inline-block">
                       {item.pattern}
                     </h3>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 self-end sm:self-auto">
+                <div className="flex items-center gap-2.5 self-end sm:self-auto">
                   <button
                     onClick={() => {
                       setRevealedAnswers((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
                       sfx.playClick();
                     }}
-                    className="text-xs text-stone-500 hover:text-orange-800 underline"
+                    className="text-sm text-stone-600 hover:text-orange-800 underline font-medium"
                   >
                     {isRevealed ? 'Hide Answer' : 'Show Answer'}
                   </button>
                   <button
                     onClick={() => handleSpeakSentence(item.en)}
-                    className="p-1.5 rounded-lg text-stone-400 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                    className="p-2 rounded-lg text-stone-400 hover:text-orange-600 hover:bg-orange-50 transition-colors"
                     title="Pronounce Answer"
                   >
-                    <Volume2 className="w-4 h-4" />
+                    <Volume2 className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
               {/* Target Prompt (Chinese sentence without redundant label) */}
               <div className="mb-4">
-                <p className="text-lg font-bold text-slate-900 font-chinese">
+                <p className="text-xl sm:text-2xl font-bold text-slate-900 font-chinese">
                   {item.zh}
                 </p>
               </div>
@@ -218,9 +218,9 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
               {inputMode === 'tiles' ? (
                 <div className="space-y-3">
                   {/* Built sentence slot */}
-                  <div className="min-h-[46px] p-2 bg-stone-50 rounded-xl border border-dashed border-stone-300 flex flex-wrap items-center gap-1.5">
+                  <div className="min-h-[54px] p-2.5 bg-stone-50 rounded-xl border border-dashed border-stone-300 flex flex-wrap items-center gap-2">
                     {currentTiles.length === 0 ? (
-                      <span className="text-xs text-stone-400 italic pl-1">
+                      <span className="text-sm sm:text-base text-stone-400 italic pl-1">
                         Click word tiles below to build the sentence...
                       </span>
                     ) : (
@@ -228,7 +228,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                         <button
                           key={`${word}-${wIdx}`}
                           onClick={() => handleRemoveTile(item.id, wIdx)}
-                          className="px-2.5 py-1 bg-orange-600 text-white rounded-lg text-xs font-semibold hover:bg-rose-600 active:scale-95 transition-all shadow-2xs"
+                          className="px-3.5 py-1.5 bg-orange-600 text-white rounded-lg text-base font-semibold hover:bg-rose-600 active:scale-95 transition-all shadow-2xs"
                           title="點擊移除此單詞"
                         >
                           {word}
@@ -239,7 +239,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
 
                   {/* Available scrambled word tiles */}
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {item.scrambledWords.map((word, wIdx) => {
                         const countInBuilt = currentTiles.filter((w) => w === word).length;
                         const totalInScrambled = item.scrambledWords.filter((w) => w === word).length;
@@ -250,7 +250,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                             key={`${word}-${wIdx}`}
                             disabled={isAllUsed}
                             onClick={() => handleTileClick(item.id, word)}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-2xs ${
+                            className={`px-3.5 py-2 rounded-lg text-base font-semibold transition-all shadow-2xs ${
                               isAllUsed
                                 ? 'bg-stone-100 text-stone-300 border border-stone-200 cursor-not-allowed'
                                 : 'bg-white border border-stone-300 text-slate-800 hover:border-orange-400 hover:bg-orange-50 active:scale-95'
@@ -265,9 +265,9 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                     {currentTiles.length > 0 && (
                       <button
                         onClick={() => handleClearSentence(item.id)}
-                        className="text-xs text-stone-400 hover:text-stone-700 flex items-center gap-1"
+                        className="text-sm text-stone-500 hover:text-stone-800 flex items-center gap-1 font-medium"
                       >
-                        <RotateCcw className="w-3 h-3" />
+                        <RotateCcw className="w-3.5 h-3.5" />
                         <span>Clear</span>
                       </button>
                     )}
@@ -283,21 +283,21 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                       setTypedInputs((prev) => ({ ...prev, [item.id]: e.target.value }))
                     }
                     placeholder="Type your English translation here..."
-                    className="w-full px-3.5 py-2 text-sm rounded-xl border border-stone-300 focus:outline-none focus:border-orange-500 bg-white"
+                    className="w-full px-4 py-2.5 text-base rounded-xl border border-stone-300 focus:outline-none focus:border-orange-500 bg-white"
                   />
                 </div>
               )}
 
               {/* Status & Revealed Answer */}
-              <div className="mt-3 flex items-center justify-between text-xs">
+              <div className="mt-3 flex items-center justify-between text-sm sm:text-base">
                 <div>
                   {isCorrect ? (
-                    <span className="font-bold text-emerald-700 flex items-center gap-1">
-                      <CheckCircle2 className="w-4 h-4" />
+                    <span className="font-bold text-emerald-700 flex items-center gap-1.5">
+                      <CheckCircle2 className="w-5 h-5" />
                       <span>Perfect! Correct</span>
                     </span>
                   ) : isRevealed ? (
-                    <div className="bg-amber-50 text-amber-950 p-2.5 rounded-lg border border-amber-200">
+                    <div className="bg-amber-50 text-amber-950 p-3 rounded-lg border border-amber-200">
                       <strong>Answer:</strong> {item.en}
                     </div>
                   ) : null}
@@ -310,23 +310,23 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
 
       {/* Completion Banner */}
       {completedCount === SENTENCE_PRACTICE_ITEMS.length && (
-        <div className="bg-orange-50 border border-orange-300 rounded-2xl p-5 text-center space-y-2">
-          <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mx-auto">
+        <div className="bg-orange-50 border border-orange-300 rounded-2xl p-6 text-center space-y-2.5">
+          <div className="w-12 h-12 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 font-display">
+          <h3 className="text-xl font-bold text-slate-900 font-display">
             All 10 Sentence Patterns Mastered!
           </h3>
-          <p className="text-xs text-stone-600 max-w-md mx-auto">
+          <p className="text-sm sm:text-base text-stone-600 max-w-md mx-auto">
             You can now accurately use "shrink", "command", "weapon", "drag", "spirit", "creepy", "judge", and "flee" in full sentences!
           </p>
           <div className="pt-2">
             <button
               onClick={onNextPart}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-600 text-white rounded-xl text-xs font-bold hover:bg-orange-700 shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-orange-600 text-white rounded-xl text-sm sm:text-base font-bold hover:bg-orange-700 shadow-sm transition-all"
             >
               <span>Continue to Part E: Moral Lessons</span>
-              <ChevronRight className="w-3.5 h-3.5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>

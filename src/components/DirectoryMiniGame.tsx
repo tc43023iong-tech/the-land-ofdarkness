@@ -93,17 +93,17 @@ export const DirectoryMiniGame: React.FC = () => {
   return (
     <div className="bg-stone-900 text-stone-100 rounded-2xl p-5 border border-stone-800 shadow-xl overflow-hidden relative">
       {/* Top Header */}
-      <div className="flex items-center justify-between pb-3 mb-4 border-b border-stone-800">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-stone-800">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
             <PenTool className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-amber-300 font-display flex items-center gap-1.5">
+            <h4 className="text-base font-bold text-amber-300 font-display flex items-center gap-1.5">
               <span>The Directory of the Dead</span>
-              <span className="text-xs text-amber-400/80 font-chinese">(地府生死簿)</span>
+              <span className="text-sm text-amber-400/90 font-chinese">(地府生死簿)</span>
             </h4>
-            <p className="text-xs text-stone-400">
+            <p className="text-sm text-stone-300">
               Click with Wukong's magic ink brush to cross out the names!
             </p>
           </div>
@@ -112,14 +112,14 @@ export const DirectoryMiniGame: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={handleCrossAll}
-            className="text-xs px-2.5 py-1 rounded bg-amber-600/30 text-amber-300 hover:bg-amber-600/50 border border-amber-500/30 transition-all"
+            className="text-sm px-3 py-1.5 rounded-lg bg-amber-600/30 text-amber-200 hover:bg-amber-600/50 border border-amber-500/30 transition-all font-semibold"
           >
             Cross Out All (一筆勾銷)
           </button>
           <button
             onClick={handleReset}
             title="Reset directory"
-            className="p-1.5 rounded text-stone-400 hover:text-stone-200 hover:bg-stone-800 transition-colors"
+            className="p-2 rounded text-stone-400 hover:text-stone-200 hover:bg-stone-800 transition-colors"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -136,7 +136,7 @@ export const DirectoryMiniGame: React.FC = () => {
             <div
               key={entry.id}
               onClick={() => handleCrossOut(entry.id)}
-              className={`p-3.5 rounded-lg border cursor-pointer select-none transition-all relative overflow-hidden group ${
+              className={`p-4 rounded-lg border cursor-pointer select-none transition-all relative overflow-hidden group ${
                 entry.isCrossed
                   ? 'bg-red-50/80 border-red-200'
                   : 'bg-white/70 border-stone-300 hover:bg-white hover:border-amber-400 hover:shadow-sm'
@@ -149,29 +149,29 @@ export const DirectoryMiniGame: React.FC = () => {
                 </div>
               )}
 
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-2">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className={`font-bold text-sm ${entry.isCrossed ? 'line-through text-red-900/60' : 'text-stone-900'}`}>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className={`font-bold text-base ${entry.isCrossed ? 'line-through text-red-900/60' : 'text-stone-900'}`}>
                       {entry.name}
                     </span>
-                    <span className="text-xs text-stone-600 font-chinese">
+                    <span className="text-sm text-stone-600 font-chinese">
                       {entry.zhName}
                     </span>
                   </div>
-                  <p className={`text-xs mt-1 leading-relaxed ${entry.isCrossed ? 'line-through text-red-800/40' : 'text-stone-600'}`}>
+                  <p className={`text-sm mt-1 leading-relaxed ${entry.isCrossed ? 'line-through text-red-800/40' : 'text-stone-600'}`}>
                     {entry.status}
                   </p>
                 </div>
 
                 <div className="shrink-0 ml-2">
                   {entry.isCrossed ? (
-                    <span className="text-[11px] font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3" />
+                    <span className="text-xs sm:text-sm font-bold text-red-700 bg-red-100 px-2.5 py-0.5 rounded flex items-center gap-1">
+                      <CheckCircle className="w-3.5 h-3.5" />
                       <span>Immortal!</span>
                     </span>
                   ) : (
-                    <span className="text-[11px] text-stone-600 group-hover:text-amber-800 group-hover:underline">
+                    <span className="text-xs sm:text-sm text-stone-600 group-hover:text-amber-800 group-hover:underline">
                       Click to cross ✒️
                     </span>
                   )}
@@ -183,7 +183,7 @@ export const DirectoryMiniGame: React.FC = () => {
 
         {/* Success Banner */}
         {allCrossed && (
-          <div className="mt-4 p-3 bg-emerald-100 border border-emerald-300 rounded-lg text-emerald-950 text-xs flex items-center justify-between animate-fadeIn">
+          <div className="mt-4 p-3.5 bg-emerald-100 border border-emerald-300 rounded-lg text-emerald-950 text-sm flex items-center justify-between animate-fadeIn">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-emerald-600 shrink-0" />
               <div>
@@ -192,7 +192,7 @@ export const DirectoryMiniGame: React.FC = () => {
             </div>
             <button
               onClick={() => speech.speak('"Now I really will live forever," said Wukong. "And so will all of my subjects!"')}
-              className="px-2 py-1 bg-emerald-600 text-white rounded text-[11px] font-medium hover:bg-emerald-700 shrink-0 ml-2"
+              className="px-3 py-1.5 bg-emerald-600 text-white rounded text-xs sm:text-sm font-semibold hover:bg-emerald-700 shrink-0 ml-2"
             >
               Play Quote 🔊
             </button>

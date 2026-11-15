@@ -8,12 +8,17 @@
     --font-chinese: 'ZCOOL KuaiLe', 'Noto Sans TC', sans-serif;
   }
 
+  html {
+    font-size: 17px;
+  }
+
   body {
     font-family: var(--font-body);
     color: #1e293b;
     background-color: #fdfbf7;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 }

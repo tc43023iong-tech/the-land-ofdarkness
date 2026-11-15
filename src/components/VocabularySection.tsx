@@ -57,24 +57,24 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
       {/* Top Banner */}
       <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 rounded-2xl p-5 border border-amber-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-amber-700 tracking-wider">
+          <div className="flex items-center gap-2 text-sm font-bold text-amber-700 tracking-wider">
             <span>PART A: CORE VOCABULARY</span>
             <span aria-hidden="true">·</span>
             <span>重點單字與插圖</span>
           </div>
-          <h2 className="text-xl font-bold text-slate-900 font-display mt-0.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display mt-0.5">
             Journey to the West Vocabulary (西遊記必備詞彙)
           </h2>
-          <p className="text-xs text-stone-600 mt-1">
+          <p className="text-sm sm:text-base text-stone-600 mt-1">
             Explore all 8 story words with custom scene illustrations, authentic pronunciation, and story quotes.
           </p>
         </div>
 
         {/* Progress & Flashcard Mode Switch */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <div className="text-right">
-            <span className="text-xs text-stone-500 block">Mastery Progress</span>
-            <span className="text-sm font-bold text-amber-700">
+            <span className="text-xs sm:text-sm text-stone-500 block">Mastery Progress</span>
+            <span className="text-base font-bold text-amber-700">
               {masteredWords.size} / {VOCABULARY_LIST.length} Mastered
             </span>
           </div>
@@ -83,13 +83,13 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
               setIsTestMode(!isTestMode);
               sfx.playClick();
             }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs ${
+            className={`px-3.5 py-2 rounded-xl text-sm font-semibold flex items-center gap-1.5 transition-all shadow-xs ${
               isTestMode
                 ? 'bg-amber-600 text-white'
                 : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
             }`}
           >
-            <Brain className="w-3.5 h-3.5" />
+            <Brain className="w-4 h-4" />
             <span>{isTestMode ? 'Exit Test Mode' : 'Flashcard Test Mode'}</span>
           </button>
         </div>
@@ -98,7 +98,7 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
       {/* Main Vocabulary Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left: 8 Word Cards Grid with Illustrations (7 cols) */}
-        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           {VOCABULARY_LIST.map((vocab) => {
             const isSelected = selectedWordId === vocab.id;
             const isMastered = masteredWords.has(vocab.id);
@@ -115,14 +115,14 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
                     handleSpeak(vocab.word);
                   }
                 }}
-                className={`p-3.5 rounded-2xl border transition-all cursor-pointer relative select-none flex gap-3 ${
+                className={`p-4 rounded-2xl border transition-all cursor-pointer relative select-none flex gap-3.5 ${
                   isSelected && !isTestMode
                     ? 'bg-amber-50/90 border-amber-400 ring-2 ring-amber-400/20 shadow-sm'
                     : 'bg-white border-stone-200/80 hover:border-amber-300 hover:bg-stone-50/60'
                 }`}
               >
                 {/* Word Illustration Thumbnail */}
-                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200 shadow-2xs relative group">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200 shadow-2xs relative group">
                   <img
                     src={vocab.image}
                     alt={vocab.imageAlt || vocab.word}
@@ -138,10 +138,10 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
                     {/* Top line: part of speech, phonetic, buttons */}
                     <div className="flex items-center justify-between gap-1 mb-1">
                       <div className="flex items-center gap-1.5 truncate">
-                        <span className="text-[10px] font-bold text-amber-800 bg-amber-100/70 px-1.5 py-0.5 rounded">
+                        <span className="text-xs font-bold text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded">
                           {vocab.partOfSpeech.split(' ')[0]}
                         </span>
-                        <span className="text-[11px] text-stone-400 font-mono truncate">
+                        <span className="text-xs sm:text-sm text-stone-500 font-mono truncate">
                           {vocab.phonetic}
                         </span>
                       </div>
@@ -155,7 +155,7 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
                           className="p-1 text-stone-400 hover:text-amber-600 transition-colors"
                           title="Pronounce word"
                         >
-                          <Volume2 className="w-3.5 h-3.5" />
+                          <Volume2 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={(e) => toggleMastery(vocab.id, e)}
@@ -166,36 +166,36 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
                           }`}
                           title={isMastered ? 'Mastered' : 'Mark as mastered'}
                         >
-                          <Check className="w-3.5 h-3.5" />
+                          <Check className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
 
                     {isTestMode && !isFlipped ? (
                       <div className="py-2 text-center">
-                        <span className="text-base font-bold text-slate-800 font-display">
+                        <span className="text-xl font-bold text-slate-800 font-display">
                           {vocab.word}
                         </span>
-                        <p className="text-[11px] text-amber-600 mt-1">點擊翻牌 🔄</p>
+                        <p className="text-xs sm:text-sm text-amber-600 mt-1">點擊翻牌 🔄</p>
                       </div>
                     ) : (
                       <div>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-lg font-extrabold text-slate-900 font-display">
+                        <div className="flex flex-wrap items-baseline gap-1.5">
+                          <span className="text-xl sm:text-2xl font-extrabold text-slate-900 font-display">
                             {vocab.word}
                           </span>
-                          <span className="text-xs font-bold text-amber-800 font-chinese">
+                          <span className="text-sm sm:text-base font-bold text-amber-800 font-chinese">
                             {vocab.zh}
                           </span>
                         </div>
 
                         {vocab.pastForm && (
-                          <span className="text-[10px] text-stone-500 block">
+                          <span className="text-xs sm:text-sm text-stone-500 block mt-0.5">
                             Past: <strong className="text-stone-700">{vocab.pastForm}</strong>
                           </span>
                         )}
 
-                        <p className="text-[11px] text-stone-500 line-clamp-1 italic mt-1">
+                        <p className="text-xs sm:text-sm text-stone-500 line-clamp-1 italic mt-1">
                           "{vocab.storyQuote}"
                         </p>
                       </div>
@@ -208,26 +208,26 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
         </div>
 
         {/* Right: Word Spotlight Card (5 cols) */}
-        <div className="lg:col-span-5 bg-white rounded-2xl p-5 border border-stone-200/80 shadow-sm space-y-4">
+        <div className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-6 border border-stone-200/80 shadow-sm space-y-4">
           {/* Header */}
           <div className="flex items-center justify-between pb-3 border-b border-stone-100">
             <div>
-              <span className="text-[11px] font-bold text-amber-600 uppercase tracking-wider">
+              <span className="text-xs sm:text-sm font-bold text-amber-600 uppercase tracking-wider">
                 Word Spotlight · 單詞圖解
               </span>
-              <h3 className="text-2xl font-black text-slate-900 font-display flex items-center gap-2">
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 font-display flex flex-wrap items-center gap-2 mt-0.5">
                 <span>{activeWord.word}</span>
-                <span className="text-lg font-normal text-stone-400 font-mono">
+                <span className="text-lg sm:text-xl font-normal text-stone-400 font-mono">
                   {activeWord.phonetic}
                 </span>
               </h3>
             </div>
             <button
               onClick={() => handleSpeak(activeWord.word)}
-              className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-sm hover:bg-amber-600 active:scale-95 transition-all"
+              className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-sm hover:bg-amber-600 active:scale-95 transition-all shrink-0"
               title="Pronounce word"
             >
-              <Volume2 className="w-5 h-5" />
+              <Volume2 className="w-6 h-6" />
             </button>
           </div>
 
@@ -239,13 +239,13 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
-              <span className="text-xs font-bold bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded-md">
+              <span className="text-sm font-bold bg-black/50 backdrop-blur-xs px-3 py-1 rounded-md">
                 {activeWord.word} · {activeWord.zh}
               </span>
               {activeWord.pastForm && (
-                <span className="text-[11px] bg-amber-600/90 px-2 py-0.5 rounded text-white font-medium">
+                <span className="text-xs sm:text-sm bg-amber-600/90 px-2.5 py-1 rounded text-white font-semibold">
                   Past: {activeWord.pastForm}
                 </span>
               )}
@@ -253,30 +253,30 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
           </div>
 
           {/* Meaning & Grammar */}
-          <div className="bg-amber-50/70 rounded-xl p-3 border border-amber-200/70">
-            <span className="text-xs text-amber-800 font-medium block">
+          <div className="bg-amber-50/70 rounded-xl p-4 border border-amber-200/70">
+            <span className="text-sm text-amber-800 font-semibold block">
               {activeWord.partOfSpeech}
             </span>
-            <div className="text-xl font-bold text-amber-950 font-chinese mt-0.5">
+            <div className="text-2xl font-bold text-amber-950 font-chinese mt-1">
               {activeWord.zh}
             </div>
           </div>
 
           {/* Story Quote Context */}
           <div className="space-y-1.5">
-            <span className="text-xs font-bold text-stone-400 uppercase tracking-wider flex items-center gap-1">
-              <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+            <span className="text-xs sm:text-sm font-bold text-stone-500 uppercase tracking-wider flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4 text-amber-600" />
               <span>In the Story (原著情境)</span>
             </span>
-            <div className="bg-stone-50 p-3.5 rounded-xl border border-stone-200/60">
-              <p className="text-sm text-stone-800 italic leading-relaxed font-serif">
+            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200/60">
+              <p className="text-base sm:text-lg text-stone-800 italic leading-relaxed font-serif">
                 "{activeWord.storyQuote}"
               </p>
               <button
                 onClick={() => handleSpeak(activeWord.storyQuote)}
-                className="mt-2 text-xs text-amber-700 hover:text-amber-900 flex items-center gap-1 font-medium"
+                className="mt-2.5 text-sm text-amber-700 hover:text-amber-900 flex items-center gap-1.5 font-semibold"
               >
-                <Volume2 className="w-3.5 h-3.5" />
+                <Volume2 className="w-4 h-4" />
                 <span>Listen to Story Quote</span>
               </button>
             </div>
@@ -286,10 +286,10 @@ export const VocabularySection: React.FC<VocabularySectionProps> = ({ onNextPart
           <div className="pt-2">
             <button
               onClick={onNextPart}
-              className="w-full py-2.5 px-4 bg-amber-600 text-white rounded-xl text-xs font-bold hover:bg-amber-700 shadow-sm transition-all flex items-center justify-center gap-1.5"
+              className="w-full py-3 px-4 bg-amber-600 text-white rounded-xl text-sm sm:text-base font-bold hover:bg-amber-700 shadow-sm transition-all flex items-center justify-center gap-1.5"
             >
               <span>Continue to Part B: Multiple Choice</span>
-              <ChevronRight className="w-3.5 h-3.5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>

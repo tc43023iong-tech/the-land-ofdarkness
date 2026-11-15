@@ -146,42 +146,42 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
       {/* Top Banner */}
       <div className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/5 rounded-2xl p-5 border border-emerald-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 tracking-wider">
+          <div className="flex items-center gap-2 text-sm font-bold text-emerald-800 tracking-wider">
             <span>PART C: LISTENING & SHADOWING</span>
             <div className="flex items-center -space-x-1 ml-1 bg-white/80 p-0.5 rounded-lg border border-emerald-200 shadow-2xs">
               <span className="w-5 h-5 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center p-0.5" title="Wukong">
-                <PixelWukong className="w-3.5 h-3.5" />
+                <PixelWukong className="w-4 h-4" />
               </span>
               <span className="w-5 h-5 rounded-md bg-stone-50 border border-stone-200 flex items-center justify-center p-0.5" title="Narrator">
-                <PixelNarrator className="w-3.5 h-3.5" />
+                <PixelNarrator className="w-4 h-4" />
               </span>
               <span className="w-5 h-5 rounded-md bg-purple-50 border border-purple-200 flex items-center justify-center p-0.5" title="Judge of the Dead">
-                <PixelJudge className="w-3.5 h-3.5" />
+                <PixelJudge className="w-4 h-4" />
               </span>
             </div>
           </div>
-          <h2 className="text-xl font-bold text-slate-900 font-display mt-0.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display mt-0.5">
             Fill in the Blanks with Part A Vocabulary
           </h2>
-          <p className="text-xs text-stone-600 mt-1">
+          <p className="text-sm sm:text-base text-stone-600 mt-1">
             Listen to the characters speak in the authentic animation, choose the missing words directly under each question, and practice shadowing aloud!
           </p>
         </div>
 
         {/* Progress & Reset */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <div className="text-right">
-            <span className="text-xs text-stone-500 block">Progress</span>
-            <span className="text-sm font-bold text-emerald-700">
+            <span className="text-xs sm:text-sm text-stone-500 block">Progress</span>
+            <span className="text-base font-bold text-emerald-700">
               {correctCount} / {CLOZE_ITEMS.length} Completed
             </span>
           </div>
           <button
             onClick={handleReset}
-            className="p-2 rounded-xl border border-stone-200 bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors"
+            className="p-2.5 rounded-xl border border-stone-200 bg-white text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors"
             title="Reset All Blanks"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -197,17 +197,17 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
             {/* Player Header Bar */}
             <div className="bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 px-3.5 py-2.5 text-white flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
-                <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
                   <Film className="w-4 h-4 text-amber-100" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[11px] font-black tracking-wider uppercase opacity-90 truncate">
+                  <div className="text-xs sm:text-sm font-black tracking-wider uppercase opacity-95 truncate">
                     原版動畫片段跟讀 (Clip Player)
                   </div>
-                  <div className="text-xs font-semibold text-amber-100 flex items-center gap-1.5">
+                  <div className="text-xs sm:text-sm font-semibold text-amber-100 flex items-center gap-1.5">
                     <span>第 {activeItem.id} 題</span>
                     <span>•</span>
-                    <span className="bg-amber-900/60 px-1.5 py-0.5 rounded text-[11px] font-mono font-bold text-amber-200">
+                    <span className="bg-amber-900/60 px-2 py-0.5 rounded text-xs font-mono font-bold text-amber-200">
                       ⏱ {activeItem.videoTimeLabel}
                     </span>
                   </div>
@@ -225,7 +225,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                 </button>
                 <button
                   onClick={handleReplayClip}
-                  className="px-2 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs flex items-center gap-1 transition-all shadow-xs cursor-pointer"
+                  className="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs sm:text-sm flex items-center gap-1 transition-all shadow-xs cursor-pointer"
                   title="重播目前這一段"
                 >
                   <RotateCw className="w-3.5 h-3.5" />
@@ -261,15 +261,15 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                     >
                       <Play className="w-7 h-7 ml-0.5 fill-current" />
                     </div>
-                    <h4 className="text-sm font-bold text-amber-300">
+                    <h4 className="text-base font-bold text-amber-300">
                       點擊播放第 {activeItem.id} 題動畫片段
                     </h4>
-                    <span className="text-[11px] font-mono font-bold text-amber-200 mt-0.5 bg-black/40 px-2 py-0.5 rounded">
+                    <span className="text-xs sm:text-sm font-mono font-bold text-amber-200 mt-1 bg-black/40 px-2.5 py-0.5 rounded">
                       ⏱ {activeItem.videoTimeLabel}
                     </span>
                     <button
                       onClick={() => handlePlayClip(activeItem)}
-                      className="mt-2.5 px-3.5 py-1 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg text-xs transition-colors shadow-sm cursor-pointer"
+                      className="mt-3 px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg text-sm transition-colors shadow-sm cursor-pointer"
                     >
                       🎬 開始播放
                     </button>
@@ -279,39 +279,39 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
             </div>
 
             {/* Under Video: Prompt Information (Without revealing target answer word!) */}
-            <div className="p-3 bg-stone-50 border-t border-stone-200 flex items-center justify-between gap-2">
+            <div className="p-3.5 bg-stone-50 border-t border-stone-200 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <span
-                  className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-lg border shrink-0 ${getSpeakerBadgeClass(
+                  className={`inline-flex items-center gap-1 text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-lg border shrink-0 ${getSpeakerBadgeClass(
                     activeItem.speaker
                   )}`}
                 >
-                  <span className="w-3.5 h-3.5 shrink-0 flex items-center justify-center">
-                    {renderSpeakerAvatar(activeItem.speaker, 'w-3.5 h-3.5')}
+                  <span className="w-4 h-4 shrink-0 flex items-center justify-center">
+                    {renderSpeakerAvatar(activeItem.speaker, 'w-4 h-4')}
                   </span>
                   <span>{activeItem.speaker}</span>
                 </span>
 
-                <span className="text-xs text-stone-600 font-medium truncate">
+                <span className="text-sm text-stone-600 font-medium truncate">
                   聆聽語音，在右側選出正確單詞
                 </span>
               </div>
 
               {isItemCorrect(activeItem) ? (
-                <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-lg border border-emerald-300 shrink-0 flex items-center gap-1">
-                  <Check className="w-3 h-3 text-emerald-700" />
+                <span className="text-xs sm:text-sm font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300 shrink-0 flex items-center gap-1">
+                  <Check className="w-3.5 h-3.5 text-emerald-700" />
                   已答對
                 </span>
               ) : (
-                <span className="text-[11px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded-lg border border-amber-300 shrink-0">
+                <span className="text-xs sm:text-sm text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-lg border border-amber-300 shrink-0">
                   作答中
                 </span>
               )}
             </div>
 
             {/* Quick 8-Item Navigation Pills */}
-            <div className="px-3 py-2 bg-stone-100/80 border-t border-stone-200/80 flex items-center justify-between gap-1">
-              <span className="text-[11px] font-semibold text-stone-500 shrink-0 mr-1">題號:</span>
+            <div className="px-3.5 py-2.5 bg-stone-100/80 border-t border-stone-200/80 flex items-center justify-between gap-1.5">
+              <span className="text-xs sm:text-sm font-semibold text-stone-600 shrink-0 mr-1">題號:</span>
               <div className="flex items-center justify-between gap-1 w-full">
                 {CLOZE_ITEMS.map((c) => {
                   const isCurrent = activeItem.id === c.id;
@@ -320,7 +320,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                     <button
                       key={c.id}
                       onClick={() => handlePlayClip(c)}
-                      className={`flex-1 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer text-center ${
+                      className={`flex-1 py-1.5 rounded-lg text-sm font-bold transition-all cursor-pointer text-center ${
                         isCurrent
                           ? 'bg-amber-600 text-white shadow-xs'
                           : isDone
@@ -330,7 +330,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                       title={`第 ${c.id} 題 (${c.videoTimeLabel})`}
                     >
                       {c.id}
-                      {isDone && !isCurrent && <span className="text-[9px] ml-0.5 text-emerald-700">✓</span>}
+                      {isDone && !isCurrent && <span className="text-xs ml-0.5 text-emerald-700">✓</span>}
                     </button>
                   );
                 })}
@@ -339,11 +339,11 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
           </div>
 
           {/* Shadowing Practice Tip Card */}
-          <div className="p-3.5 bg-amber-50/70 rounded-xl border border-amber-200/80 text-xs text-amber-900 space-y-1">
+          <div className="p-4 bg-amber-50/70 rounded-xl border border-amber-200/80 text-sm text-amber-900 space-y-1">
             <div className="font-bold flex items-center gap-1.5 text-amber-950">
               <span>💡 影子跟讀小撇步 (Shadowing Tip)</span>
             </div>
-            <p className="text-[11px] text-stone-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
               點選題目右方的「🎬 播放片段」，一邊看動畫一邊模仿角色的語調、抑揚頓挫與發音，然後在右邊選出正確單詞！
             </p>
           </div>
@@ -364,7 +364,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
             return (
               <div
                 key={item.id}
-                className={`p-4 rounded-2xl border transition-all ${
+                className={`p-4 sm:p-5 rounded-2xl border transition-all ${
                   isThisClipActive
                     ? 'bg-amber-50/40 border-amber-400 shadow-md ring-2 ring-amber-300/60'
                     : correct
@@ -375,38 +375,38 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                 }`}
               >
                 {/* Top Row: Speaker, Controls, and Thumbnail */}
-                <div className="flex flex-col sm:flex-row sm:items-start gap-3.5">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                   {/* Illustration Thumbnail */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200/80 shadow-2xs relative group self-start">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 bg-stone-100 border border-stone-200/80 shadow-2xs relative group self-start">
                     <img
                       src={item.image}
                       alt={item.speaker}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute top-1 left-1 w-5 h-5 rounded-md bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold flex items-center justify-center">
+                    <div className="absolute top-1 left-1 w-6 h-6 rounded-md bg-black/65 backdrop-blur-xs text-white text-xs font-bold flex items-center justify-center">
                       {item.id}
                     </div>
                   </div>
 
                   {/* Main Question & Sentence Area */}
-                  <div className="flex-1 w-full min-w-0 space-y-2">
+                  <div className="flex-1 w-full min-w-0 space-y-2.5">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-2">
                         <span
-                          className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-lg border shadow-2xs ${getSpeakerBadgeClass(
+                          className={`inline-flex items-center gap-1.5 text-sm font-bold px-2.5 py-0.5 rounded-lg border shadow-2xs ${getSpeakerBadgeClass(
                             item.speaker
                           )}`}
                         >
-                          <span className="w-3.5 h-3.5 shrink-0 flex items-center justify-center">
-                            {renderSpeakerAvatar(item.speaker, 'w-3.5 h-3.5')}
+                          <span className="w-4 h-4 shrink-0 flex items-center justify-center">
+                            {renderSpeakerAvatar(item.speaker, 'w-4 h-4')}
                           </span>
                           <span>{item.speaker}</span>
                         </span>
 
                         {isThisClipActive && (
-                          <span className="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full animate-pulse flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                          <span className="text-xs font-bold text-amber-700 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-full animate-pulse flex items-center gap-1">
+                            <span className="w-2 h-2 rounded-full bg-amber-600"></span>
                             左側播放中
                           </span>
                         )}
@@ -417,38 +417,38 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                         {/* Video Clip Play Button */}
                         <button
                           onClick={() => handlePlayClip(item, false)}
-                          className={`px-2.5 py-1 rounded-xl text-xs font-bold flex items-center gap-1 transition-all shadow-2xs cursor-pointer ${
+                          className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all shadow-2xs cursor-pointer ${
                             isThisClipActive
                               ? 'bg-amber-600 text-white shadow-sm ring-2 ring-amber-400'
                               : 'bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-300'
                           }`}
                           title={`在左側播放第 ${item.id} 題片段 (${item.videoTimeLabel})`}
                         >
-                          <Film className="w-3 h-3 text-amber-600 shrink-0" />
+                          <Film className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                           <span>🎬 播放片段 ({item.videoTimeLabel})</span>
                         </button>
 
                         {/* Computer Voice Synthesis Option */}
                         <button
                           onClick={() => handlePlayTTS(item)}
-                          className={`p-1.5 rounded-xl text-xs font-medium flex items-center gap-1 transition-all cursor-pointer ${
+                          className={`p-2 rounded-xl text-sm font-medium flex items-center gap-1 transition-all cursor-pointer ${
                             isTTSActive
                               ? 'bg-emerald-600 text-white animate-pulse'
                               : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                           }`}
                           title="使用語音朗讀 (TTS 朗讀)"
                         >
-                          <Volume2 className="w-3.5 h-3.5" />
+                          <Volume2 className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
 
                     {/* Cloze Sentence with inline blank */}
-                    <div className="text-sm sm:text-base text-slate-900 leading-relaxed pt-0.5">
+                    <div className="text-base sm:text-lg text-slate-900 leading-relaxed pt-1">
                       <span className="font-medium">{parts[0]}</span>
                       <span className="inline-block mx-1.5 align-middle">
                         <span
-                          className={`inline-flex items-center justify-center min-w-[85px] px-2.5 py-0.5 text-xs sm:text-sm font-bold rounded-lg border transition-all ${
+                          className={`inline-flex items-center justify-center min-w-[95px] px-3 py-1 text-sm sm:text-base font-bold rounded-lg border transition-all ${
                             correct
                               ? 'bg-emerald-100 border-emerald-500 text-emerald-900 shadow-xs'
                               : hasInput
@@ -457,25 +457,25 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                           }`}
                         >
                           {hasInput ? currentVal : `[ ${item.id} ]`}
-                          {correct && <Check className="w-3.5 h-3.5 text-emerald-700 ml-1 inline" />}
+                          {correct && <Check className="w-4 h-4 text-emerald-700 ml-1 inline" />}
                         </span>
                       </span>
                       <span className="font-medium">{parts[1]}</span>
                     </div>
 
                     {/* Expanded Scrambled Word Options Directly Under Each Question */}
-                    <div className="mt-2.5 pt-2.5 border-t border-stone-100">
+                    <div className="mt-3 pt-3 border-t border-stone-100">
                       {correct && (
-                        <div className="flex items-center justify-end mb-1">
-                          <span className="text-xs font-bold text-emerald-700 flex items-center gap-1">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
+                        <div className="flex items-center justify-end mb-1.5">
+                          <span className="text-sm font-bold text-emerald-700 flex items-center gap-1">
+                            <CheckCircle2 className="w-4 h-4" />
                             <span>Correct!</span>
                           </span>
                         </div>
                       )}
 
                       {/* Word buttons laid out cleanly in scrambled order */}
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-2">
                         {options.map((word) => {
                           const isSelected = currentVal.toLowerCase() === word.toLowerCase();
                           const isWordCorrectChoice = isSelected && correct;
@@ -486,7 +486,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                               key={word}
                               type="button"
                               onClick={() => handleSelectWordForItem(item.id, word)}
-                              className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all shadow-2xs active:scale-95 cursor-pointer ${
+                              className={`px-3 py-1.5 rounded-xl text-sm sm:text-base font-semibold transition-all shadow-2xs active:scale-95 cursor-pointer ${
                                 isWordCorrectChoice
                                   ? 'bg-emerald-600 text-white font-bold border-2 border-emerald-500 shadow-sm ring-2 ring-emerald-300'
                                   : isWordWrongChoice
@@ -509,23 +509,23 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
 
           {/* Completion Banner */}
           {correctCount === CLOZE_ITEMS.length && (
-            <div className="bg-emerald-50 border border-emerald-300 rounded-2xl p-5 text-center space-y-2">
-              <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+            <div className="bg-emerald-50 border border-emerald-300 rounded-2xl p-6 text-center space-y-2.5">
+              <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 font-display">
+              <h3 className="text-xl font-bold text-slate-900 font-display">
                 All 8 Listening & Shadowing Blanks Completed!
               </h3>
-              <p className="text-xs text-stone-600 max-w-md mx-auto">
+              <p className="text-sm sm:text-base text-stone-600 max-w-md mx-auto">
                 Great ear! You have listened to the authentic animation clips and mastered all 8 key vocabulary words in context!
               </p>
               <div className="pt-2">
                 <button
                   onClick={onNextPart}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 shadow-sm transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 text-white rounded-xl text-sm sm:text-base font-bold hover:bg-emerald-700 shadow-sm transition-all cursor-pointer"
                 >
                   <span>Continue to Part D: Sentence Practice</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>

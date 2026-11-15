@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMute
 }) => {
   return (
-    <header className="sticky top-0 z-50 bg-[#fdfbf7]/90 backdrop-blur-md border-b border-stone-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-8">
+    <header className="sticky top-0 z-50 bg-[#fdfbf7]/95 backdrop-blur-md border-b border-stone-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 sm:gap-6">
       {/* Zone 1: Single text element wordmark */}
       <a
         href="#story"
@@ -27,14 +27,14 @@ export const Header: React.FC<HeaderProps> = ({
           onTabChange('story');
           sfx.playClick();
         }}
-        className="text-lg font-black tracking-tight text-slate-900 whitespace-nowrap shrink-0 font-display flex items-center gap-2 hover:opacity-85 transition-opacity"
+        className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 whitespace-nowrap shrink-0 font-display flex items-center gap-2 hover:opacity-85 transition-opacity"
       >
-        <span className="text-xl">🐒</span>
+        <span className="text-2xl">🐒</span>
         <span>Journey to the West</span>
       </a>
 
       {/* Zone 2: Concise single-line navigation links */}
-      <nav className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-stone-600 overflow-x-auto max-w-full pb-0.5 scrollbar-none">
+      <nav className="flex items-center gap-3.5 sm:gap-5 text-sm sm:text-base font-semibold text-stone-600 overflow-x-auto max-w-full pb-0.5 scrollbar-none">
         <button
           onClick={() => {
             onTabChange('video');
@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
-          <span className="text-sm">📺</span>
+          <span className="text-base">📺</span>
           <span>Video</span>
         </button>
         <button
@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 ${
             activeTab === 'story'
-              ? 'text-amber-800 border-amber-600'
+              ? 'text-amber-800 border-amber-600 font-bold'
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
@@ -69,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 ${
             activeTab === 'vocab'
-              ? 'text-amber-800 border-amber-600'
+              ? 'text-amber-800 border-amber-600 font-bold'
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 ${
             activeTab === 'quiz'
-              ? 'text-amber-800 border-amber-600'
+              ? 'text-amber-800 border-amber-600 font-bold'
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 ${
             activeTab === 'cloze'
-              ? 'text-amber-800 border-amber-600'
+              ? 'text-amber-800 border-amber-600 font-bold'
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 ${
             activeTab === 'sentence'
-              ? 'text-amber-800 border-amber-600'
+              ? 'text-amber-800 border-amber-600 font-bold'
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className={`hover:text-slate-900 transition-colors whitespace-nowrap shrink-0 pb-0.5 border-b-2 ${
             activeTab === 'moral'
-              ? 'text-amber-800 border-amber-600'
+              ? 'text-amber-800 border-amber-600 font-bold'
               : 'border-transparent text-stone-600 hover:border-stone-300'
           }`}
         >
@@ -146,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-3 shrink-0">
         <button
           onClick={onToggleMute}
-          className="p-2 text-xs font-medium text-stone-700 bg-white border border-stone-200 rounded-lg hover:bg-stone-50 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 shadow-2xs"
+          className="px-3 py-2 text-sm font-medium text-stone-700 bg-white border border-stone-200 rounded-lg hover:bg-stone-50 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 shadow-2xs"
           title={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
         >
           {isMuted ? (

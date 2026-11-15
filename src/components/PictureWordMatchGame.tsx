@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Gamepad2, RotateCcw, CheckCircle2, Sparkles, Volume2, Trophy, ArrowRight, Check } from 'lucide-react';
+import { Gamepad2, RotateCcw, CheckCircle2, Sparkles, Trophy, ArrowRight, Check } from 'lucide-react';
 import { VOCABULARY_LIST } from '../data/storyData';
-import { VocabWord } from '../types/story';
 import { sfx } from '../utils/soundEffects';
 
 interface MatchItem {
@@ -122,46 +121,46 @@ export const PictureWordMatchGame: React.FC = () => {
       {/* Game Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-amber-200/80">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center shadow-xs">
-            <Gamepad2 className="w-5 h-5" />
+          <div className="w-11 h-11 rounded-xl bg-amber-600 text-white flex items-center justify-center shadow-xs shrink-0">
+            <Gamepad2 className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-2 py-0.5 rounded-md border border-amber-200">
+              <span className="text-xs sm:text-sm font-bold text-amber-800 uppercase tracking-wider bg-amber-100 px-2.5 py-0.5 rounded-md border border-amber-200">
                 Mini Game · 看圖配對遊戲
               </span>
             </div>
-            <h3 className="text-lg font-bold text-slate-900 font-display mt-0.5">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display mt-1">
               Picture & Word Match Challenge (看圖配對單詞)
             </h3>
-            <p className="text-xs text-stone-600">
+            <p className="text-sm sm:text-base text-stone-600">
               Click a picture, then click its matching English word! (點選圖片後，點選對應的英文單詞)
             </p>
           </div>
         </div>
 
         {/* Game Stats & Reset */}
-        <div className="flex items-center gap-3 self-end sm:self-auto">
+        <div className="flex items-center gap-3 self-end sm:self-auto shrink-0">
           <div className="text-right">
-            <span className="text-[11px] text-stone-500 block">Matched</span>
-            <span className="text-sm font-bold text-amber-800">
+            <span className="text-xs sm:text-sm text-stone-500 block">Matched</span>
+            <span className="text-base font-bold text-amber-800">
               {matchedIds.size} / {VOCABULARY_LIST.length} Pairs
             </span>
           </div>
 
           <div className="text-right border-l border-amber-200 pl-3">
-            <span className="text-[11px] text-stone-500 block">Moves</span>
-            <span className="text-sm font-bold text-stone-700">
+            <span className="text-xs sm:text-sm text-stone-500 block">Moves</span>
+            <span className="text-base font-bold text-stone-700">
               {moves}
             </span>
           </div>
 
           <button
             onClick={startNewGame}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 shadow-2xs transition-colors"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 shadow-2xs transition-colors"
             title="Shuffle and play again"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-4 h-4" />
             <span>Shuffle (重新洗牌)</span>
           </button>
         </div>
@@ -172,10 +171,10 @@ export const PictureWordMatchGame: React.FC = () => {
         {/* Left Side: 8 Picture Cards */}
         <div className="space-y-2.5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-stone-700 flex items-center gap-1.5 uppercase tracking-wider">
+            <span className="text-sm font-bold text-stone-700 flex items-center gap-1.5 uppercase tracking-wider">
               <span>🖼️ Step 1: Select a Picture</span>
             </span>
-            <span className="text-[11px] text-stone-400">
+            <span className="text-xs sm:text-sm text-stone-500">
               {matchedIds.size} matched
             </span>
           </div>
@@ -211,13 +210,13 @@ export const PictureWordMatchGame: React.FC = () => {
                   />
                   {isMatched && (
                     <div className="absolute inset-0 bg-emerald-600/60 backdrop-blur-2xs flex items-center justify-center text-white">
-                      <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center shadow-xs">
-                        <Check className="w-4 h-4 stroke-[3]" />
+                      <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center shadow-xs">
+                        <Check className="w-5 h-5 stroke-[3]" />
                       </div>
                     </div>
                   )}
                   {isSelected && !isMatched && (
-                    <div className="w-3 h-3 rounded-full bg-amber-500 ring-2 ring-white animate-pulse absolute top-2 right-2" />
+                    <div className="w-3.5 h-3.5 rounded-full bg-amber-500 ring-2 ring-white animate-pulse absolute top-2 right-2" />
                   )}
                 </button>
               );
@@ -228,11 +227,11 @@ export const PictureWordMatchGame: React.FC = () => {
         {/* Right Side: 8 Word Cards */}
         <div className="space-y-2.5">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-stone-700 flex items-center gap-1.5 uppercase tracking-wider">
+            <span className="text-sm font-bold text-stone-700 flex items-center gap-1.5 uppercase tracking-wider">
               <span>🔤 Step 2: Match with Word</span>
             </span>
-            <span className="text-[11px] text-stone-400">
-              Click to hear audio
+            <span className="text-xs sm:text-sm text-stone-500">
+              Click to match
             </span>
           </div>
 
@@ -248,7 +247,7 @@ export const PictureWordMatchGame: React.FC = () => {
                   type="button"
                   onClick={() => handleSelectWord(item.id, item.word)}
                   disabled={isMatched}
-                  className={`p-3 rounded-xl border text-left transition-all relative flex items-center justify-between ${
+                  className={`p-3.5 rounded-xl border text-left transition-all relative flex items-center justify-between ${
                     isMatched
                       ? 'bg-emerald-50/90 border-emerald-400 text-emerald-900 opacity-90 shadow-2xs'
                       : isWrong
@@ -260,22 +259,20 @@ export const PictureWordMatchGame: React.FC = () => {
                 >
                   <div className="min-w-0 pr-2">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-bold block truncate">
+                      <span className="text-base sm:text-lg font-bold block truncate">
                         {item.word}
                       </span>
                     </div>
-                    <span className="text-[11px] text-stone-500 font-chinese block truncate">
+                    <span className="text-sm text-stone-600 font-chinese block truncate mt-0.5">
                       {item.zh}
                     </span>
                   </div>
 
                   <div className="shrink-0 flex items-center gap-1">
-                    {isMatched ? (
-                      <span className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs">
-                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    {isMatched && (
+                      <span className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm">
+                        <Check className="w-4 h-4 stroke-[3]" />
                       </span>
-                    ) : (
-                      <Volume2 className="w-4 h-4 text-stone-400 hover:text-amber-600" />
                     )}
                   </div>
                 </button>
@@ -292,17 +289,17 @@ export const PictureWordMatchGame: React.FC = () => {
             <Trophy className="w-6 h-6" />
           </div>
           <div>
-            <h4 className="text-lg font-bold text-slate-900 font-display">
+            <h4 className="text-xl font-bold text-slate-900 font-display">
               🎉 Fantastic Job! All 8 Words Matched!
             </h4>
-            <p className="text-xs text-stone-600 mt-1 max-w-md mx-auto">
+            <p className="text-sm sm:text-base text-stone-600 mt-1 max-w-md mx-auto">
               You matched all 8 custom story illustrations in <span className="font-bold text-amber-900">{moves} moves</span>. You have mastered the core Part A vocabulary!
             </p>
           </div>
           <div className="pt-2">
             <button
               onClick={startNewGame}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-white rounded-xl text-xs font-bold hover:bg-amber-700 shadow-sm active:scale-95 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-white rounded-xl text-sm sm:text-base font-bold hover:bg-amber-700 shadow-sm active:scale-95 transition-all"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Play Again with Shuffled Cards (再玩一次)</span>

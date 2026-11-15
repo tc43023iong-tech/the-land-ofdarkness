@@ -43,7 +43,7 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Subtle Editorial Hero Kicker */}
         <div className="border-b border-stone-200/80 pb-5">
-          <div className="flex flex-wrap items-center gap-2 text-xs text-stone-500 mb-1.5 font-medium">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-stone-600 mb-2 font-semibold">
             <span>Chapter 7</span>
             <span aria-hidden="true">·</span>
             <span>The Land of Darkness</span>
@@ -53,7 +53,7 @@ export default function App() {
 
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tracking-tight text-balance">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display tracking-tight text-balance">
                 Journey to the West: The Land of Darkness
               </h1>
             </div>
@@ -110,7 +110,7 @@ export default function App() {
       </main>
 
       {/* Quiet Clean Footer */}
-      <footer className="border-t border-stone-200/80 bg-white/60 py-6 mt-12 text-center text-xs text-stone-500">
+      <footer className="border-t border-stone-200/80 bg-white/60 py-6 mt-12 text-center text-sm text-stone-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="font-bold text-slate-800">Journey to the West 7: The Land of Darkness</span>

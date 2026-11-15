@@ -392,7 +392,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
   return (
     <div className="space-y-6">
       {/* Top Scene Navigation Tabs */}
-      <div className="bg-white/80 backdrop-blur rounded-2xl p-3 border border-amber-900/10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="bg-white/80 backdrop-blur rounded-2xl p-3.5 border border-amber-900/10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* Scene Steps */}
         <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
           {STORY_SCENES.map((scene, idx) => {
@@ -409,14 +409,14 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                   setIsPlayingScene(false);
                   setCurrentSentenceId(null);
                 }}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 flex items-center gap-2 border ${
+                className={`px-3.5 py-2 text-sm font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 flex items-center gap-2 border ${
                   isCurrent
                     ? 'bg-amber-600 text-white border-amber-600 shadow-sm shadow-amber-600/30'
                     : 'bg-stone-50 text-stone-700 border-stone-200/90 hover:bg-amber-50 hover:text-amber-950 hover:border-amber-300'
                 }`}
               >
                 <span
-                  className={`w-5 h-5 rounded-md flex items-center justify-center text-[11px] font-extrabold shrink-0 ${
+                  className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-extrabold shrink-0 ${
                     isCurrent ? 'bg-white/20 text-white' : 'bg-stone-200 text-stone-700'
                   }`}
                 >
@@ -425,7 +425,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                 <span className="flex items-baseline gap-1.5">
                   <span className="font-bold">{bTitle.en}</span>
                   <span
-                    className={`text-[11px] font-normal tracking-tight font-chinese ${
+                    className={`text-xs sm:text-sm font-normal tracking-tight font-chinese ${
                       isCurrent ? 'text-amber-100' : 'text-stone-500'
                     }`}
                   >
@@ -439,13 +439,13 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
 
         {/* View Controls & Annotation Mode */}
         <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-          <div className="flex items-center bg-stone-100 p-1 rounded-xl text-xs font-medium">
+          <div className="flex items-center bg-stone-100 p-1 rounded-xl text-sm font-medium">
             <button
               onClick={() => {
                 setAnnotationMode('inline');
                 sfx.playClick();
               }}
-              className={`px-2.5 py-1 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all ${
                 annotationMode === 'inline' ? 'bg-white text-amber-900 font-bold shadow-xs' : 'text-stone-600'
               }`}
               title="難詞直接加螢光筆標註中文"
@@ -457,7 +457,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                 setAnnotationMode('english');
                 sfx.playClick();
               }}
-              className={`px-2.5 py-1 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all ${
                 annotationMode === 'english' ? 'bg-white text-amber-900 font-bold shadow-xs' : 'text-stone-600'
               }`}
               title="純英文沉浸式閱讀"
@@ -472,21 +472,21 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Story Illustration & Scene Tools (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-white rounded-2xl p-4 border border-stone-200/80 shadow-sm overflow-hidden group">
+          <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-sm overflow-hidden group">
             {/* Scene Header */}
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between gap-2 mb-3">
               <div>
-                <span className="text-xs font-bold text-amber-600 tracking-wider">
+                <span className="text-sm font-bold text-amber-600 tracking-wider">
                   SCENE {activeScene.id} OF 4
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display">
                   {SCENE_BILINGUAL_TITLES[activeSceneIndex]?.en}
                 </h3>
-                <p className="text-xs font-bold text-amber-800 font-chinese mt-0.5">
+                <p className="text-sm sm:text-base font-bold text-amber-800 font-chinese mt-0.5">
                   ({SCENE_BILINGUAL_TITLES[activeSceneIndex]?.zh})
                 </p>
               </div>
-              <span className="text-[11px] px-2.5 py-1 bg-stone-100 text-stone-600 rounded-lg shrink-0">
+              <span className="text-xs sm:text-sm px-2.5 py-1 bg-stone-100 text-stone-700 rounded-lg shrink-0 font-medium">
                 📍 {activeScene.location}
               </span>
             </div>
@@ -499,19 +499,19 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-3 right-3 text-white">
-                <p className="text-xs font-medium drop-shadow-md leading-relaxed">
+                <p className="text-sm font-medium drop-shadow-md leading-relaxed">
                   {activeScene.summary}
                 </p>
               </div>
             </div>
 
             {/* Audio Deck Controls */}
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2">
               <button
                 onClick={handlePlayScene}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm ${
                   isPlayingScene
                     ? 'bg-rose-600 text-white hover:bg-rose-700'
                     : 'bg-amber-600 text-white hover:bg-amber-700'
@@ -519,19 +519,19 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
               >
                 {isPlayingScene ? (
                   <>
-                    <Square className="w-3.5 h-3.5 fill-current" />
+                    <Square className="w-4 h-4 fill-current" />
                     <span>Stop Audio (停止朗讀)</span>
                   </>
                 ) : (
                   <>
-                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <Play className="w-4 h-4 fill-current" />
                     <span>Listen to Scene (朗讀全段)</span>
                   </>
                 )}
               </button>
 
               {/* Speed Controller */}
-              <div className="flex items-center gap-1 text-xs text-stone-500">
+              <div className="flex items-center gap-1.5 text-sm text-stone-600">
                 <span>Speed:</span>
                 {[0.8, 1.0, 1.2].map((rate) => (
                   <button
@@ -540,7 +540,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                       setSpeechRate(rate);
                       sfx.playClick();
                     }}
-                    className={`px-1.5 py-0.5 rounded text-[11px] font-semibold ${
+                    className={`px-2 py-1 rounded text-xs sm:text-sm font-semibold ${
                       speechRate === rate
                         ? 'bg-amber-100 text-amber-900'
                         : 'text-stone-500 hover:text-stone-800'
@@ -560,23 +560,23 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
 
         {/* Right Column: Sentence-by-sentence Story Reader (7 cols) */}
         <div className="lg:col-span-7 space-y-3">
-          <div className="bg-white rounded-2xl p-6 border border-stone-200/80 shadow-sm">
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-stone-100">
-              <div className="flex items-center gap-2 text-xs font-bold text-stone-500">
+          <div className="bg-white rounded-2xl p-5 sm:p-6 border border-stone-200/80 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-stone-100">
+              <div className="flex items-center gap-2 text-sm font-bold text-stone-600">
                 <BookOpen className="w-4 h-4 text-amber-600" />
                 <span>Story Text · 點擊句子發音</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <button
                   onClick={() => {
                     setShowAllZh(!showAllZh);
                     sfx.playClick();
                   }}
-                  className="px-2.5 py-1 text-xs font-medium rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors"
+                  className="px-3 py-1.5 text-sm font-semibold rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors"
                 >
                   {showAllZh ? '隱藏中文翻譯' : '顯示中文翻譯'}
                 </button>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs sm:text-sm text-stone-500 font-medium">
                   {activeScene.sentences.length} Sentences
                 </span>
               </div>
@@ -593,28 +593,28 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                   <div
                     key={sentence.id}
                     onClick={() => handlePlaySentence(sentence)}
-                    className={`p-3.5 rounded-xl transition-all cursor-pointer border ${
+                    className={`p-4 sm:p-5 rounded-xl transition-all cursor-pointer border ${
                       isActive
                         ? 'bg-amber-50/90 border-amber-300 shadow-sm scale-[1.01]'
                         : 'bg-stone-50/40 border-stone-200/60 hover:bg-amber-50/40 hover:border-amber-200'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         {sentence.speaker && (
                           <span
-                            className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-2 py-0.5 rounded-md border shadow-2xs ${getSpeakerBadgeClass(
+                            className={`inline-flex items-center gap-1.5 text-sm font-bold px-2.5 py-1 rounded-lg border shadow-2xs ${getSpeakerBadgeClass(
                               sentence.speaker
                             )}`}
                           >
-                            <span className="w-3.5 h-3.5 shrink-0 flex items-center justify-center">
-                              {renderSpeakerAvatar(sentence.speaker, 'w-3.5 h-3.5')}
+                            <span className="w-4 h-4 shrink-0 flex items-center justify-center">
+                              {renderSpeakerAvatar(sentence.speaker, 'w-4 h-4')}
                             </span>
                             <span>{sentence.speaker}</span>
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-2">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -624,10 +624,10 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                               [sentence.id]: !prev[sentence.id]
                             }));
                           }}
-                          className={`px-2 py-0.5 text-[11px] rounded transition-colors ${
+                          className={`px-2.5 py-1 text-xs sm:text-sm rounded-lg transition-colors ${
                             isZhRevealed
-                              ? 'bg-amber-100 text-amber-900 font-medium'
-                              : 'text-stone-400 hover:text-stone-700 hover:bg-stone-100'
+                              ? 'bg-amber-100 text-amber-900 font-semibold'
+                              : 'text-stone-500 hover:text-stone-800 hover:bg-stone-100'
                           }`}
                           title="點擊顯示/隱藏此句中文翻譯"
                         >
@@ -638,26 +638,26 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                             e.stopPropagation();
                             handlePlaySentence(sentence);
                           }}
-                          className={`p-1 rounded-md transition-colors ${
+                          className={`p-1.5 rounded-lg transition-colors ${
                             isActive
                               ? 'text-amber-700 bg-amber-200'
                               : 'text-stone-400 hover:text-amber-600 hover:bg-stone-100'
                           }`}
                           title="朗讀此句"
                         >
-                          <Volume2 className="w-3.5 h-3.5" />
+                          <Volume2 className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
 
                     {/* English with bracketed annotations & highlighter effect */}
-                    <p className={`text-base leading-relaxed ${isActive ? 'text-amber-950 font-semibold' : 'text-slate-900'}`}>
+                    <p className={`text-lg sm:text-xl leading-loose ${isActive ? 'text-amber-950 font-semibold' : 'text-slate-900 font-medium'}`}>
                       {renderHighlighterText(displayText, annotationMode === 'inline')}
                     </p>
 
                     {/* Chinese translation line - hidden unless toggled */}
                     {isZhRevealed && (
-                      <p className="text-xs text-stone-500 font-chinese mt-2 pt-1.5 border-t border-stone-200/50 leading-relaxed animate-fadeIn">
+                      <p className="text-sm sm:text-base text-stone-600 font-chinese mt-2.5 pt-2 border-t border-stone-200/60 leading-relaxed animate-fadeIn">
                         {sentence.zh}
                       </p>
                     )}
@@ -674,7 +674,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                   sfx.playClick();
                   setActiveSceneIndex((prev) => Math.max(0, prev - 1));
                 }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold ${
+                className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold ${
                   activeSceneIndex === 0
                     ? 'text-stone-300 cursor-not-allowed'
                     : 'text-stone-700 bg-stone-100 hover:bg-stone-200'
@@ -684,7 +684,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                 <span>Previous Scene</span>
               </button>
 
-              <span className="text-xs text-stone-600 font-medium">
+              <span className="text-sm text-stone-600 font-semibold">
                 {activeSceneIndex + 1} / {STORY_SCENES.length}
               </span>
 
@@ -694,7 +694,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
                     sfx.playClick();
                     setActiveSceneIndex((prev) => Math.min(STORY_SCENES.length - 1, prev + 1));
                   }}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-amber-600 hover:bg-amber-700 shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 shadow-sm"
                 >
                   <span>Next Scene</span>
                   <ChevronRight className="w-4 h-4" />
@@ -702,10 +702,10 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
               ) : (
                 <button
                   onClick={onNavigateToVocab}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm"
                 >
                   <span>Study Vocabulary (Part A)</span>
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-4 h-4" />
                 </button>
               )}
             </div>
