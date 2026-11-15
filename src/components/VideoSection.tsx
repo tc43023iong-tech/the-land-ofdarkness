@@ -8,7 +8,7 @@ interface VideoSectionProps {
 
 export const VideoSection: React.FC<VideoSectionProps> = ({ onStartStory }) => {
   const videoId = 'rBTRYTXqarI';
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1`;
   const youtubeUrl = `https://youtu.be/rBTRYTXqarI?si=oXW7MjOEDlMjpNpJ`;
 
   return (
@@ -62,6 +62,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ onStartStory }) => {
             src={embedUrl}
             title="Journey to the West: The Land of Darkness Animated Video"
             className="w-full h-full border-0"
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />

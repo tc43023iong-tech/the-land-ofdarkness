@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Volume2, CheckCircle2, RotateCcw, ChevronRight, ChevronLeft, Check, Film, Play, RotateCw } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Volume2, CheckCircle2, RotateCcw, ChevronRight, ChevronLeft, Check, Film, RotateCw, ExternalLink } from 'lucide-react';
 import { CLOZE_ITEMS } from '../data/storyData';
 import { ClozeItem } from '../types/story';
 import { speech } from '../utils/speech';
@@ -9,6 +9,36 @@ import { PixelNarrator, PixelWukong, PixelJudge } from './StoryReader';
 interface ClozeSectionProps {
   onNextPart?: () => void;
 }
+
+interface YTPlayerInstance {
+  loadVideoById: (options: { videoId: string; startSeconds?: number; endSeconds?: number }) => void;
+  seekTo: (seconds: number, allowSeekAhead: boolean) => void;
+  playVideo: () => void;
+  pauseVideo: () => void;
+  getCurrentTime: () => number;
+  getPlayerState: () => number;
+  destroy: () => void;
+}
+
+declare global {
+  interface Window {
+    YT?: {
+      Player: new (
+        element: HTMLElement | string,
+        options: {
+          events?: {
+            onReady?: () => void;
+            onStateChange?: (event: { data: number }) => void;
+            onError?: () => void;
+          };
+        }
+      ) => YTPlayerInstance;
+    };
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
+const YOUTUBE_VIDEO_ID = 'rBTRYTXqarI';
 
 // Scrambled / shuffled word options per question (no fixed predictable order)
 const SCRAMBLED_OPTIONS_MAP: Record<number, string[]> = {
@@ -56,9 +86,97 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
   const [activeClipId, setActiveClipId] = useState<number>(1);
   const [clipPlayCounter, setClipPlayCounter] = useState<number>(0);
   const [hasStartedVideo, setHasStartedVideo] = useState<boolean>(false);
+  const [embedError, setEmbedError] = useState<boolean>(false);
+  const [iframeSrc, setIframeSrc] = useState<string>(() => {
+    const first = CLOZE_ITEMS[0];
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const originParam = origin ? `&origin=${encodeURIComponent(origin)}` : '';
+    return `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?start=${first.videoStart || 0}&end=${first.videoEnd || 0}&enablejsapi=1&rel=0&playsinline=1${originParam}`;
+  });
+
   const videoPlayerRef = useRef<HTMLDivElement | null>(null);
+  const iframeElementRef = useRef<HTMLIFrameElement | null>(null);
+  const ytPlayerRef = useRef<YTPlayerInstance | null>(null);
+  const ytReadyRef = useRef<boolean>(false);
+  const activeClipEndRef = useRef<number | null>(CLOZE_ITEMS[0].videoEnd ?? null);
 
   const activeItem = CLOZE_ITEMS.find((c) => c.id === activeClipId) || CLOZE_ITEMS[0];
+
+  // Attach official YouTube IFrame API to the already-mounted iframe for seamless timestamp jumping
+  useEffect(() => {
+    let isMounted = true;
+
+    const initPlayer = () => {
+      if (!isMounted || !iframeElementRef.current || !window.YT?.Player || ytPlayerRef.current) {
+        return;
+      }
+      ytPlayerRef.current = new window.YT.Player(iframeElementRef.current, {
+        events: {
+          onReady: () => {
+            if (isMounted) {
+              ytReadyRef.current = true;
+              setEmbedError(false);
+            }
+          },
+          onError: () => {
+            if (isMounted) {
+              setEmbedError(true);
+            }
+          }
+        }
+      });
+    };
+
+    if (window.YT?.Player) {
+      initPlayer();
+    } else {
+      const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+      const prevCallback = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        prevCallback?.();
+        initPlayer();
+      };
+      if (!existingScript) {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        tag.async = true;
+        document.head.appendChild(tag);
+      }
+    }
+
+    return () => {
+      isMounted = false;
+      ytReadyRef.current = false;
+      if (ytPlayerRef.current) {
+        try {
+          ytPlayerRef.current.destroy();
+        } catch {
+          // ignore
+        }
+        ytPlayerRef.current = null;
+      }
+    };
+  }, []);
+
+  // Keep end-time check accurate when a clip is actively playing via YT Player API
+  useEffect(() => {
+    if (!hasStartedVideo) return;
+    const timer = window.setInterval(() => {
+      const player = ytPlayerRef.current;
+      const endSec = activeClipEndRef.current;
+      if (!player || !ytReadyRef.current || !endSec) return;
+      try {
+        // 1 === PLAYING in YouTube IFrame API
+        if (player.getPlayerState?.() === 1 && player.getCurrentTime?.() >= endSec + 0.3) {
+          player.pauseVideo?.();
+        }
+      } catch {
+        // ignore cross-origin transient state
+      }
+    }, 350);
+
+    return () => window.clearInterval(timer);
+  }, [hasStartedVideo, activeClipId, clipPlayCounter]);
 
   const handleSelectWordForItem = (itemId: number, word: string) => {
     const isCurrentlySelected = (userInputs[itemId] || '').toLowerCase() === word.toLowerCase();
@@ -104,6 +222,32 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
     setActiveClipId(item.id);
     setClipPlayCounter((prev) => prev + 1);
     setHasStartedVideo(true);
+    setEmbedError(false);
+    activeClipEndRef.current = item.videoEnd ?? null;
+
+    if (ytReadyRef.current && ytPlayerRef.current?.loadVideoById) {
+      try {
+        ytPlayerRef.current.loadVideoById({
+          videoId: YOUTUBE_VIDEO_ID,
+          startSeconds: item.videoStart || 0,
+          endSeconds: item.videoEnd || undefined
+        });
+        ytPlayerRef.current.playVideo?.();
+      } catch {
+        // Fallback to iframe src navigation if player API call fails
+        const origin = typeof window !== 'undefined' ? window.location.origin : '';
+        const originParam = origin ? `&origin=${encodeURIComponent(origin)}` : '';
+        setIframeSrc(
+          `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?start=${item.videoStart || 0}&end=${item.videoEnd || 0}&autoplay=1&enablejsapi=1&rel=0&playsinline=1${originParam}`
+        );
+      }
+    } else {
+      const origin = typeof window !== 'undefined' ? window.location.origin : '';
+      const originParam = origin ? `&origin=${encodeURIComponent(origin)}` : '';
+      setIframeSrc(
+        `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?start=${item.videoStart || 0}&end=${item.videoEnd || 0}&autoplay=1&enablejsapi=1&rel=0&playsinline=1${originParam}`
+      );
+    }
 
     if (shouldScroll && videoPlayerRef.current) {
       videoPlayerRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -242,38 +386,34 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
               </div>
             </div>
 
-            {/* Embedded 16:9 Responsive YouTube Player */}
+            {/* Embedded 16:9 Responsive YouTube Player (mounted directly for reliable playback) */}
             <div className="bg-stone-900 relative">
-              <div className="aspect-video w-full bg-black flex items-center justify-center">
-                {hasStartedVideo ? (
-                  <iframe
-                    key={`${activeItem.id}-${clipPlayCounter}`}
-                    className="w-full h-full border-0"
-                    src={`https://www.youtube-nocookie.com/embed/rBTRYTXqarI?start=${activeItem.videoStart || 0}&end=${activeItem.videoEnd || 0}&autoplay=1&enablejsapi=1&rel=0&modestbranding=1`}
-                    title={`Journey to the West Part C Clip ${activeItem.id}`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center p-4 text-center text-white bg-radial from-stone-800 to-black">
-                    <div
-                      className="w-14 h-14 rounded-full bg-amber-500/90 text-stone-950 flex items-center justify-center shadow-lg mb-2 hover:scale-105 transition-transform cursor-pointer"
-                      onClick={() => handlePlayClip(activeItem)}
-                    >
-                      <Play className="w-7 h-7 ml-0.5 fill-current" />
+              <div className="aspect-video w-full bg-black relative">
+                <iframe
+                  ref={iframeElementRef}
+                  className="w-full h-full border-0"
+                  src={iframeSrc}
+                  title={`Journey to the West Part C Clip ${activeItem.id}`}
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+                {embedError && (
+                  <div className="absolute inset-0 bg-stone-950/90 flex flex-col items-center justify-center p-4 text-center text-white gap-3">
+                    <p className="text-sm sm:text-base font-bold text-amber-300">
+                      YouTube 內嵌播放器暫時無法載入（可能受網路環境限制）
+                    </p>
+                    <div className="flex flex-wrap items-center justify-center gap-2">
+                      <a
+                        href={`https://www.youtube.com/watch?v=${YOUTUBE_VIDEO_ID}&t=${activeItem.videoStart || 0}s`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm inline-flex items-center gap-1.5"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>開啟 YouTube 第 {activeItem.id} 題片段 ({activeItem.videoTimeLabel})</span>
+                      </a>
                     </div>
-                    <h4 className="text-base font-bold text-amber-300">
-                      點擊播放第 {activeItem.id} 題動畫片段
-                    </h4>
-                    <span className="text-xs sm:text-sm font-mono font-bold text-amber-200 mt-1 bg-black/40 px-2.5 py-0.5 rounded">
-                      ⏱ {activeItem.videoTimeLabel}
-                    </span>
-                    <button
-                      onClick={() => handlePlayClip(activeItem)}
-                      className="mt-3 px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-lg text-sm transition-colors shadow-sm cursor-pointer"
-                    >
-                      🎬 開始播放
-                    </button>
                   </div>
                 )}
               </div>
@@ -298,16 +438,28 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
                 </span>
               </div>
 
-              {isItemCorrect(activeItem) ? (
-                <span className="text-xs sm:text-sm font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300 shrink-0 flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5 text-emerald-700" />
-                  已答對
-                </span>
-              ) : (
-                <span className="text-xs sm:text-sm text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-lg border border-amber-300 shrink-0">
-                  作答中
-                </span>
-              )}
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={`https://www.youtube.com/watch?v=${YOUTUBE_VIDEO_ID}&t=${activeItem.videoStart || 0}s`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs sm:text-sm font-semibold text-stone-600 hover:text-amber-700 bg-white px-2.5 py-0.5 rounded-lg border border-stone-200 inline-flex items-center gap-1"
+                  title="若無法在網頁內播放，可點此在 YouTube 開啟該片段"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>YouTube</span>
+                </a>
+                {isItemCorrect(activeItem) ? (
+                  <span className="text-xs sm:text-sm font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-lg border border-emerald-300 shrink-0 flex items-center gap-1">
+                    <Check className="w-3.5 h-3.5 text-emerald-700" />
+                    已答對
+                  </span>
+                ) : (
+                  <span className="text-xs sm:text-sm text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-lg border border-amber-300 shrink-0">
+                    作答中
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* Quick 8-Item Navigation Pills */}
