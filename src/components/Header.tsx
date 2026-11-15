@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMute
 }) => {
   return (
-    <header className="sticky top-0 z-50 bg-[#fdfbf7]/95 backdrop-blur-md border-b border-stone-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 sm:gap-6">
+    <header className="sticky top-0 z-50 bg-[#fdfbf7]/95 backdrop-blur-md border-b border-stone-200/80 px-3 sm:px-5 lg:px-6 py-3.5 flex items-center justify-between gap-4 sm:gap-6">
       {/* Zone 1: Single text element wordmark */}
       <a
         href="#story"
@@ -27,10 +27,10 @@ export const Header: React.FC<HeaderProps> = ({
           onTabChange('story');
           sfx.playClick();
         }}
-        className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 whitespace-nowrap shrink-0 font-display flex items-center gap-2 hover:opacity-85 transition-opacity"
+        className="text-base sm:text-lg font-black tracking-tight text-slate-900 font-display hover:opacity-85 transition-opacity leading-snug shrink-0 max-w-[235px] sm:max-w-[290px] 2xl:max-w-none"
       >
-        <span className="text-2xl">🐒</span>
-        <span>Journey to the West</span>
+        <span>Journey to the West: The Land of Darkness </span>
+        <span className="font-chinese text-amber-800 whitespace-nowrap">幽冥界</span>
       </a>
 
       {/* Zone 2: Concise single-line navigation links */}

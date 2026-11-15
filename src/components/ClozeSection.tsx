@@ -93,6 +93,7 @@ export const ClozeSection: React.FC<ClozeSectionProps> = ({ onNextPart }) => {
     sfx.playClick();
     setSpeakingId(item.id);
     speech.speak(item.fullEn, {
+      speaker: item.speaker,
       onEnd: () => setSpeakingId(null),
       onError: () => setSpeakingId(null)
     });

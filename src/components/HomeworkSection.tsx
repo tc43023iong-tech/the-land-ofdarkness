@@ -70,10 +70,11 @@ export const HomeworkSection: React.FC<HomeworkSectionProps> = ({ onGoToPartC })
     }
   };
 
-  const handleSpeak = (id: number, text: string) => {
+  const handleSpeak = (id: number, text: string, speaker?: string) => {
     sfx.playClick();
     setSpeakingId(id);
     speech.speak(text, {
+      speaker,
       onEnd: () => setSpeakingId(null),
       onError: () => setSpeakingId(null)
     });
@@ -88,7 +89,7 @@ export const HomeworkSection: React.FC<HomeworkSectionProps> = ({ onGoToPartC })
   const isAllDone = completedCount === CLOZE_ITEMS.length;
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className="space-y-6">
       {/* Homework Primary Hero Card */}
       <div className="bg-gradient-to-r from-amber-500/15 via-rose-500/10 to-purple-500/15 rounded-3xl p-6 sm:p-8 border-2 border-amber-300 shadow-md">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -208,7 +209,7 @@ export const HomeworkSection: React.FC<HomeworkSectionProps> = ({ onGoToPartC })
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleSpeak(item.id, item.fullEn);
+                        handleSpeak(item.id, item.fullEn, item.speaker);
                       }}
                       className={`px-3 py-1.5 rounded-xl text-sm font-semibold flex items-center gap-1.5 transition-all ${
                         isSpeaking

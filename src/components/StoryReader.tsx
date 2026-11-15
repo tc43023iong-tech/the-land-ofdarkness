@@ -329,6 +329,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
     setCurrentSentenceId(sentence.id);
     speech.speak(sentence.en, {
       rate: speechRate,
+      speaker: sentence.speaker,
       onEnd: () => setCurrentSentenceId(null),
       onError: () => setCurrentSentenceId(null)
     });
@@ -358,6 +359,7 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
 
       speech.speak(s.en, {
         rate: speechRate,
+        speaker: s.speaker,
         onEnd: () => {
           setTimeout(playNext, 400);
         },

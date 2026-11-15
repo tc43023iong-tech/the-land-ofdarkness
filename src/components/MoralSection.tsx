@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, MessageSquare, Volume2, HeartHandshake, BookOpen, Quote } from 'lucide-react';
 import { MORAL_QUESTIONS } from '../data/storyData';
-import { MoralQuestion } from '../types/story';
 import { speech } from '../utils/speech';
 import { sfx } from '../utils/soundEffects';
 
@@ -52,11 +51,6 @@ export const MoralSection: React.FC = () => {
       }
       return updated;
     });
-  };
-
-  const handleSpeakQuestion = (q: MoralQuestion) => {
-    sfx.playClick();
-    speech.speak(`${q.title}. ${q.question}`);
   };
 
   const filteredQuestions = activeTab === 'all'
@@ -135,10 +129,7 @@ export const MoralSection: React.FC = () => {
                     {q.id}
                   </div>
                   <div>
-                    <span className="text-xs sm:text-sm font-bold text-purple-700 uppercase tracking-wider block">
-                      {q.title}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 mt-0.5 leading-snug">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
                       {q.question}
                     </h3>
                   </div>
@@ -302,8 +293,8 @@ export const MoralSection: React.FC = () => {
                   </button>
                 </div>
 
-                <p className="text-sm sm:text-base font-bold text-amber-900 bg-amber-50/80 p-3 rounded-xl border border-amber-200/60 leading-relaxed">
-                  💡 中文大意：能力越強，越要用來「幫助別人」和「遵守規則」，絕不欺負弱小！
+                <p className="text-sm sm:text-base font-bold text-amber-900 bg-amber-50/80 p-3 rounded-xl border border-amber-200/60 leading-relaxed font-chinese">
+                  💡 能力越強，越要用來「幫助別人」和「遵守規則」，絕不欺負弱小！
                 </p>
               </div>
             </div>
@@ -361,8 +352,8 @@ export const MoralSection: React.FC = () => {
                   </button>
                 </div>
 
-                <p className="text-sm sm:text-base font-bold text-indigo-900 bg-indigo-50/80 p-3 rounded-xl border border-indigo-200/60 leading-relaxed">
-                  💡 中文大意：遇到衝突「不要打架」，先「保持冷靜」，告訴老師或家長來解決！
+                <p className="text-sm sm:text-base font-bold text-indigo-900 bg-indigo-50/80 p-3 rounded-xl border border-indigo-200/60 leading-relaxed font-chinese">
+                  💡 遇到衝突「不要打架」，先「保持冷靜」，告訴老師或家長來解決！
                 </p>
               </div>
             </div>
