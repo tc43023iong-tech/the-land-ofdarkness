@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Volume2, CheckCircle2, RotateCcw, Sparkles, BookOpen, ChevronRight, PenTool } from 'lucide-react';
+import { Volume2, CheckCircle2, RotateCcw, ChevronRight } from 'lucide-react';
 import { SENTENCE_PRACTICE_ITEMS } from '../data/storyData';
 import { SentencePracticeItem } from '../types/story';
 import { speech } from '../utils/speech';
@@ -159,47 +159,54 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
       </div>
 
       {/* Sentences List */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {filteredItems.map((item) => {
           const isCorrect = isSentenceCorrect(item);
           const currentTiles = builtSentences[item.id] || [];
           const isRevealed = revealedAnswers[item.id];
+          const patternParts = item.pattern.split(/(\[[^\]]+\])/g);
 
           return (
             <div
               key={item.id}
-              className={`p-5 sm:p-6 rounded-2xl border transition-all ${
+              className={`p-5 sm:p-7 rounded-3xl border-2 transition-all shadow-xs ${
                 isCorrect
                   ? 'bg-emerald-50/40 border-emerald-300'
-                  : 'bg-white border-stone-200/80'
+                  : 'bg-white border-stone-200/90'
               }`}
             >
-              {/* Header with Prominent Pattern */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-3 border-b border-orange-100">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-9 h-9 rounded-xl bg-orange-600 text-white font-bold text-base flex items-center justify-center shrink-0 shadow-xs">
-                    {item.id}
+              {/* Header with Eye-catching Dashed Pattern Banner (matching reference style) */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div className="inline-flex flex-wrap items-center bg-[#FFF4D6] border-[3px] border-dashed border-[#F59E0B] rounded-2xl px-5 py-2.5 font-pattern text-xl sm:text-2xl font-bold tracking-wide leading-snug shadow-2xs">
+                  <span className="text-[#D2520B] mr-1.5">{item.patternNumber}.</span>
+                  <span>
+                    {patternParts.map((part, idx) =>
+                      part.startsWith('[') && part.endsWith(']') ? (
+                        <span key={idx} className="text-[#0C7A5E]">
+                          {part}
+                        </span>
+                      ) : (
+                        <span key={idx} className="text-[#D2520B]">
+                          {part}
+                        </span>
+                      )
+                    )}
                   </span>
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-orange-950 font-mono tracking-tight bg-orange-50 px-3.5 py-1 rounded-xl border border-orange-200 inline-block">
-                      {item.pattern}
-                    </h3>
-                  </div>
                 </div>
 
-                <div className="flex items-center gap-2.5 self-end sm:self-auto">
+                <div className="flex items-center gap-2.5 self-end sm:self-center shrink-0">
                   <button
                     onClick={() => {
                       setRevealedAnswers((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
                       sfx.playClick();
                     }}
-                    className="text-sm text-stone-600 hover:text-orange-800 underline font-medium"
+                    className="px-3 py-1.5 rounded-xl bg-stone-100 hover:bg-orange-100 text-sm text-stone-700 hover:text-orange-900 font-semibold transition-colors cursor-pointer"
                   >
                     {isRevealed ? 'Hide Answer' : 'Show Answer'}
                   </button>
                   <button
                     onClick={() => handleSpeakSentence(item.en)}
-                    className="p-2 rounded-lg text-stone-400 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                    className="p-2.5 rounded-xl bg-stone-100 text-stone-600 hover:text-orange-700 hover:bg-orange-100 transition-colors cursor-pointer"
                     title="Pronounce Answer"
                   >
                     <Volume2 className="w-5 h-5" />
@@ -207,18 +214,20 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                 </div>
               </div>
 
-              {/* Target Prompt (Chinese sentence without redundant label) */}
-              <div className="mb-4">
-                <p className="text-xl sm:text-2xl font-bold text-slate-900 font-chinese">
-                  {item.zh}
-                </p>
-              </div>
+              {/* Target Prompt & Interactive Sentence Area inside clean light-sky container */}
+              <div className="rounded-2xl bg-sky-50/40 border-2 border-sky-200/80 p-4 sm:p-5 space-y-4">
+                {/* Crystal-clear Chinese Question Prompt */}
+                <div className="flex items-start gap-3">
+                  <p className="text-2xl sm:text-3xl font-bold text-slate-900 font-chinese leading-snug tracking-normal">
+                    {item.zh}
+                  </p>
+                </div>
 
-              {/* Interactive Sentence Construction Area */}
-              {inputMode === 'tiles' ? (
+                {/* Interactive Sentence Construction Area */}
+                {inputMode === 'tiles' ? (
                 <div className="space-y-3">
                   {/* Built sentence slot */}
-                  <div className="min-h-[54px] p-2.5 bg-stone-50 rounded-xl border border-dashed border-stone-300 flex flex-wrap items-center gap-2">
+                  <div className="min-h-[56px] p-3 bg-white rounded-xl border-2 border-dashed border-sky-200 flex flex-wrap items-center gap-2">
                     {currentTiles.length === 0 ? (
                       <span className="text-sm sm:text-base text-stone-400 italic pl-1">
                         Click word tiles below to build the sentence...
@@ -302,6 +311,7 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                     </div>
                   ) : null}
                 </div>
+              </div>
               </div>
             </div>
           );

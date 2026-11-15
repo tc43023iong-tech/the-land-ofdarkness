@@ -5,7 +5,8 @@
   :root {
     --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-chinese: 'ZCOOL KuaiLe', 'Noto Sans TC', sans-serif;
+    --font-chinese: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    --font-pattern: 'Fredoka', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   html {
@@ -29,6 +30,10 @@
 
 .font-chinese {
   font-family: var(--font-chinese);
+}
+
+.font-pattern {
+  font-family: var(--font-pattern);
 }
 
 /* Custom scrollbar for scrollable panels */
