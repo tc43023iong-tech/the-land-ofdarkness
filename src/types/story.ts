@@ -6,6 +6,15 @@ export interface StorySentence {
   zh: string;
 }
 
+export interface SceneIllustration {
+  id: string;
+  image: string;
+  alt: string;
+  captionEn: string;
+  captionZh: string;
+  sentenceIds: string[];
+}
+
 export interface StoryScene {
   id: number;
   title: string;
@@ -14,6 +23,7 @@ export interface StoryScene {
   image: string;
   imageAlt: string;
   summary: string;
+  illustrations?: SceneIllustration[];
   sentences: StorySentence[];
   interactiveType?: 'staff_resizer' | 'ghost_action' | 'judge_directory' | 'cross_out';
 }

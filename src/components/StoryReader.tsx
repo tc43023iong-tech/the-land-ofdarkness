@@ -314,15 +314,29 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
   const [speechRate, setSpeechRate] = useState<number>(1.0);
   const [showAllZh, setShowAllZh] = useState<boolean>(false);
   const [revealedSentenceZh, setRevealedSentenceZh] = useState<Record<string, boolean>>({});
+  const [selectedIllustrationIndex, setSelectedIllustrationIndex] = useState<number>(0);
 
   const activeScene: StoryScene = STORY_SCENES[activeSceneIndex];
+  const sceneIllustrations = activeScene.illustrations || [];
 
-  // Stop audio on unmount or scene change
+  // Reset illustration selection and stop audio on unmount or scene change
   useEffect(() => {
+    setSelectedIllustrationIndex(0);
     return () => {
       speech.stop();
     };
   }, [activeSceneIndex]);
+
+  // Auto-sync left storyboard illustration when a sentence is spoken/clicked
+  useEffect(() => {
+    if (!currentSentenceId || sceneIllustrations.length === 0) return;
+    const matchIdx = sceneIllustrations.findIndex((ill) =>
+      ill.sentenceIds.includes(currentSentenceId)
+    );
+    if (matchIdx !== -1) {
+      setSelectedIllustrationIndex(matchIdx);
+    }
+  }, [currentSentenceId, activeSceneIndex]);
 
   const handlePlaySentence = (sentence: StorySentence) => {
     sfx.playClick();
@@ -472,11 +486,11 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
 
       {/* Main Storyboard Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Column: Story Illustration & Scene Tools (5 cols) */}
+        {/* Left Column: Multi-Illustration Storyboard & Scene Tools (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-sm overflow-hidden group">
+          <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-sm overflow-hidden space-y-4">
             {/* Scene Header */}
-            <div className="flex items-center justify-between gap-2 mb-3">
+            <div className="flex items-center justify-between gap-2">
               <div>
                 <span className="text-sm font-bold text-amber-600 tracking-wider">
                   SCENE {activeScene.id} OF 4
@@ -493,24 +507,107 @@ export const StoryReader: React.FC<StoryReaderProps> = ({ onNavigateToQuiz, onNa
               </span>
             </div>
 
-            {/* Illustration Canvas */}
-            <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-100 border border-stone-200">
-              <img
-                src={activeScene.image}
-                alt={activeScene.imageAlt}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 right-3 text-white">
-                <p className="text-sm font-medium drop-shadow-md leading-relaxed">
-                  {activeScene.summary}
-                </p>
+            {/* Featured Active Illustration Canvas */}
+            {(() => {
+              const activeIll = sceneIllustrations[selectedIllustrationIndex];
+              const featuredImg = activeIll?.image || activeScene.image;
+              const featuredAlt = activeIll?.alt || activeScene.imageAlt;
+              const featuredCaptionEn = activeIll?.captionEn || activeScene.summary;
+              const featuredCaptionZh = activeIll?.captionZh;
+
+              return (
+                <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-stone-100 border border-stone-200 group">
+                  <img
+                    src={featuredImg}
+                    alt={featuredAlt}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                  {sceneIllustrations.length > 1 && (
+                    <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-amber-500/95 text-stone-950 text-xs font-extrabold shadow-xs">
+                      插圖 {selectedIllustrationIndex + 1} / {sceneIllustrations.length}
+                    </div>
+                  )}
+                  <div className="absolute bottom-3 left-3 right-3 text-white space-y-0.5">
+                    <p className="text-sm sm:text-base font-bold drop-shadow-md leading-snug">
+                      {featuredCaptionEn}
+                    </p>
+                    {featuredCaptionZh && (
+                      <p className="text-xs sm:text-sm text-amber-200 font-chinese font-semibold drop-shadow-md">
+                        {featuredCaptionZh}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Multi-Illustration Storyboard Cards Explaining the Story Flow */}
+            {sceneIllustrations.length > 1 && (
+              <div className="space-y-2.5 pt-1">
+                <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-stone-700">
+                  <span>📖 故事分鏡插圖說明（點擊切換插圖並朗讀對應段落）</span>
+                </div>
+                <div className="grid grid-cols-1 gap-2.5">
+                  {sceneIllustrations.map((ill, idx) => {
+                    const isSelected = idx === selectedIllustrationIndex;
+                    const firstMatchingSentence = activeScene.sentences.find((s) =>
+                      ill.sentenceIds.includes(s.id)
+                    );
+
+                    return (
+                      <button
+                        key={ill.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedIllustrationIndex(idx);
+                          if (firstMatchingSentence) {
+                            handlePlaySentence(firstMatchingSentence);
+                          } else {
+                            sfx.playClick();
+                          }
+                        }}
+                        className={`w-full text-left p-2.5 rounded-xl border-2 transition-all flex items-center gap-3 cursor-pointer ${
+                          isSelected
+                            ? 'bg-amber-50/90 border-amber-500 shadow-xs'
+                            : 'bg-stone-50/70 border-stone-200/80 hover:bg-amber-50/40 hover:border-amber-300'
+                        }`}
+                      >
+                        <div className="w-24 sm:w-28 aspect-[4/3] rounded-lg overflow-hidden shrink-0 bg-stone-200 border border-stone-200 relative">
+                          <img
+                            src={ill.image}
+                            alt={ill.alt}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover"
+                          />
+                          <span
+                            className={`absolute top-1 left-1 w-5 h-5 rounded-md text-xs font-black flex items-center justify-center shadow-xs ${
+                              isSelected
+                                ? 'bg-amber-500 text-stone-950'
+                                : 'bg-black/65 text-white'
+                            }`}
+                          >
+                            {idx + 1}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0 space-y-0.5">
+                          <p className={`text-sm font-bold leading-snug ${isSelected ? 'text-amber-950' : 'text-slate-800'}`}>
+                            {ill.captionEn}
+                          </p>
+                          <p className="text-xs sm:text-sm text-stone-600 font-chinese leading-snug">
+                            {ill.captionZh}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Audio Deck Controls */}
-            <div className="mt-4 pt-3 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2">
+            <div className="pt-3 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2">
               <button
                 onClick={handlePlayScene}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm ${

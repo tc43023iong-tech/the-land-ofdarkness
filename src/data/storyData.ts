@@ -9,6 +9,32 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/images/wukong_dragon_staff_1793961266221.jpg',
     imageAlt: 'Sun Wukong testing the magical glowing iron pillar in the underwater Dragon Palace',
     summary: 'Sun Wukong finds the legendary iron pillar in the Dragon Palace and commands it to shrink into a tiny pin inside his ear.',
+    illustrations: [
+      {
+        id: 's1-ill-1',
+        image: '/images/wukong_dragon_staff_1793961266221.jpg',
+        alt: 'Sun Wukong touching the glowing magical iron pillar in the Dragon Palace',
+        captionEn: '1. Wukong touches the glowing iron pillar in the Dragon Palace.',
+        captionZh: '悟空在東海龍宮觸摸會發光的神奇定海神針。',
+        sentenceIds: ['s1-1', 's1-2']
+      },
+      {
+        id: 's1-ill-2',
+        image: '/images/vocab_shrink_1793962627453.jpg',
+        alt: 'Sun Wukong commanding the iron pillar to shrink into a weapon',
+        captionEn: '2. "Smaller!" The pillar shrinks into a perfect weapon.',
+        captionZh: '「變小！」鐵柱聽話縮小，變成他手上的完美武器。',
+        sentenceIds: ['s1-3', 's1-4', 's1-5']
+      },
+      {
+        id: 's1-ill-3',
+        image: '/images/scene1_pin_ear.jpg',
+        alt: 'Sun Wukong placing the pin-sized staff inside his ear while the Dragon King gets angry',
+        captionEn: '3. He hides the tiny pin in his ear; the angry Dragon King vows to report him.',
+        captionZh: '悟空把金箍棒縮成繡花針放進耳朵，氣得龍王決定向玉帝告狀。',
+        sentenceIds: ['s1-6', 's1-7', 's1-8', 's1-9', 's1-10']
+      }
+    ],
     sentences: [
       {
         id: 's1-1',
@@ -90,6 +116,40 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/images/wukong_darkness_gate_1793961268218.jpg',
     imageAlt: 'Sun Wukong being dragged to the dark and creepy gates of the Land of Darkness',
     summary: 'While celebrating at Flower Fruit Mountain, two ghostly spirits ambush sleeping Wukong and drag him to the spooky Land of Darkness.',
+    illustrations: [
+      {
+        id: 's2-ill-1',
+        image: '/images/scene2_monkey_feast.jpg',
+        alt: 'Sun Wukong and cheerful monkeys celebrating with a fruit feast in Water Curtain Cave',
+        captionEn: '1. Joyful feast at Water Curtain Cave celebrating Wukong\'s new weapon.',
+        captionZh: '花果山水簾洞大擺盛宴，猴子們歡呼讚嘆悟空的新武器。',
+        sentenceIds: ['s2-1', 's2-2', 's2-3']
+      },
+      {
+        id: 's2-ill-2',
+        image: '/images/vocab_drag_1793962630122.jpg',
+        alt: 'Two underworld spirits grabbing and dragging sleeping Sun Wukong out of his cave',
+        captionEn: '2. As Wukong falls asleep, two spirits grab and drag him away.',
+        captionZh: '悟空剛睡著，兩個鬼差突然出現並強行將他拖出洞穴。',
+        sentenceIds: ['s2-4', 's2-5']
+      },
+      {
+        id: 's2-ill-3',
+        image: '/images/wukong_darkness_gate_1793961268218.jpg',
+        alt: 'Arriving at the dark and creepy city gates of the Land of Darkness',
+        captionEn: '3. They arrive at a dark and creepy city: the "Land of Darkness."',
+        captionZh: '鬼差把他帶到一座陰森恐怖的城池，門上寫著「幽冥界」。',
+        sentenceIds: ['s2-6', 's2-7']
+      },
+      {
+        id: 's2-ill-4',
+        image: '/images/scene2_grow_staff.jpg',
+        alt: 'Sun Wukong yanking free and growing his iron bar to knock out both spirits',
+        captionEn: '4. "Grow!" Wukong breaks free and knocks out both spirits.',
+        captionZh: '悟空掙脫後大喊「變大！」，揮舞鐵棒一口氣撂倒兩個鬼差！',
+        sentenceIds: ['s2-8', 's2-9']
+      }
+    ],
     sentences: [
       {
         id: 's2-1',
@@ -164,6 +224,32 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/images/wukong_judge_palace_1793961268677.jpg',
     imageAlt: 'Sun Wukong holding his staff and confronting the Judge of the Dead in the Underworld Palace',
     summary: 'Sun Wukong marches into the Underworld Palace and demands to know why he was summoned. The Judge opens the ancient Directory of life and death.',
+    illustrations: [
+      {
+        id: 's3-ill-1',
+        image: '/images/vocab_flee_1793962632996.jpg',
+        alt: 'Sun Wukong swinging his iron bar as underworld demons and ghosts flee',
+        captionEn: '1. Wukong swings his iron bar; demons and ghosts flee in fear.',
+        captionZh: '悟空大步闖進幽冥界揮舞鐵棒，群魔小鬼嚇得紛紛逃跑。',
+        sentenceIds: ['s3-1']
+      },
+      {
+        id: 's3-ill-2',
+        image: '/images/wukong_judge_palace_1793961268677.jpg',
+        alt: 'Sun Wukong confronting the tall Judge of the Dead outside the Palace of Darkness',
+        captionEn: '2. Wukong confronts the Judge of the Dead outside the palace.',
+        captionZh: '悟空在森羅殿外質問高大的判官：為何抓自己來幽冥界？',
+        sentenceIds: ['s3-2', 's3-3', 's3-4', 's3-5', 's3-6', 's3-7']
+      },
+      {
+        id: 's3-ill-3',
+        image: '/images/vocab_judge_1793962631798.jpg',
+        alt: 'The nervous Judge holding the giant ancient Directory of life and death',
+        captionEn: '3. The nervous Judge suggests checking the ancient Directory.',
+        captionZh: '判官神色緊張，提議翻查記錄世間生靈壽命的《生死簿》。',
+        sentenceIds: ['s3-8']
+      }
+    ],
     interactiveType: 'judge_directory',
     sentences: [
       {
@@ -232,6 +318,32 @@ export const STORY_SCENES: StoryScene[] = [
     image: '/images/wukong_directory_brush_1793961269529.jpg',
     imageAlt: 'Sun Wukong playfully using a magical calligraphy ink brush to cross out names in the Directory of life and death',
     summary: 'Wukong reads his entry in the Directory, snatches the book, turns monkey hairs into an ink brush, and crosses out the names of all monkeys and apes!',
+    illustrations: [
+      {
+        id: 's4-ill-1',
+        image: '/images/vocab_judge_1793962631798.jpg',
+        alt: 'The Judge flipping through the giant Directory showing Sun Wukong\'s entry',
+        captionEn: '1. The Judge reads Wukong\'s entry: "Born from a stone... Died today."',
+        captionZh: '判官翻開生死簿，念出「孫悟空，三百年前生於仙石，今日命終」。',
+        sentenceIds: ['s4-1', 's4-2', 's4-3', 's4-4', 's4-5']
+      },
+      {
+        id: 's4-ill-2',
+        image: '/images/wukong_judge_palace_1793961268677.jpg',
+        alt: 'Sun Wukong raising his iron bar and demanding the Directory from the trembling judge',
+        captionEn: '2. Wukong glares and demands the book; the trembling Judge hands it over.',
+        captionZh: '悟空怒舉鐵棒要判官交出生死簿，判官嚇得雙手奉上。',
+        sentenceIds: ['s4-6', 's4-7', 's4-8']
+      },
+      {
+        id: 's4-ill-3',
+        image: '/images/wukong_directory_brush_1793961269529.jpg',
+        alt: 'Sun Wukong turning two hairs into a brush and ink to cross out monkey names',
+        captionEn: '3. Magic hair becomes brush & ink — he crosses out all monkey names!',
+        captionZh: '悟空拔毫毛化為毛筆與濃墨，一筆勾銷自己與所有猴孫的名字！',
+        sentenceIds: ['s4-9', 's4-10', 's4-11', 's4-12']
+      }
+    ],
     interactiveType: 'cross_out',
     sentences: [
       {
