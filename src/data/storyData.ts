@@ -698,7 +698,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '1. 這個武器太重了。',
     en: 'This weapon is too heavy.',
     scrambledWords: ['too', 'This', 'heavy.', 'weapon', 'is'],
-    keyVocab: 'weapon'
+    keyVocab: 'weapon',
+    image: '/images/wukong_dragon_staff_1793961266221.jpg',
+    imageAlt: 'Giant heavy golden iron pillar weapon in the Dragon Palace'
   },
   {
     id: 2,
@@ -707,7 +709,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '2. 這個地方太恐怖了 (creepy)。',
     en: 'This place is too creepy.',
     scrambledWords: ['place', 'This', 'creepy.', 'is', 'too'],
-    keyVocab: 'creepy'
+    keyVocab: 'creepy',
+    image: '/images/vocab_creepy_1793962630120.jpg',
+    imageAlt: 'A dark and creepy underworld street'
   },
   {
     id: 3,
@@ -716,7 +720,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '3. 我可以命令這根鐵柱。',
     en: 'I can command this iron pillar.',
     scrambledWords: ['iron', 'command', 'can', 'pillar.', 'this', 'I'],
-    keyVocab: 'command'
+    keyVocab: 'command',
+    image: '/images/vocab_command_1793962628720.jpg',
+    imageAlt: 'Sun Wukong giving a bold command to the iron pillar'
   },
   {
     id: 4,
@@ -725,7 +731,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '4. 我可以把這個柱子縮小。',
     en: 'I can shrink this pillar.',
     scrambledWords: ['shrink', 'pillar.', 'this', 'can', 'I'],
-    keyVocab: 'shrink'
+    keyVocab: 'shrink',
+    image: '/images/vocab_shrink_1793962627453.jpg',
+    imageAlt: 'Sun Wukong shrinking the iron pillar'
   },
   {
     id: 5,
@@ -734,7 +742,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '5. 他們試圖拖走我。',
     en: 'They try to drag me.',
     scrambledWords: ['me.', 'try', 'They', 'to', 'drag'],
-    keyVocab: 'drag'
+    keyVocab: 'drag',
+    image: '/images/vocab_drag_1793962630122.jpg',
+    imageAlt: 'Two underworld spirits dragging Sun Wukong out of his cave'
   },
   {
     id: 6,
@@ -743,7 +753,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '6. 那些鬼怪試圖逃跑。',
     en: 'Those spirits try to flee.',
     scrambledWords: ['flee.', 'try', 'spirits', 'Those', 'to'],
-    keyVocab: 'spirits, flee'
+    keyVocab: 'spirits, flee',
+    image: '/images/vocab_flee_1793962632996.jpg',
+    imageAlt: 'Demons and underworld spirits fleeing from Sun Wukong'
   },
   {
     id: 7,
@@ -752,7 +764,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '7. 那個審判官在哪裡？',
     en: 'Where is the judge?',
     scrambledWords: ['judge?', 'Where', 'the', 'is'],
-    keyVocab: 'judge'
+    keyVocab: 'judge',
+    image: '/images/vocab_judge_1793962631798.jpg',
+    imageAlt: 'The Judge of the Dead holding the Directory'
   },
   {
     id: 8,
@@ -761,7 +775,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '8. 那個靈魂在哪裡？',
     en: 'Where is the spirit?',
     scrambledWords: ['the', 'spirit?', 'Where', 'is'],
-    keyVocab: 'spirit'
+    keyVocab: 'spirit',
+    image: '/images/vocab_spirit_1793962630424.jpg',
+    imageAlt: 'An underworld spirit floating in the darkness'
   },
   {
     id: 9,
@@ -770,7 +786,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '9. 這是一件神奇的武器。',
     en: 'It is a magical weapon.',
     scrambledWords: ['magical', 'a', 'weapon.', 'is', 'It'],
-    keyVocab: 'weapon'
+    keyVocab: 'weapon',
+    image: '/images/vocab_weapon_1793962629177.jpg',
+    imageAlt: 'The glowing magical golden staff weapon'
   },
   {
     id: 10,
@@ -779,7 +797,9 @@ export const SENTENCE_PRACTICE_ITEMS: SentencePracticeItem[] = [
     zh: '10. 這是一個令人毛骨悚然的城市。',
     en: 'It is a creepy city.',
     scrambledWords: ['city.', 'It', 'a', 'is', 'creepy'],
-    keyVocab: 'creepy'
+    keyVocab: 'creepy',
+    image: '/images/wukong_darkness_gate_1793961268218.jpg',
+    imageAlt: 'The creepy dark gates of the Land of Darkness city'
   }
 ];
 

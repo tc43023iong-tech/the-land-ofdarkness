@@ -83,6 +83,8 @@ export interface SentencePracticeItem {
   en: string;
   scrambledWords: string[];
   keyVocab: string;
+  image?: string;
+  imageAlt?: string;
   tip?: string;
 }
 

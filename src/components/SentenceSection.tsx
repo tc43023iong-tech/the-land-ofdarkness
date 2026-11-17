@@ -169,12 +169,36 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
           return (
             <div
               key={item.id}
-              className={`p-5 sm:p-7 rounded-3xl border-2 transition-all shadow-xs ${
+              className={`p-5 sm:p-6 rounded-3xl border-2 transition-all shadow-xs ${
                 isCorrect
                   ? 'bg-emerald-50/40 border-emerald-300'
                   : 'bg-white border-stone-200/90'
               }`}
             >
+              <div className="flex flex-col md:flex-row items-start gap-5 md:gap-6">
+                {/* Left Side: Story Illustration for Visual Sentence Context */}
+                {item.image && (
+                  <div className="w-full sm:w-64 md:w-56 lg:w-64 aspect-[4/3] rounded-2xl overflow-hidden shrink-0 bg-stone-100 border-2 border-stone-200/80 shadow-2xs relative group self-start">
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt || item.zh}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-lg bg-orange-600/90 backdrop-blur-xs text-white text-sm font-extrabold shadow-xs">
+                      #{item.id}
+                    </div>
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between">
+                      <span className="px-2.5 py-0.5 rounded-lg bg-black/60 backdrop-blur-xs text-amber-200 text-xs sm:text-sm font-bold">
+                        🔑 {item.keyVocab}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Right Side: Pattern Banner, Chinese Prompt & Interactive Tiles */}
+                <div className="flex-1 w-full min-w-0">
               {/* Header with Eye-catching Dashed Pattern Banner (matching reference style) */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                 <div className="inline-flex flex-wrap items-center bg-[#FFF4D6] border-[3px] border-dashed border-[#F59E0B] rounded-2xl px-5 py-2.5 font-pattern text-xl sm:text-2xl font-bold tracking-wide leading-snug shadow-2xs">
@@ -312,6 +336,8 @@ export const SentenceSection: React.FC<SentenceSectionProps> = ({ onNextPart }) 
                   ) : null}
                 </div>
               </div>
+              </div>
+                </div>
               </div>
             </div>
           );
